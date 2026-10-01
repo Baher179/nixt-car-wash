@@ -75,6 +75,19 @@ export const Footer: React.FC = () => {
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
               نوفر لك تجربة غسيل سيارات متنقلة واحترافية بأيدي كباتن مختصين وبأعلى معايير النظافة والتلميع، دون الحاجة للانتظار في المغاسل التقليدية.
             </p>
+            {/* Social accounts. Hrefs are intentionally absent until the real
+                profile URLs are supplied, so no link points somewhere invented. */}
+            <div className="flex items-center gap-2 pt-1">
+              {['X', 'IG', 'in', 'TT', 'SC'].map(label => (
+                <span
+                  key={label}
+                  aria-label={`حساب نيكست على ${label}`}
+                  className="w-8 h-8 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-[11px] font-bold text-slate-300"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
             <div className="flex items-center gap-3 text-xs text-slate-400 pt-2">
               <div className="flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-blue-400" />
