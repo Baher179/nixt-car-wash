@@ -90,10 +90,10 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-hairline">
       {/* Top micro bar for announcements & admin toggle */}
-      <div className="bg-navy text-white text-xs py-2 px-4 sm:px-6">
+      <div className="bg-ink text-white text-xs py-2 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5 min-w-0">
-            <span className="hidden sm:inline-block bg-accent text-navy font-bold px-2 py-0.5 rounded-full text-[10px] shrink-0">
+            <span className="hidden sm:inline-block bg-accent text-ink font-bold px-2 py-0.5 rounded-full text-[10px] shrink-0">
               عرض
             </span>
             <span className="text-slate-300 text-[11px] sm:text-xs truncate">
@@ -133,9 +133,9 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="btn-logo-home"
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-2.5 group text-right focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl"
+            className="flex items-center gap-2.5 group text-right focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-deep rounded-xl"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-800 flex items-center justify-center text-white font-bold text-xl shadow-xs group-hover:scale-105 transition-transform">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-ink flex items-center justify-center text-white font-bold text-xl shadow-xs group-hover:scale-105 transition-transform">
               <span>N</span>
             </div>
             <div className="flex flex-col text-right">
@@ -158,7 +158,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="hidden md:flex items-center gap-2.5 hover:bg-canvas text-ink border border-hairline h-11 px-3.5 rounded-full transition-colors text-right group"
             title="تغيير موقع الحجز"
           >
-            <MapPin className="w-4 h-4 text-brand shrink-0" />
+            <MapPin className="w-4 h-4 text-brand-deep shrink-0" />
             <div className="flex flex-col leading-none text-right">
               <span className="text-[10px] text-faint mb-0.5">موقع الحجز</span>
               <span className="text-xs font-bold text-ink max-w-[140px] truncate">
@@ -187,7 +187,7 @@ export const Header: React.FC<HeaderProps> = ({
                   {item.label}
                   <span
                     aria-hidden="true"
-                    className={`absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand transition-opacity ${
+                    className={`absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand-deep transition-opacity ${
                       isActive ? 'opacity-100' : 'opacity-0'
                     }`}
                   />
@@ -208,7 +208,7 @@ export const Header: React.FC<HeaderProps> = ({
             id="btn-mobile-search-toggle"
             onClick={() => setShowMobileSearch(!showMobileSearch)}
             className={`sm:hidden w-10 h-10 rounded-full flex items-center justify-center border transition-colors ${
-              showMobileSearch ? 'bg-canvas border-hairline text-brand' : 'border-hairline hover:bg-canvas text-ink'
+              showMobileSearch ? 'bg-canvas border-hairline text-brand-deep' : 'border-hairline hover:bg-canvas text-ink'
             }`}
             title="البحث في الموقع"
             aria-label="البحث في الموقع"
@@ -239,14 +239,14 @@ export const Header: React.FC<HeaderProps> = ({
               id="btn-header-notifications"
               onClick={() => setShowNotificationsDropdown(!showNotificationsDropdown)}
               className={`relative w-10 h-10 rounded-full flex items-center justify-center border transition-colors ${
-                showNotificationsDropdown ? 'bg-canvas border-hairline text-brand' : 'border-hairline hover:bg-canvas text-ink'
+                showNotificationsDropdown ? 'bg-canvas border-hairline text-brand-deep' : 'border-hairline hover:bg-canvas text-ink'
               }`}
               title="الإشعارات"
               aria-expanded={showNotificationsDropdown}
             >
               <Bell className="w-[18px] h-[18px]" />
               {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] font-bold w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full flex items-center justify-center shadow-xs ring-2 ring-white animate-scale-in">
+                <span className="absolute -top-1 -right-1 bg-ink text-white text-[10px] font-bold w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full flex items-center justify-center shadow-xs ring-2 ring-canvas animate-scale-in">
                   {unreadCount}
                 </span>
               )}
@@ -259,7 +259,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <span className="text-xs font-bold text-slate-900">
                     الإشعارات ({notifications.length})
                   </span>
-                  <span className="text-[11px] text-blue-600 font-medium">تحديثات النظام</span>
+                  <span className="text-[11px] text-brand-deep font-medium">تحديثات النظام</span>
                 </div>
                 <div className="space-y-2 max-h-72 overflow-y-auto pr-0.5">
                   {notifications.map((n) => (
@@ -269,11 +269,11 @@ export const Header: React.FC<HeaderProps> = ({
                       className={`p-2.5 rounded-xl transition-colors cursor-pointer text-right border ${
                         n.read
                           ? 'bg-slate-50/80 border-slate-100 text-slate-600'
-                          : 'bg-blue-50/80 border-blue-100 text-slate-800 font-medium'
+                          : 'bg-brand-soft/80 border-brand-soft text-slate-800 font-medium'
                       }`}
                     >
                       <div className="flex items-center justify-between text-xs mb-1">
-                        <span className="font-semibold text-blue-950">{n.title}</span>
+                        <span className="font-semibold text-brand-deep">{n.title}</span>
                         <span className="text-[10px] text-slate-400">الآن</span>
                       </div>
                       <p className="text-xs text-slate-600 leading-relaxed font-normal">{n.message}</p>
@@ -289,13 +289,13 @@ export const Header: React.FC<HeaderProps> = ({
             id="btn-header-cart"
             onClick={() => handleNavClick('cart')}
             className={`relative w-10 h-10 rounded-full flex items-center justify-center border transition-colors ${
-              currentScreen === 'cart' && !isAdmin ? 'bg-canvas border-hairline text-brand' : 'border-hairline hover:bg-canvas text-ink'
+              currentScreen === 'cart' && !isAdmin ? 'bg-canvas border-hairline text-brand-deep' : 'border-hairline hover:bg-canvas text-ink'
             }`}
             title="سلة المشتريات"
           >
             <ShoppingBag className="w-[18px] h-[18px]" />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full flex items-center justify-center shadow-xs ring-2 ring-white animate-scale-in">
+              <span className="absolute -top-1 -right-1 bg-ink text-white text-[10px] font-bold w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full flex items-center justify-center shadow-xs ring-2 ring-canvas animate-scale-in">
                 {cartCount}
               </span>
             )}
@@ -315,11 +315,11 @@ export const Header: React.FC<HeaderProps> = ({
               aria-expanded={showProfileDropdown}
             >
               {/* User Avatar */}
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg overflow-hidden bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs shrink-0 border border-slate-200">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg overflow-hidden bg-brand-soft flex items-center justify-center text-brand-deep font-bold text-xs shrink-0 border border-slate-200">
                 {user.avatar ? (
                   <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
                 ) : (
-                  <User className="w-4 h-4 text-blue-600" />
+                  <User className="w-4 h-4 text-brand-deep" />
                 )}
               </div>
 
@@ -330,7 +330,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               {/* Chevron Indicator */}
               <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 shrink-0 ${
-                showProfileDropdown ? 'rotate-180 text-blue-600' : ''
+                showProfileDropdown ? 'rotate-180 text-brand-deep' : ''
               }`} />
             </button>
 
@@ -342,11 +342,11 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 {/* User Info Header */}
                 <div className="p-3 bg-slate-50/90 rounded-xl mb-1.5 border border-slate-100 text-right flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-100/80 text-blue-700 flex items-center justify-center font-bold text-sm shrink-0 border border-blue-200/50 overflow-hidden">
+                  <div className="w-10 h-10 rounded-xl bg-brand-soft text-brand-deep flex items-center justify-center font-bold text-sm shrink-0 border border-hairline overflow-hidden">
                     {user.avatar ? (
                       <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
                     ) : (
-                      <User className="w-5 h-5 text-blue-600" />
+                      <User className="w-5 h-5 text-brand-deep" />
                     )}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -363,10 +363,10 @@ export const Header: React.FC<HeaderProps> = ({
                       setShowProfileDropdown(false);
                       handleNavClick('profile');
                     }}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 hover:bg-blue-50/70 hover:text-blue-600 transition-all text-right cursor-pointer group"
+                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 hover:bg-brand-soft/70 hover:text-brand-deep transition-all text-right cursor-pointer group"
                   >
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-blue-100/80 flex items-center justify-center text-slate-500 group-hover:text-blue-600 transition-colors shrink-0">
+                      <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-brand-soft flex items-center justify-center text-slate-500 group-hover:text-brand-deep transition-colors shrink-0">
                         <User className="w-4 h-4" />
                       </div>
                       <span>الملف الشخصي وإعدادات الحساب</span>
@@ -379,10 +379,10 @@ export const Header: React.FC<HeaderProps> = ({
                       setShowProfileDropdown(false);
                       handleNavClick('help');
                     }}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 hover:bg-blue-50/70 hover:text-blue-600 transition-all text-right cursor-pointer group"
+                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 hover:bg-brand-soft/70 hover:text-brand-deep transition-all text-right cursor-pointer group"
                   >
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-blue-100/80 flex items-center justify-center text-slate-500 group-hover:text-blue-600 transition-colors shrink-0">
+                      <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-brand-soft flex items-center justify-center text-slate-500 group-hover:text-brand-deep transition-colors shrink-0">
                         <HelpCircle className="w-4 h-4" />
                       </div>
                       <span>المساعدة والدعم الفني</span>
@@ -415,10 +415,10 @@ export const Header: React.FC<HeaderProps> = ({
                         setShowProfileDropdown(false);
                         handleNavClick('auth');
                       }}
-                      className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-blue-600 hover:bg-blue-50 transition-all text-right cursor-pointer group"
+                      className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-brand-deep hover:bg-brand-soft transition-all text-right cursor-pointer group"
                     >
                       <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 rounded-lg bg-blue-50 group-hover:bg-blue-100/80 flex items-center justify-center text-blue-600 transition-colors shrink-0">
+                        <div className="w-7 h-7 rounded-lg bg-brand-soft group-hover:bg-brand-soft flex items-center justify-center text-brand-deep transition-colors shrink-0">
                           <User className="w-4 h-4" />
                         </div>
                         <span>تسجيل الدخول / إنشاء حساب</span>
@@ -475,7 +475,7 @@ export const Header: React.FC<HeaderProps> = ({
               }}
               className="flex items-center gap-2 p-3 rounded-xl border border-hairline hover:bg-canvas transition-colors text-right min-w-0"
             >
-              <MapPin className="w-4 h-4 text-brand shrink-0" />
+              <MapPin className="w-4 h-4 text-brand-deep shrink-0" />
               <span className="flex flex-col leading-none min-w-0">
                 <span className="text-[10px] text-faint mb-1">موقع الحجز</span>
                 <span className="text-xs font-bold text-ink truncate">
@@ -506,7 +506,7 @@ export const Header: React.FC<HeaderProps> = ({
                   key={item.id}
                   onClick={() => handleNavClick(item.key)}
                   className={`py-2.5 px-3 rounded-xl transition-colors text-center ${
-                    isActive ? 'bg-ink text-white font-bold' : 'bg-canvas hover:bg-brand-soft text-ink'
+                    isActive ? 'bg-ink text-white font-bold' : 'bg-canvas hover:bg-brand-deep-soft text-ink'
                   }`}
                 >
                   {item.label}
@@ -519,14 +519,14 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-600">
             <button
               onClick={() => handleNavClick('menu')}
-              className="flex items-center gap-1.5 hover:text-blue-600 py-1"
+              className="flex items-center gap-1.5 hover:text-brand-deep py-1"
             >
               <Settings className="w-4 h-4 text-slate-500" />
               <span>كافة الإعدادات والقائمة</span>
             </button>
             <button
               onClick={() => handleNavClick('help')}
-              className="flex items-center gap-1.5 hover:text-blue-600 py-1"
+              className="flex items-center gap-1.5 hover:text-brand-deep py-1"
             >
               <HelpCircle className="w-4 h-4 text-slate-500" />
               <span>المساعدة والدعم</span>

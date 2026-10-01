@@ -27,6 +27,7 @@ import cardDiscountsCoupon from '../../assets/images/card_discounts_coupon_17883
 import heroBannerImg from '../../assets/images/hero_car_wash_banner_1788336434912.jpg';
 import cardServicesBlueCar from '../../assets/images/card_services_blue_car_1788336446999.jpg';
 import carCareBanner from '../../assets/images/car_care_banner_1788357613398.jpg';
+import sofaCleaningImg from '../../assets/images/sofa_cleaning_item_1789560655946.jpg';
 
 interface HomeScreenProps {
   onSelectService?: (service: ServiceItem) => void;
@@ -588,36 +589,24 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
   };
 
 
-
-  /**
-   * One editorial header for every section: a numbered eyebrow, a large
-   * title, an optional lead and a hairline. Replaces the repeated centred
-   * title/subtitle stack so sections read as a sequence, not a list.
-   */
+  /** Editorial section header: tracked eyebrow, large light title, hairline. */
   const SectionHead: React.FC<{
-    index: string;
     kicker: string;
     title: React.ReactNode;
     lead?: string;
     action?: { label: string; onClick: () => void };
-  }> = ({ index, kicker, title, lead, action }) => (
-    <header className="space-y-5">
-      <div className="flex items-end justify-between gap-6">
-        <div className="space-y-3 min-w-0">
-          <span className="eyebrow">
-            <span className="tabular-nums">{index}</span>
-            <span>{kicker}</span>
-          </span>
+  }> = ({ kicker, title, lead, action }) => (
+    <header className="space-y-6">
+      <div className="flex items-end justify-between gap-8">
+        <div className="space-y-4 min-w-0">
+          <span className="eyebrow"><span>{kicker}</span></span>
           <h2 className="section-title max-w-2xl">{title}</h2>
-          {lead && (
-            <p className="text-[15px] text-muted max-w-lg leading-relaxed">{lead}</p>
-          )}
+          {lead && <p className="text-[15px] text-muted max-w-md">{lead}</p>}
         </div>
-
         {action && (
           <button
             onClick={action.onClick}
-            className="hidden sm:flex shrink-0 items-center gap-2 text-[13px] font-bold text-ink hover:text-brand transition-colors cursor-pointer group pb-1"
+            className="hidden sm:flex shrink-0 items-center gap-2 text-[13px] font-medium text-ink hover:text-brand-deep transition-colors cursor-pointer group pb-2"
           >
             <span>{action.label}</span>
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
@@ -629,84 +618,102 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
   );
 
   return (
-    <div className="animate-in fade-in duration-500 text-right bg-white" dir="rtl">
+    <div className="animate-in fade-in duration-500 text-right bg-canvas" dir="rtl">
 
       {/* ===================================================================== */}
-      {/* HERO                                                                  */}
+      {/* HERO — ivory, type-led. The photograph sits beside the words rather   */}
+      {/* than underneath them, so nothing has to be darkened to stay readable. */}
       {/* ===================================================================== */}
-      <section className="relative overflow-hidden bg-navy">
-        <img
-          src={heroBannerImg}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        {/* Two-stop veil: deep on the reading side, clearing toward the car. */}
-        <div className="absolute inset-0 bg-gradient-to-l from-navy/20 via-navy/85 to-navy" />
-        <div className="absolute inset-0 bg-navy/40 lg:bg-transparent" />
+      <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 pb-14 sm:pb-16">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 pt-20 pb-16 sm:pt-28 sm:pb-20 lg:pt-36 lg:pb-28">
-          <div className="max-w-3xl space-y-8">
-            <span className="eyebrow !text-accent">
-              <span>خدمة متنقلة</span>
-            </span>
+          <div className="lg:col-span-6 space-y-8">
+            <span className="eyebrow"><span>خدمة تنظيف متنقلة</span></span>
 
-            <h1 className="display text-white text-[2.5rem] sm:text-6xl lg:text-7xl">
+            <h1 className="display text-ink text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">
               سيارتك وسجادك
               <br />
-              <span className="text-[#6FA8FF]">في أيدي محترفة</span>
+              في أيدي
+              <span className="relative inline-block mr-3">
+                <span className="relative z-10">محترفة</span>
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-1.5 h-3 sm:h-4 bg-accent/45 -z-0 rounded-sm"
+                />
+              </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-300/90 max-w-md">
+            <p className="text-base sm:text-lg text-muted max-w-sm">
               نصلك أينما كنت بمعدات كاملة وفنيين مختصين. اختر الموعد الذي
               يناسبك، ونتولى الباقي.
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-4 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-1">
               <button
                 onClick={() => handleApplyBannerCode('X25')}
-                className="bg-accent hover:bg-amber-300 active:scale-[0.98] text-navy font-bold text-[15px] px-8 py-4 rounded-full transition-all duration-200 flex items-center gap-2.5 cursor-pointer"
+                className="bg-ink hover:bg-brand-deep active:scale-[0.98] text-white font-medium text-[15px] px-8 py-4 rounded-full transition-colors duration-200 flex items-center gap-2.5 cursor-pointer"
               >
                 <span>احجز الخدمة الآن</span>
                 <ArrowLeft className="w-4 h-4" />
               </button>
 
               {heroOffer && (
-                <p className="text-sm text-slate-300">
-                  استخدم كود{' '}
-                  <span className="text-accent font-bold tracking-wide">{heroOffer.code}</span>{' '}
-                  ووفّر {heroOffer.percent}% على أول غسيل
+                <p className="text-[13px] text-muted">
+                  كود{' '}
+                  <span className="text-brand-deep font-semibold tracking-wide">{heroOffer.code}</span>
+                  {' '}يوفّر {heroOffer.percent}%
                 </p>
               )}
             </div>
           </div>
 
-          {/* Trust row, set on a hairline rather than in pills */}
-          <div className="mt-14 sm:mt-16 pt-7 border-t border-white/12 grid grid-cols-1 sm:grid-cols-3 gap-7 sm:gap-10 max-w-4xl">
-            {[
-              { k: 'فنيون معتمدون', v: 'فريق مدرب وفانات مجهزة بالكامل' },
-              { k: 'مواعيد مرنة', v: 'تختار اليوم والوقت الذي يناسبك' },
-              { k: 'أسعار واضحة', v: 'السعر شامل الضريبة بلا مفاجآت' }
-            ].map(item => (
-              <div key={item.k} className="space-y-1.5">
-                <p className="text-[15px] font-bold text-white">{item.k}</p>
-                <p className="text-[13px] text-slate-400 leading-relaxed">{item.v}</p>
-              </div>
-            ))}
+          {/* Imagery: one tall frame plus a small offset frame */}
+          <div className="lg:col-span-6 relative">
+            <div className="rounded-[2rem] overflow-hidden aspect-square bg-white">
+              <img
+                src={cardServicesBlueCar}
+                alt="غسيل سيارة متنقل من نيكست"
+                className="w-full h-full object-cover scale-[1.05]"
+              />
+            </div>
+            <div className="absolute -bottom-8 -left-2 sm:left-4 w-32 sm:w-44 rounded-2xl overflow-hidden aspect-square ring-8 ring-canvas bg-white hidden sm:block">
+              <img
+                src={sofaCleaningImg}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="photo w-full h-full object-cover"
+              />
+            </div>
           </div>
+        </div>
+
+        {/* Trust row on a hairline */}
+        <div className="mt-20 sm:mt-24 pt-8 border-t border-hairline grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
+          {[
+            { k: 'فنيون معتمدون', v: 'فريق مدرب وفانات مجهزة بالكامل' },
+            { k: 'مواعيد مرنة', v: 'تختار اليوم والوقت الذي يناسبك' },
+            { k: 'أسعار واضحة', v: 'السعر شامل الضريبة بلا مفاجآت' }
+          ].map(item => (
+            <div key={item.k} className="space-y-2">
+              <p className="text-[15px] font-semibold text-ink">{item.k}</p>
+              <p className="text-[13px] text-muted leading-relaxed">{item.v}</p>
+            </div>
+          ))}
+        </div>
         </div>
       </section>
 
       {/* ===================================================================== */}
-      {/* QUICK BOOK — straddles the hero edge so the page opens without a gap  */}
+      {/* QUICK BOOK                                                            */}
       {/* ===================================================================== */}
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 -mt-10 sm:-mt-14 relative z-10">
-        <div className="bg-white rounded-2xl shadow-[0_18px_50px_-20px_rgba(10,22,40,0.35)] ring-1 ring-black/5 p-3 sm:p-4">
-          <div className="flex items-center justify-between gap-4 px-2 pt-1 pb-3">
-            <p className="text-[13px] font-bold text-ink">احجز بسرعة</p>
+      <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 pb-14 sm:pb-16">
+        <div className="bg-canvas rounded-[1.75rem] p-4 sm:p-5 ring-1 ring-hairline">
+          <div className="flex items-center justify-between gap-4 px-2 pb-4">
+            <p className="text-[13px] font-semibold text-ink">احجز بسرعة</p>
             <button
               onClick={() => navigateToCategoryServices('cars')}
-              className="text-[12px] font-bold text-brand hover:text-navy transition-colors flex items-center gap-1.5 cursor-pointer group"
+              className="text-[12px] font-medium text-brand-deep hover:text-ink transition-colors flex items-center gap-1.5 cursor-pointer group"
             >
               كل الخدمات
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform duration-300" />
@@ -718,100 +725,83 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               <button
                 key={`quick-${item.id}`}
                 onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
-                className="group flex items-center gap-3.5 p-3 rounded-xl hover:bg-canvas transition-colors text-right cursor-pointer min-w-0"
+                className="group flex items-center gap-4 p-3 rounded-2xl hover:bg-canvas transition-colors text-right cursor-pointer min-w-0"
               >
-                <span className="w-12 h-12 rounded-lg overflow-hidden shrink-0">
-                  <img
-                    src={item.image}
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                <span className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-shell">
+                  <img src={item.image} alt="" aria-hidden="true" loading="lazy"
+                    className="photo w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-[13px] font-bold text-ink truncate">{item.title}</span>
-                  <span className="price block text-[13px] text-brand mt-0.5">{item.price}</span>
+                  <span className="block text-[13px] font-semibold text-ink truncate">{item.title}</span>
+                  <span className="price block text-[13px] text-brand-deep mt-0.5">{item.price}</span>
                 </span>
-                <ArrowLeft className="w-4 h-4 text-faint shrink-0 group-hover:text-brand group-hover:-translate-x-1 transition-all duration-300" />
+                <ArrowLeft className="w-4 h-4 text-faint shrink-0 group-hover:text-brand-deep group-hover:-translate-x-1 transition-all duration-300" />
               </button>
             ))}
           </div>
         </div>
-      </div>
+        </div>
+      </section>
 
       {/* ===================================================================== */}
       {/* DESTINATION                                                           */}
       {/* ===================================================================== */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-20 space-y-10">
+      <section className="bg-canvas"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 space-y-12">
         <SectionHead
-          index="٠١"
           kicker="الوجهات"
           title="اختر وجهتك"
           lead="احجز خدمة في موقعك، أو تسوّق منتجات العناية وتصلك إلى بابك."
         />
 
         <div className="grid md:grid-cols-2 gap-5">
-          {/* Services */}
-          <button
-            onClick={() => navigateToCategoryServices('cars')}
-            className="group relative overflow-hidden rounded-[1.75rem] min-h-[19rem] sm:min-h-[23rem] text-right cursor-pointer"
-          >
-            <img
-              src={cardServicesBlueCar}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/15" />
-
-            <div className="relative h-full flex flex-col justify-end gap-3 p-8 sm:p-10">
-              <h3 className="text-3xl sm:text-[2.5rem] font-bold text-white tracking-tight">الخدمات</h3>
-              <p className="text-sm text-slate-300 max-w-[18rem] leading-relaxed">
-                غسيل السيارات والسجاد والكنب والخزانات — في موقعك.
-              </p>
-              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-accent pt-2">
-                استكشف الخدمات
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
-              </span>
-            </div>
-          </button>
-
-          {/* Store */}
-          <button
-            onClick={() => { setCurrentScreen('store'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="group relative overflow-hidden rounded-[1.75rem] min-h-[19rem] sm:min-h-[23rem] text-right cursor-pointer bg-[#F2EEE6]"
-          >
-            <img
-              src={carCareBanner}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1B1409] via-[#1B1409]/55 to-transparent" />
-
-            <div className="relative h-full flex flex-col justify-end gap-3 p-8 sm:p-10">
-              <h3 className="text-3xl sm:text-[2.5rem] font-bold text-white tracking-tight">المتجر</h3>
-              <p className="text-sm text-stone-300 max-w-[18rem] leading-relaxed">
-                منتجات وإكسسوارات عناية مختارة، تصلك إلى بابك.
-              </p>
-              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-accent pt-2">
-                تسوّق الآن
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
-              </span>
-            </div>
-          </button>
+          {[
+            {
+              id: 'dest-services',
+              title: 'الخدمات',
+              desc: 'غسيل السيارات والسجاد والكنب والخزانات — في موقعك.',
+              cta: 'استكشف الخدمات',
+              img: heroBannerImg,
+              onClick: () => navigateToCategoryServices('cars'),
+              tint: 'bg-brand-soft'
+            },
+            {
+              id: 'dest-store',
+              title: 'المتجر',
+              desc: 'منتجات وإكسسوارات عناية مختارة، تصلك إلى بابك.',
+              cta: 'تسوّق الآن',
+              img: carCareBanner,
+              onClick: () => { setCurrentScreen('store'); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+              tint: 'bg-shell'
+            }
+          ].map(d => (
+            <button
+              key={d.id}
+              onClick={d.onClick}
+              className={`group ${d.tint} rounded-[2rem] p-8 sm:p-10 text-right cursor-pointer flex flex-col gap-6 transition-colors duration-300 hover:bg-white hover:ring-1 hover:ring-hairline`}
+            >
+              <div className="rounded-2xl overflow-hidden aspect-[16/10] bg-white/50">
+                <img src={d.img} alt="" aria-hidden="true" loading="lazy"
+                  className="photo w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]" />
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">{d.title}</h3>
+                <p className="text-sm text-muted leading-relaxed max-w-[20rem]">{d.desc}</p>
+                <span className="inline-flex items-center gap-2 text-[13px] font-medium text-brand-deep pt-1">
+                  {d.cta}
+                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
         </div>
       </section>
 
       {/* ===================================================================== */}
       {/* CATEGORIES                                                            */}
       {/* ===================================================================== */}
-      <section id="services-selection-section" className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 space-y-10">
+      <section id="services-selection-section" className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 space-y-12">
         <SectionHead
-          index="٠٢"
           kicker="الأقسام"
           title="اختر الخدمة التي تحتاجها"
           action={{ label: 'كل الخدمات', onClick: () => navigateToCategoryServices('cars') }}
@@ -825,73 +815,53 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               onClick={() => handleCategoryCardClick(cat)}
               className="group shrink-0 w-36 lg:w-auto text-right cursor-pointer"
             >
-              <div className="relative rounded-2xl overflow-hidden aspect-square mb-3.5">
-                <img
-                  src={cat.image}
-                  alt=""
-                  aria-hidden="true"
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/55 to-transparent" />
-                <span className="absolute inset-x-0 bottom-0 p-3">
-                  <span className="block text-[13px] font-bold text-white leading-snug">
-                    {cat.title}
-                  </span>
-                </span>
+              <div className="rounded-2xl overflow-hidden aspect-square mb-4 bg-shell">
+                <img src={cat.image} alt="" aria-hidden="true" loading="lazy"
+                  className="photo w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]" />
               </div>
-              <span className="flex items-center gap-1.5 text-[12px] text-muted group-hover:text-brand transition-colors">
+              <h3 className="text-[13px] font-semibold text-ink leading-snug mb-1.5">{cat.title}</h3>
+              <span className="flex items-center gap-1.5 text-[12px] text-faint group-hover:text-brand-deep transition-colors">
                 احجز
                 <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform duration-300" />
               </span>
             </button>
           ))}
         </div>
+        </div>
       </section>
 
       {/* ===================================================================== */}
-      {/* COUPON STRIP — fills the gap between the rail and the offers section  */}
-      {/* Reads a configured, in-window coupon; renders nothing if none exists. */}
+      {/* COUPON STRIP                                                          */}
       {/* ===================================================================== */}
       {welcomeCoupon && (
-        <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-20">
-          <div className="relative overflow-hidden rounded-[1.75rem] bg-navy">
-            <img
-              src={carCareBanner}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover opacity-30"
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-navy/40 to-navy" />
-
-            <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-7 p-8 sm:p-10">
-              <div className="space-y-3 max-w-md">
-                <span className="eyebrow !text-accent"><span>عميل جديد</span></span>
-                <h2 className="text-2xl sm:text-[2rem] font-bold text-white tracking-tight leading-tight">
-                  وفّر {welcomeCoupon.discountValue}% على أول حجز
-                </h2>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  استخدم الكود عند إتمام الحجز على طلب بقيمة {welcomeCoupon.minOrderValue} ر.س فأكثر.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-4 shrink-0">
-                <span className="border border-dashed border-white/30 rounded-xl px-5 py-3.5 text-center">
-                  <span className="block text-[10px] text-slate-400 mb-1">الكود</span>
-                  <span className="block text-lg font-bold text-accent tracking-[0.15em]">
-                    {welcomeCoupon.code}
-                  </span>
-                </span>
-                <button
-                  onClick={() => handleApplyBannerCode(welcomeCoupon.code)}
-                  className="bg-white hover:bg-slate-100 active:scale-[0.98] text-navy font-bold text-[14px] px-6 py-3.5 rounded-full transition-all flex items-center gap-2 cursor-pointer"
-                >
-                  <span>استخدم الكود</span>
-                  <ArrowLeft className="w-4 h-4" />
-                </button>
-              </div>
+        <section className="bg-navy on-navy"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+          <div className="bg-brand-soft rounded-[2rem] p-9 sm:p-12 flex flex-col sm:flex-row sm:items-center justify-between gap-8">
+            <div className="space-y-3 max-w-md">
+              <span className="eyebrow"><span>عميل جديد</span></span>
+              <h2 className="text-3xl sm:text-[2.5rem] font-bold text-ink tracking-tight leading-tight">
+                وفّر {welcomeCoupon.discountValue}% على أول حجز
+              </h2>
+              <p className="text-sm text-muted leading-relaxed">
+                استخدم الكود عند إتمام الحجز على طلب بقيمة {welcomeCoupon.minOrderValue} ر.س فأكثر.
+              </p>
             </div>
+
+            <div className="flex items-center gap-4 shrink-0">
+              <span className="bg-white border border-dashed border-hairline rounded-2xl px-6 py-4 text-center">
+                <span className="block text-[10px] text-muted mb-1">الكود</span>
+                <span className="block text-lg font-semibold text-accent tracking-[0.18em]">
+                  {welcomeCoupon.code}
+                </span>
+              </span>
+              <button
+                onClick={() => handleApplyBannerCode(welcomeCoupon.code)}
+                className="bg-ink hover:bg-brand-deep active:scale-[0.98] text-white font-medium text-[14px] px-7 py-4 rounded-full transition-colors flex items-center gap-2 cursor-pointer"
+              >
+                <span>استخدم الكود</span>
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
           </div>
         </section>
       )}
@@ -899,9 +869,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       {/* ===================================================================== */}
       {/* OFFERS                                                                */}
       {/* ===================================================================== */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 space-y-10">
+      <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 space-y-12">
         <SectionHead
-          index="٠٣"
           kicker="لفترة محدودة"
           title="خدمات عليها عروض"
           action={{
@@ -918,47 +887,29 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
           onTouchEnd={handleTouchEnd}
         >
           <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-[600ms] ease-out"
-              style={{ transform: `translateX(${offerSlideIndex * (100 / cardsPerView)}%)` }}
-            >
+            <div className="flex transition-transform duration-[600ms] ease-out"
+              style={{ transform: `translateX(${offerSlideIndex * (100 / cardsPerView)}%)` }}>
               {offerCards.map(offer => (
-                <div key={offer.id} className="shrink-0 pl-4" style={{ width: `${100 / cardsPerView}%` }}>
-                  <button
-                    onClick={() => handleOfferClick(offer)}
-                    className="group w-full text-right cursor-pointer"
-                  >
-                    <div className="relative rounded-2xl overflow-hidden aspect-[5/3.6] mb-5">
-                      <img
-                        src={offer.image}
-                        alt=""
-                        aria-hidden="true"
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
-                      />
-                      <span className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-navy text-[11px] font-bold px-3 py-1.5 rounded-full">
+                <div key={offer.id} className="shrink-0 pl-5" style={{ width: `${100 / cardsPerView}%` }}>
+                  <button onClick={() => handleOfferClick(offer)} className="group w-full text-right cursor-pointer">
+                    <div className="relative rounded-2xl overflow-hidden aspect-[5/3.6] mb-6 bg-canvas">
+                      <img src={offer.image} alt="" aria-hidden="true" loading="lazy"
+                        className="photo w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]" />
+                      <span className="absolute top-4 right-4 bg-white text-ink text-[11px] font-semibold px-3 py-1.5 rounded-full">
                         {offer.badge}
                       </span>
                     </div>
 
-                    <div className="space-y-2.5">
-                      <h3 className="text-[17px] font-bold text-ink leading-snug line-clamp-1">
-                        {offer.title}
-                      </h3>
-                      <p className="text-[13px] text-muted leading-relaxed line-clamp-2 min-h-[2.75rem]">
-                        {offer.subtitle}
-                      </p>
-
-                      <div className="flex items-baseline gap-2.5 pt-1">
+                    <div className="space-y-3">
+                      <h3 className="text-[18px] font-semibold text-ink leading-snug line-clamp-1">{offer.title}</h3>
+                      <p className="text-[13px] text-muted leading-relaxed line-clamp-2 min-h-[2.75rem]">{offer.subtitle}</p>
+                      <div className="flex items-baseline gap-3 pt-1">
                         <span className="price text-2xl text-ink">{offer.price}</span>
                         {offer.originalPrice && (
-                          <span className="price text-[13px] text-faint line-through font-medium">
-                            {offer.originalPrice}
-                          </span>
+                          <span className="price text-[13px] text-faint line-through font-normal">{offer.originalPrice}</span>
                         )}
                       </div>
-
-                      <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand pt-1">
+                      <span className="inline-flex items-center gap-2 text-[13px] font-medium text-accent pt-1">
                         اطلب الخدمة
                         <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1.5 transition-transform duration-300" />
                       </span>
@@ -969,105 +920,78 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             </div>
           </div>
 
-          {/* Controls sit together under the rail rather than floating over it */}
-          <div className="flex items-center justify-between gap-6 pt-9">
+          <div className="flex items-center justify-between gap-6 pt-10">
             <div className="flex items-center gap-1.5">
               {Array.from({ length: maxOfferSlideIndex + 1 }).map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setOfferSlideIndex(idx)}
-                  aria-label={`الشريحة ${idx + 1}`}
-                  aria-current={offerSlideIndex === idx}
+                <button key={idx} onClick={() => setOfferSlideIndex(idx)}
+                  aria-label={`الشريحة ${idx + 1}`} aria-current={offerSlideIndex === idx}
                   className={`h-[3px] rounded-full transition-all duration-300 cursor-pointer ${
-                    offerSlideIndex === idx ? 'w-8 bg-ink' : 'w-4 bg-hairline hover:bg-faint'
-                  }`}
-                />
+                    offerSlideIndex === idx ? 'w-8 bg-ink' : 'w-4 bg-hairline hover:bg-faint'}`} />
               ))}
             </div>
-
             <div className="hidden sm:flex items-center gap-2">
-              <button
-                onClick={prevOfferSlide}
-                aria-label="العروض السابقة"
-                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
-              >
+              <button onClick={prevOfferSlide} aria-label="العروض السابقة"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer">
                 <ChevronRight className="w-4 h-4" />
               </button>
-              <button
-                onClick={nextOfferSlide}
-                aria-label="العروض التالية"
-                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
-              >
+              <button onClick={nextOfferSlide} aria-label="العروض التالية"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer">
                 <ChevronLeft className="w-4 h-4" />
               </button>
             </div>
           </div>
+        </div>
         </div>
       </section>
 
       {/* ===================================================================== */}
       {/* POPULAR                                                               */}
       {/* ===================================================================== */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 space-y-10">
+      <section className="bg-canvas"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 space-y-12">
         <SectionHead
-          index="٠٤"
           kicker="الأكثر طلباً"
           title="أشهر الخدمات"
           action={{ label: 'عرض الكل', onClick: () => navigateToCategoryServices('cars') }}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
           {popularServicesData.map(item => (
             <article key={item.id} className="group flex flex-col">
-              {/* Image is a second route to the same screen. It is removed from the
-                  tab order so each card offers one keyboard stop, not two, and
-                  carries a name for pointer/AT users who do reach it. */}
               <button
                 onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
                 aria-label={`${item.title} — عرض التفاصيل`}
                 tabIndex={-1}
                 className="text-right cursor-pointer"
               >
-                <div className="relative rounded-2xl overflow-hidden aspect-[5/4] mb-5">
-                  <img
-                    src={item.image}
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
-                  />
+                <div className="relative rounded-2xl overflow-hidden aspect-[5/4] mb-6 bg-shell">
+                  <img src={item.image} alt="" aria-hidden="true" loading="lazy"
+                    className="photo w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]" />
                   {item.badge && (
-                    <span className="absolute top-4 right-4 bg-navy text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
+                    <span className="absolute top-4 right-4 bg-white text-ink text-[11px] font-semibold px-3 py-1.5 rounded-full">
                       {item.badge}
                     </span>
                   )}
                 </div>
               </button>
 
-              {/* Favourite is its own control, outside the card link */}
-              <div className="flex items-start justify-between gap-3 mb-2">
-                <h3 className="text-[16px] font-bold text-ink leading-snug">{item.title}</h3>
+              <div className="flex items-start justify-between gap-3 mb-2.5">
+                <h3 className="text-[16px] font-semibold text-ink leading-snug">{item.title}</h3>
                 <button
                   onClick={(e) => toggleFavorite(item.id, e)}
                   aria-label={favoriteServiceIds.includes(item.id) ? `إزالة ${item.title} من المفضلة` : `إضافة ${item.title} إلى المفضلة`}
                   aria-pressed={favoriteServiceIds.includes(item.id)}
                   className="shrink-0 p-1 -m-1 cursor-pointer hover:scale-110 active:scale-95 transition-transform"
                 >
-                  <Heart
-                    className={`w-[18px] h-[18px] transition-colors ${
-                      favoriteServiceIds.includes(item.id) ? 'fill-rose-500 text-rose-500' : 'text-faint'
-                    }`}
-                  />
+                  <Heart className={`w-[18px] h-[18px] transition-colors ${
+                    favoriteServiceIds.includes(item.id) ? 'fill-rose-500 text-rose-500' : 'text-faint'}`} />
                 </button>
               </div>
 
-              <p className="text-[13px] text-muted leading-relaxed line-clamp-2 mb-3 flex-1">
-                {item.subtitle}
-              </p>
+              <p className="text-[13px] text-muted leading-relaxed line-clamp-2 mb-3.5 flex-1">{item.subtitle}</p>
 
-              <div className="flex items-center gap-1.5 mb-4 text-[12px]">
+              <div className="flex items-center gap-1.5 mb-5 text-[12px]">
                 <Star className="w-3.5 h-3.5 fill-accent text-accent" />
-                <span className="font-bold text-ink tabular-nums">{item.rating}</span>
+                <span className="font-semibold text-ink tabular-nums">{item.rating}</span>
                 <span className="text-faint tabular-nums">({item.reviewsCount})</span>
               </div>
 
@@ -1075,7 +999,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
                 <span className="price text-xl text-ink">{item.price}</span>
                 <button
                   onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
-                  className="text-[13px] font-bold text-brand hover:text-navy transition-colors flex items-center gap-1.5 cursor-pointer"
+                  className="text-[13px] font-medium text-brand-deep hover:text-ink transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
                   احجز
                   <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform duration-300" />
@@ -1084,116 +1008,84 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             </article>
           ))}
         </div>
-      </section>
-
-      {/* ===================================================================== */}
-      {/* TWO-UP BANNERS — subscriptions and referrals, both existing screens   */}
-      {/* ===================================================================== */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28">
-        <div className="grid md:grid-cols-2 gap-5">
-          <button
-            onClick={() => { setCurrentScreen('subscriptions'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="group relative overflow-hidden rounded-[1.75rem] bg-brand-soft p-8 sm:p-10 text-right cursor-pointer min-h-[14rem] flex flex-col justify-between gap-6"
-          >
-            <div className="space-y-3">
-              <span className="eyebrow"><span>اشتراكات</span></span>
-              <h3 className="text-xl sm:text-2xl font-bold text-ink leading-snug max-w-[16rem]">
-                خدمة تتكرر دون أن تعيد الحجز
-              </h3>
-              <p className="text-[13px] text-muted leading-relaxed max-w-[18rem]">
-                اختر باقة دورية لسيارتك أو منزلك، ونأتيك في الموعد المتفق عليه.
-              </p>
-            </div>
-            <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand">
-              تصفّح الاشتراكات
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
-            </span>
-            <img
-              src={cardSubscriptionsClipboard}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="absolute -bottom-6 -left-6 w-32 h-32 object-cover rounded-2xl opacity-90 group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-500"
-            />
-          </button>
-
-          <button
-            onClick={() => { setCurrentScreen('referral'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="group relative overflow-hidden rounded-[1.75rem] bg-canvas p-8 sm:p-10 text-right cursor-pointer min-h-[14rem] flex flex-col justify-between gap-6"
-          >
-            <div className="space-y-3">
-              <span className="eyebrow"><span>ادعُ واكسب</span></span>
-              <h3 className="text-xl sm:text-2xl font-bold text-ink leading-snug max-w-[16rem]">
-                شارك نيكست مع من تعرف
-              </h3>
-              <p className="text-[13px] text-muted leading-relaxed max-w-[18rem]">
-                لكل صديق يحجز عبر رمزك، مكافأة تضاف إلى محفظتك.
-              </p>
-            </div>
-            <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand">
-              رمز الدعوة
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
-            </span>
-            <img
-              src={cardPackagesGift}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="absolute -bottom-6 -left-6 w-32 h-32 object-cover rounded-2xl opacity-90 group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-500"
-            />
-          </button>
         </div>
       </section>
 
       {/* ===================================================================== */}
-      {/* WHY NIXT — dark band, the one tonal break in the page                 */}
+      {/* TWO-UP BANNERS                                                        */}
       {/* ===================================================================== */}
-      <section className="mt-24 sm:mt-32 bg-navy text-white">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
-          <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+      <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+        <div className="grid md:grid-cols-2 gap-5">
+          {[
+            {
+              id: 'b-subs', kicker: 'اشتراكات', title: 'خدمة تتكرر دون أن تعيد الحجز',
+              desc: 'اختر باقة دورية لسيارتك أو منزلك، ونأتيك في الموعد المتفق عليه.',
+              cta: 'تصفّح الاشتراكات', img: cardSubscriptionsClipboard, tint: 'bg-shell',
+              onClick: () => { setCurrentScreen('subscriptions'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            },
+            {
+              id: 'b-ref', kicker: 'ادعُ واكسب', title: 'شارك نيكست مع من تعرف',
+              desc: 'لكل صديق يحجز عبر رمزك، مكافأة تضاف إلى محفظتك.',
+              cta: 'رمز الدعوة', img: cardPackagesGift, tint: 'bg-brand-soft',
+              onClick: () => { setCurrentScreen('referral'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            }
+          ].map(b => (
+            <button key={b.id} onClick={b.onClick}
+              className={`group relative overflow-hidden rounded-[2rem] ${b.tint} p-9 sm:p-11 text-right cursor-pointer min-h-[15rem] flex flex-col justify-between gap-6 transition-colors duration-300 hover:bg-white hover:ring-1 hover:ring-hairline`}>
+              <div className="space-y-3">
+                <span className="eyebrow"><span>{b.kicker}</span></span>
+                <h3 className="text-2xl font-bold text-ink leading-snug max-w-[16rem] tracking-tight">{b.title}</h3>
+                <p className="text-[13px] text-muted leading-relaxed max-w-[18rem]">{b.desc}</p>
+              </div>
+              <span className="inline-flex items-center gap-2 text-[13px] font-medium text-brand-deep">
+                {b.cta}
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+              </span>
+              <img src={b.img} alt="" aria-hidden="true" loading="lazy"
+                className="photo absolute -bottom-6 -left-6 w-32 h-32 object-cover rounded-2xl group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-500" />
+            </button>
+          ))}
+        </div>
+        </div>
+      </section>
 
+      {/* ===================================================================== */}
+      {/* WHY NIXT                                                              */}
+      {/* ===================================================================== */}
+      <section className="bg-navy on-navy">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+          <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-center">
             <div className="lg:col-span-6 space-y-10">
               <div className="space-y-4">
-                <span className="eyebrow !text-accent"><span>لماذا نيكست</span></span>
-                <h2 className="section-title !text-white max-w-md">
-                  تجربة تنظيف تستحق الثقة
-                </h2>
+                <span className="eyebrow"><span>لماذا نيكست</span></span>
+                <h2 className="section-title max-w-md">تجربة تنظيف تستحق الثقة</h2>
               </div>
 
-              <dl className="space-y-0">
+              <dl>
                 {whyNixtItems.map((item, i) => (
-                  <div
-                    key={item.id}
-                    className={`flex items-start gap-5 py-6 ${i > 0 ? 'border-t border-white/10' : ''}`}
-                  >
-                    <span className="text-[13px] font-bold text-accent tabular-nums pt-0.5 shrink-0 w-6">
-                      {['٠١', '٠٢', '٠٣', '٠٤'][i]}
-                    </span>
-                    <div className="space-y-1.5 min-w-0">
-                      <dt className="text-[17px] font-bold text-white">{item.title}</dt>
-                      <dd className="text-[14px] text-slate-400 leading-relaxed">{item.desc}</dd>
-                    </div>
+                  <div key={item.id} className={`py-6 ${i > 0 ? 'border-t border-hairline' : ''}`}>
+                    <dt className="text-[17px] font-semibold text-ink mb-1.5">{item.title}</dt>
+                    <dd className="text-[14px] text-muted leading-relaxed">{item.desc}</dd>
                   </div>
                 ))}
               </dl>
             </div>
 
-            {/* Offset imagery */}
             <div className="lg:col-span-6 relative">
-              <div className="rounded-[1.75rem] overflow-hidden aspect-[4/3]">
+              <div className="rounded-[2rem] overflow-hidden aspect-[4/3] bg-white">
                 <img
                   src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1100&q=80"
                   alt="تنظيف المقصورة الداخلية للسيارة"
                   loading="lazy"
-                  className="w-full h-full object-cover"
+                  className="photo w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-10 -left-4 sm:left-6 w-40 sm:w-52 rounded-2xl overflow-hidden aspect-square ring-8 ring-navy">
+              <div className="absolute -bottom-9 -left-3 sm:left-8 w-36 sm:w-48 rounded-2xl overflow-hidden aspect-square ring-8 ring-canvas bg-white">
                 <img
-                  src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=700&q=80"
-                  alt="تنظيف السجاد بالمعدات الاحترافية"
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=80"
+                  alt="تنظيف الكنب بالمعدات الاحترافية"
                   loading="lazy"
-                  className="w-full h-full object-cover"
+                  className="photo w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -1204,9 +1096,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       {/* ===================================================================== */}
       {/* PACKAGES / SUBSCRIPTIONS / GIFTS                                      */}
       {/* ===================================================================== */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-24 sm:pt-32 space-y-10">
+      <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 space-y-12">
         <SectionHead
-          index="٠٥"
           kicker="وفّر أكثر"
           title="الباقات والاشتراكات والهدايا"
           lead="خيارات متكررة ومُهداة لمن يحتاج الخدمة أكثر من مرة."
@@ -1214,56 +1105,33 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
 
         <div className="grid md:grid-cols-3 gap-5">
           {[
-            {
-              id: 'nav-gifts',
-              screen: 'send_gift' as const,
-              title: 'الهدايا',
-              desc: 'أرسل باقة أو رصيد محفظة لمن تحب.',
-              cta: 'عرض الهدايا',
-              image: cardPackagesGift
-            },
-            {
-              id: 'nav-subscriptions',
-              screen: 'subscriptions' as const,
-              title: 'الاشتراكات',
-              desc: 'خدمة دورية تتجدد دون أن تعيد الحجز.',
-              cta: 'عرض الاشتراكات',
-              image: cardSubscriptionsClipboard
-            },
-            {
-              id: 'nav-offers',
-              screen: 'offers' as const,
-              title: 'العروض',
-              desc: 'خصومات سارية لفترة محدودة.',
-              cta: 'عرض العروض',
-              image: cardDiscountsCoupon
-            }
+            { id: 'nav-gifts', screen: 'send_gift' as const, title: 'الهدايا', desc: 'أرسل باقة أو رصيد محفظة لمن تحب.', cta: 'عرض الهدايا', image: cardPackagesGift },
+            { id: 'nav-subscriptions', screen: 'subscriptions' as const, title: 'الاشتراكات', desc: 'خدمة دورية تتجدد دون أن تعيد الحجز.', cta: 'عرض الاشتراكات', image: cardSubscriptionsClipboard },
+            { id: 'nav-offers', screen: 'offers' as const, title: 'العروض', desc: 'خصومات سارية لفترة محدودة.', cta: 'عرض العروض', image: cardDiscountsCoupon }
           ].map(card => (
-            <button
-              key={card.id}
+            <button key={card.id}
               onClick={() => { setCurrentScreen(card.screen); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              className="group relative overflow-hidden rounded-2xl bg-canvas hover:bg-brand-soft transition-colors duration-300 p-7 text-right cursor-pointer flex flex-col gap-3 min-h-[13rem]"
-            >
-              <div className="w-12 h-12 rounded-xl overflow-hidden mb-1">
-                <img src={card.image} alt="" aria-hidden="true" loading="lazy" className="w-full h-full object-cover" />
+              className="group rounded-[1.75rem] bg-white/5 ring-1 ring-hairline hover:ring-brand-deep/25 p-8 text-right cursor-pointer flex flex-col gap-4 min-h-[14rem] transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl overflow-hidden mb-1 bg-white/5">
+                <img src={card.image} alt="" aria-hidden="true" loading="lazy" className="photo w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-bold text-ink">{card.title}</h3>
+              <h3 className="text-xl font-semibold text-ink">{card.title}</h3>
               <p className="text-[13px] text-muted leading-relaxed flex-1">{card.desc}</p>
-              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand">
+              <span className="inline-flex items-center gap-2 text-[13px] font-medium text-accent">
                 {card.cta}
                 <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1.5 transition-transform duration-300" />
               </span>
             </button>
           ))}
         </div>
+        </div>
       </section>
 
       {/* ===================================================================== */}
       {/* REVIEWS                                                               */}
       {/* ===================================================================== */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-24 sm:pt-32 space-y-10">
+      <section className="bg-canvas"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 space-y-12">
         <SectionHead
-          index="٠٦"
           kicker="آراء العملاء"
           title="ماذا يقول عملاؤنا"
           lead="تجارب موثقة من عملاء في مختلف مدن المملكة."
@@ -1277,32 +1145,26 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
           onTouchEnd={handleReviewsTouchEnd}
         >
           <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-[600ms] ease-out"
-              style={{ transform: `translateX(${reviewsSlideIndex * (100 / cardsPerView)}%)` }}
-            >
+            <div className="flex transition-transform duration-[600ms] ease-out"
+              style={{ transform: `translateX(${reviewsSlideIndex * (100 / cardsPerView)}%)` }}>
               {customerReviewsData.map(review => (
-                <div key={review.id} className="shrink-0 pl-4" style={{ width: `${100 / cardsPerView}%` }}>
-                  <figure className="h-full bg-canvas rounded-2xl p-7 flex flex-col gap-5">
+                <div key={review.id} className="shrink-0 pl-5" style={{ width: `${100 / cardsPerView}%` }}>
+                  <figure className="h-full bg-white ring-1 ring-hairline rounded-[1.75rem] p-8 flex flex-col gap-6">
                     <div className="flex items-center gap-1" aria-label={`التقييم ${review.rating} من 5`}>
                       {Array.from({ length: review.rating }).map((_, i) => (
                         <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
                       ))}
                     </div>
-
-                    <blockquote className="text-[15px] text-ink-soft leading-[1.9] flex-1">
-                      {review.review}
-                    </blockquote>
-
+                    <blockquote className="text-[15px] text-ink-soft leading-[1.95] flex-1">{review.review}</blockquote>
                     <figcaption className="flex items-center gap-3 pt-5 border-t border-hairline">
-                      <span className={`w-10 h-10 rounded-full ${review.avatarBg} flex items-center justify-center text-sm font-bold shrink-0`}>
+                      <span className="w-10 h-10 rounded-full bg-shell text-ink flex items-center justify-center text-sm font-semibold shrink-0">
                         {review.initial}
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block text-[14px] font-bold text-ink truncate">{review.name}</span>
+                        <span className="block text-[14px] font-semibold text-ink truncate">{review.name}</span>
                         <span className="block text-[12px] text-faint truncate">{review.location}</span>
                       </span>
-                      <span className="text-[11px] font-bold text-brand bg-white px-2.5 py-1 rounded-full shrink-0 max-w-[8rem] truncate">
+                      <span className="text-[11px] font-medium text-brand-deep bg-brand-soft px-3 py-1.5 rounded-full shrink-0 max-w-[8rem] truncate">
                         {review.service}
                       </span>
                     </figcaption>
@@ -1312,82 +1174,60 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between gap-6 pt-9">
+          <div className="flex items-center justify-between gap-6 pt-10">
             <div className="flex items-center gap-1.5">
               {Array.from({ length: maxReviewsSlideIndex + 1 }).map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setReviewsSlideIndex(idx)}
-                  aria-label={`الشريحة ${idx + 1}`}
-                  aria-current={reviewsSlideIndex === idx}
+                <button key={idx} onClick={() => setReviewsSlideIndex(idx)}
+                  aria-label={`الشريحة ${idx + 1}`} aria-current={reviewsSlideIndex === idx}
                   className={`h-[3px] rounded-full transition-all duration-300 cursor-pointer ${
-                    reviewsSlideIndex === idx ? 'w-8 bg-ink' : 'w-4 bg-hairline hover:bg-faint'
-                  }`}
-                />
+                    reviewsSlideIndex === idx ? 'w-8 bg-ink' : 'w-4 bg-hairline hover:bg-faint'}`} />
               ))}
             </div>
-
             <div className="hidden sm:flex items-center gap-2">
-              <button
-                onClick={prevReviewsSlide}
-                aria-label="الآراء السابقة"
-                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
-              >
+              <button onClick={prevReviewsSlide} aria-label="الآراء السابقة"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer">
                 <ChevronRight className="w-4 h-4" />
               </button>
-              <button
-                onClick={nextReviewsSlide}
-                aria-label="الآراء التالية"
-                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
-              >
+              <button onClick={nextReviewsSlide} aria-label="الآراء التالية"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer">
                 <ChevronLeft className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* ===================================================================== */}
-      {/* APP — store links and QR are placeholders until listings exist        */}
+      {/* APP — store links and QR remain placeholders until listings exist     */}
       {/* ===================================================================== */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-24 sm:pb-32">
-        <div className="rounded-[1.75rem] bg-canvas overflow-hidden">
-          <div className="grid lg:grid-cols-12 items-center gap-10">
-            <div className="lg:col-span-7 p-9 sm:p-14 space-y-6">
-              <span className="eyebrow"><span>التطبيق</span></span>
-              <h2 className="section-title max-w-md">احجز من جوالك في أقل من دقيقة</h2>
-              <p className="text-[15px] text-muted max-w-sm leading-relaxed">
-                تطبيق نيكست قيد الإطلاق. سجّل اهتمامك الآن ونخبرك فور توفره.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <span className="inline-flex items-center gap-2.5 bg-white border border-hairline rounded-xl px-5 py-3 text-ink">
+      <section className="bg-navy on-navy"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+        <div className="rounded-[2rem] bg-brand-soft overflow-hidden grid lg:grid-cols-12 items-center">
+          <div className="lg:col-span-7 p-10 sm:p-14 space-y-6">
+            <span className="eyebrow"><span>التطبيق</span></span>
+            <h2 className="section-title max-w-md">احجز من جوالك في أقل من دقيقة</h2>
+            <p className="text-[15px] text-muted max-w-sm leading-relaxed">
+              تطبيق نيكست قيد الإطلاق. سجّل اهتمامك الآن ونخبرك فور توفره.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              {['App Store', 'Google Play'].map(store => (
+                <span key={store} className="inline-flex items-center gap-2.5 bg-white rounded-2xl px-6 py-3.5 text-ink">
                   <Smartphone className="w-4 h-4 text-faint shrink-0" />
                   <span className="leading-tight">
                     <span className="block text-[10px] text-faint">قريباً على</span>
-                    <span className="block text-[13px] font-bold">App Store</span>
+                    <span className="block text-[13px] font-semibold">{store}</span>
                   </span>
                 </span>
-                <span className="inline-flex items-center gap-2.5 bg-white border border-hairline rounded-xl px-5 py-3 text-ink">
-                  <Smartphone className="w-4 h-4 text-faint shrink-0" />
-                  <span className="leading-tight">
-                    <span className="block text-[10px] text-faint">قريباً على</span>
-                    <span className="block text-[13px] font-bold">Google Play</span>
-                  </span>
-                </span>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 h-full min-h-[16rem] relative" aria-hidden="true">
-              <img
-                src={heroBannerImg}
-                alt=""
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-canvas lg:to-canvas/90" />
+              ))}
             </div>
           </div>
+
+          <div className="lg:col-span-5 h-full min-h-[18rem] p-10 sm:p-14 lg:pr-0 flex items-center justify-center">
+            <div className="rounded-[1.5rem] overflow-hidden aspect-[4/5] w-full max-w-[16rem] bg-white">
+              <img src={heroBannerImg} alt="" aria-hidden="true" loading="lazy" className="photo w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
         </div>
       </section>
 
