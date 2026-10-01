@@ -88,20 +88,20 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-slate-200/70 shadow-[0_1px_3px_0_rgba(0,0,0,0.03)]">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-hairline">
       {/* Top micro bar for announcements & admin toggle */}
-      <div className="bg-slate-900 text-white text-xs py-1.5 px-4 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded-full text-[10px] tracking-wider uppercase">
-              عرض حصري
+      <div className="bg-navy text-white text-xs py-2 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="hidden sm:inline-block bg-accent text-navy font-bold px-2 py-0.5 rounded-full text-[10px] shrink-0">
+              عرض
             </span>
-            <span className="text-slate-300 font-normal text-xs">
-              خصم 25% على غسيل السيارات مع كود <strong className="text-amber-400 font-bold">X25</strong> عند حجزك اليوم!
+            <span className="text-slate-300 text-[11px] sm:text-xs truncate">
+              خصم 25% على غسيل السيارات بكود <strong className="text-accent font-bold">X25</strong>
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0">
             {/* Admin Switcher */}
             <button
               id="btn-admin-toggle"
@@ -116,18 +116,19 @@ export const Header: React.FC<HeaderProps> = ({
                   : 'bg-slate-800 text-amber-400 hover:bg-slate-700'
               }`}
             >
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>{isAdmin ? 'العودة لواجهة العميل' : 'لوحة تحكم الإدارة'}</span>
+              <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+              <span className="hidden sm:inline">{isAdmin ? 'العودة لواجهة العميل' : 'لوحة تحكم الإدارة'}</span>
+              <span className="sm:hidden">{isAdmin ? 'العميل' : 'الإدارة'}</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Main Header Container (Height: 64-68px) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-[68px] flex items-center justify-between gap-3 sm:gap-6">
-        
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between gap-2 sm:gap-6">
+
         {/* RIGHT SECTION: Brand Logo & Booking Location Selector */}
-        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0">
           {/* NIXT Brand Logo */}
           <button
             id="btn-logo-home"
@@ -138,10 +139,10 @@ export const Header: React.FC<HeaderProps> = ({
               <span>N</span>
             </div>
             <div className="flex flex-col text-right">
-              <span className="text-lg sm:text-xl font-bold tracking-tight text-blue-950 flex items-center gap-1 leading-none">
+              <span className="text-lg sm:text-xl font-bold tracking-tight text-ink leading-none">
                 NIXT
               </span>
-              <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium leading-tight mt-0.5">
+              <span className="hidden sm:block text-[11px] text-muted leading-tight mt-0.5">
                 خدماتك بخبرة واحترافية
               </span>
             </div>
@@ -154,19 +155,17 @@ export const Header: React.FC<HeaderProps> = ({
               setCurrentScreen('addresses');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-center gap-2.5 bg-slate-50 hover:bg-slate-100/90 active:bg-slate-100 text-slate-800 border border-slate-200/90 hover:border-slate-300 h-10 px-3.5 rounded-xl transition-all text-right group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="hidden md:flex items-center gap-2.5 hover:bg-canvas text-ink border border-hairline h-11 px-3.5 rounded-full transition-colors text-right group"
             title="تغيير موقع الحجز"
           >
-            <div className="w-7 h-7 rounded-lg bg-blue-50 group-hover:bg-blue-100/80 flex items-center justify-center text-blue-600 transition-colors shrink-0">
-              <MapPin className="w-4 h-4" />
-            </div>
+            <MapPin className="w-4 h-4 text-brand shrink-0" />
             <div className="flex flex-col leading-none text-right">
-              <span className="text-[10px] text-slate-400 font-medium mb-0.5">موقع الحجز</span>
-              <span className="text-xs font-semibold text-slate-800 max-w-[120px] sm:max-w-[150px] md:max-w-[180px] truncate">
+              <span className="text-[10px] text-faint mb-0.5">موقع الحجز</span>
+              <span className="text-xs font-bold text-ink max-w-[140px] truncate">
                 {selectedAddress ? `${selectedAddress.name} - ${selectedAddress.city}` : 'اختر موقعك'}
               </span>
             </div>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600 transition-colors shrink-0 mr-0.5" />
+            <ChevronDown className="w-3.5 h-3.5 text-faint shrink-0" />
           </button>
         </div>
 
@@ -181,13 +180,17 @@ export const Header: React.FC<HeaderProps> = ({
                   key={item.id}
                   id={item.id}
                   onClick={() => handleNavClick(item.key)}
-                  className={`px-3 py-1.5 rounded-xl transition-all whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-                    isActive
-                      ? 'text-blue-600 bg-blue-50/90 font-semibold shadow-xs'
-                      : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium'
+                  className={`relative px-3 py-2 text-[13px] transition-colors whitespace-nowrap ${
+                    isActive ? 'text-ink font-bold' : 'text-muted hover:text-ink font-medium'
                   }`}
                 >
                   {item.label}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand transition-opacity ${
+                      isActive ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
                 </button>
               );
             })}
@@ -204,31 +207,29 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="btn-mobile-search-toggle"
             onClick={() => setShowMobileSearch(!showMobileSearch)}
-            className={`sm:hidden w-9 h-9 rounded-xl flex items-center justify-center border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-              showMobileSearch
-                ? 'bg-blue-50 border-blue-200 text-blue-600'
-                : 'bg-white hover:bg-slate-50 border-slate-200/80 text-slate-700'
+            className={`sm:hidden w-10 h-10 rounded-full flex items-center justify-center border transition-colors ${
+              showMobileSearch ? 'bg-canvas border-hairline text-brand' : 'border-hairline hover:bg-canvas text-ink'
             }`}
             title="البحث في الموقع"
             aria-label="البحث في الموقع"
           >
-            <Search className="w-4.5 h-4.5" />
+            <Search className="w-[18px] h-[18px]" />
           </button>
           
           {/* 1. Wallet Balance Chip (Compact Green Chip) */}
           <button
             id="btn-header-wallet"
             onClick={() => handleNavClick('wallet')}
-            className={`flex items-center gap-1.5 h-9 sm:h-10 px-3 rounded-xl border transition-all shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
+            className={`hidden sm:flex items-center gap-2 h-10 px-3.5 rounded-full border transition-colors ${
               currentScreen === 'wallet' && !isAdmin
-                ? 'bg-emerald-100/90 border-emerald-300 text-emerald-900 font-bold'
-                : 'bg-emerald-50/90 hover:bg-emerald-100/70 border-emerald-200/80 text-emerald-700 font-medium'
+                ? 'bg-canvas border-hairline text-ink'
+                : 'border-hairline hover:bg-canvas text-ink'
             }`}
             title="رصيد المحفظة"
           >
             <Wallet className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span className="text-xs sm:text-[13px] font-bold tracking-tight whitespace-nowrap">
-              {walletBalance.toFixed(2)} <span className="text-[10px] font-medium">ر.س</span>
+            <span className="price text-[13px] whitespace-nowrap">
+              {walletBalance.toFixed(2)} <span className="text-[10px] font-medium text-muted">ر.س</span>
             </span>
           </button>
 
@@ -237,15 +238,13 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="btn-header-notifications"
               onClick={() => setShowNotificationsDropdown(!showNotificationsDropdown)}
-              className={`relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-                showNotificationsDropdown
-                  ? 'bg-blue-50 border-blue-200 text-blue-600'
-                  : 'bg-white hover:bg-slate-50 border-slate-200/80 text-slate-700'
+              className={`relative w-10 h-10 rounded-full flex items-center justify-center border transition-colors ${
+                showNotificationsDropdown ? 'bg-canvas border-hairline text-brand' : 'border-hairline hover:bg-canvas text-ink'
               }`}
               title="الإشعارات"
               aria-expanded={showNotificationsDropdown}
             >
-              <Bell className="w-4.5 h-4.5 text-slate-700" />
+              <Bell className="w-[18px] h-[18px]" />
               {unreadCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] font-bold w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full flex items-center justify-center shadow-xs ring-2 ring-white animate-scale-in">
                   {unreadCount}
@@ -289,14 +288,12 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="btn-header-cart"
             onClick={() => handleNavClick('cart')}
-            className={`relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-              currentScreen === 'cart' && !isAdmin
-                ? 'bg-blue-50 border-blue-200 text-blue-600'
-                : 'bg-white hover:bg-slate-50 border-slate-200/80 text-slate-700'
+            className={`relative w-10 h-10 rounded-full flex items-center justify-center border transition-colors ${
+              currentScreen === 'cart' && !isAdmin ? 'bg-canvas border-hairline text-brand' : 'border-hairline hover:bg-canvas text-ink'
             }`}
             title="سلة المشتريات"
           >
-            <ShoppingBag className="w-4.5 h-4.5 text-slate-700" />
+            <ShoppingBag className="w-[18px] h-[18px]" />
             {cartCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full flex items-center justify-center shadow-xs ring-2 ring-white animate-scale-in">
                 {cartCount}
@@ -309,10 +306,10 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="btn-user-profile-menu"
               onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-              className={`flex items-center gap-2 h-10 px-2 sm:px-3 rounded-xl border transition-all text-right focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+              className={`flex items-center gap-2 h-10 px-2 sm:px-3 rounded-full border transition-colors text-right ${
                 showProfileDropdown || currentScreen === 'menu'
-                  ? 'bg-blue-50/90 border-blue-200 text-blue-950'
-                  : 'bg-white hover:bg-slate-50 border-slate-200/80 text-slate-800'
+                  ? 'bg-canvas border-hairline text-ink'
+                  : 'border-hairline hover:bg-canvas text-ink'
               }`}
               title="الملف الشخصي والحساب"
               aria-expanded={showProfileDropdown}
@@ -437,7 +434,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="btn-mobile-menu-toggle"
             onClick={() => setShowMobileMenu(!showMobileMenu)}
-            className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-50 hover:bg-slate-100 active:bg-slate-200 border border-slate-200/80 flex items-center justify-center text-slate-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="lg:hidden w-10 h-10 rounded-full border border-hairline hover:bg-canvas flex items-center justify-center text-ink transition-colors"
             title="القائمة الرئيسية"
             aria-label="القائمة الرئيسية"
           >
@@ -467,6 +464,40 @@ export const Header: React.FC<HeaderProps> = ({
             />
           </div>
 
+          {/* Location and wallet live here on narrow screens, where showing them
+              in the bar pushed the actions off the edge. */}
+          <div className="md:hidden grid grid-cols-2 gap-2">
+            <button
+              onClick={() => {
+                setShowMobileMenu(false);
+                setCurrentScreen('addresses');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="flex items-center gap-2 p-3 rounded-xl border border-hairline hover:bg-canvas transition-colors text-right min-w-0"
+            >
+              <MapPin className="w-4 h-4 text-brand shrink-0" />
+              <span className="flex flex-col leading-none min-w-0">
+                <span className="text-[10px] text-faint mb-1">موقع الحجز</span>
+                <span className="text-xs font-bold text-ink truncate">
+                  {selectedAddress ? `${selectedAddress.name} - ${selectedAddress.city}` : 'اختر موقعك'}
+                </span>
+              </span>
+            </button>
+
+            <button
+              onClick={() => handleNavClick('wallet')}
+              className="sm:hidden flex items-center gap-2 p-3 rounded-xl border border-hairline hover:bg-canvas transition-colors text-right min-w-0"
+            >
+              <Wallet className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span className="flex flex-col leading-none min-w-0">
+                <span className="text-[10px] text-faint mb-1">رصيد المحفظة</span>
+                <span className="price text-xs text-ink truncate">
+                  {walletBalance.toFixed(2)} <span className="text-[10px] font-medium text-muted">ر.س</span>
+                </span>
+              </span>
+            </button>
+          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-medium">
             {navItems.map((item) => {
               const isActive = currentScreen === item.key && !isAdmin;
@@ -474,10 +505,8 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.key)}
-                  className={`py-2.5 px-3 rounded-xl transition-all text-center ${
-                    isActive
-                      ? 'bg-blue-600 text-white font-semibold shadow-xs'
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
+                  className={`py-2.5 px-3 rounded-xl transition-colors text-center ${
+                    isActive ? 'bg-ink text-white font-bold' : 'bg-canvas hover:bg-brand-soft text-ink'
                   }`}
                 >
                   {item.label}

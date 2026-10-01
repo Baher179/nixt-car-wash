@@ -458,6 +458,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       : null;
   }, [coupons]);
 
+  /**
+   * Coupon surfaced in the homepage strip: configured, active and inside its
+   * own validity window today. Nothing is rendered when no coupon qualifies.
+   */
+  const welcomeCoupon = useMemo(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    return coupons.find(
+      c => c.isActive && c.code === 'NEW' && c.startDate <= today && c.endDate >= today
+    ) ?? null;
+  }, [coupons]);
+
   // Customer Reviews Carousel state & data
   const [reviewsSlideIndex, setReviewsSlideIndex] = useState<number>(0);
   const [isHoveredReviews, setIsHoveredReviews] = useState<boolean>(false);
@@ -512,7 +523,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       id: 'rev-5',
       name: 'ريم الدوسري',
       location: 'الرياض - حي النرجس',
-      avatarBg: 'bg-amber-100 text-amber-700',
+      avatarBg: 'bg-amber-100 text-amber-800',
       initial: 'ر',
       service: 'مكافحة حشرات ورش مبيدات',
       rating: 5,
@@ -671,7 +682,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
           </div>
 
           {/* Trust row, set on a hairline rather than in pills */}
-          <div className="mt-16 sm:mt-20 pt-7 border-t border-white/12 grid grid-cols-1 sm:grid-cols-3 gap-7 sm:gap-10 max-w-4xl">
+          <div className="mt-14 sm:mt-16 pt-7 border-t border-white/12 grid grid-cols-1 sm:grid-cols-3 gap-7 sm:gap-10 max-w-4xl">
             {[
               { k: 'فنيون معتمدون', v: 'فريق مدرب وفانات مجهزة بالكامل' },
               { k: 'مواعيد مرنة', v: 'تختار اليوم والوقت الذي يناسبك' },
@@ -687,9 +698,52 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       </section>
 
       {/* ===================================================================== */}
+      {/* QUICK BOOK — straddles the hero edge so the page opens without a gap  */}
+      {/* ===================================================================== */}
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 -mt-10 sm:-mt-14 relative z-10">
+        <div className="bg-white rounded-2xl shadow-[0_18px_50px_-20px_rgba(10,22,40,0.35)] ring-1 ring-black/5 p-3 sm:p-4">
+          <div className="flex items-center justify-between gap-4 px-2 pt-1 pb-3">
+            <p className="text-[13px] font-bold text-ink">احجز بسرعة</p>
+            <button
+              onClick={() => navigateToCategoryServices('cars')}
+              className="text-[12px] font-bold text-brand hover:text-navy transition-colors flex items-center gap-1.5 cursor-pointer group"
+            >
+              كل الخدمات
+              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform duration-300" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            {popularServicesData.slice(0, 3).map(item => (
+              <button
+                key={`quick-${item.id}`}
+                onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
+                className="group flex items-center gap-3.5 p-3 rounded-xl hover:bg-canvas transition-colors text-right cursor-pointer min-w-0"
+              >
+                <span className="w-12 h-12 rounded-lg overflow-hidden shrink-0">
+                  <img
+                    src={item.image}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[13px] font-bold text-ink truncate">{item.title}</span>
+                  <span className="price block text-[13px] text-brand mt-0.5">{item.price}</span>
+                </span>
+                <ArrowLeft className="w-4 h-4 text-faint shrink-0 group-hover:text-brand group-hover:-translate-x-1 transition-all duration-300" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ===================================================================== */}
       {/* DESTINATION                                                           */}
       {/* ===================================================================== */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 space-y-10">
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-20 space-y-10">
         <SectionHead
           index="٠١"
           kicker="الوجهات"
@@ -794,6 +848,53 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
           ))}
         </div>
       </section>
+
+      {/* ===================================================================== */}
+      {/* COUPON STRIP — fills the gap between the rail and the offers section  */}
+      {/* Reads a configured, in-window coupon; renders nothing if none exists. */}
+      {/* ===================================================================== */}
+      {welcomeCoupon && (
+        <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-20">
+          <div className="relative overflow-hidden rounded-[1.75rem] bg-navy">
+            <img
+              src={carCareBanner}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-navy/40 to-navy" />
+
+            <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-7 p-8 sm:p-10">
+              <div className="space-y-3 max-w-md">
+                <span className="eyebrow !text-accent"><span>عميل جديد</span></span>
+                <h2 className="text-2xl sm:text-[2rem] font-bold text-white tracking-tight leading-tight">
+                  وفّر {welcomeCoupon.discountValue}% على أول حجز
+                </h2>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  استخدم الكود عند إتمام الحجز على طلب بقيمة {welcomeCoupon.minOrderValue} ر.س فأكثر.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-4 shrink-0">
+                <span className="border border-dashed border-white/30 rounded-xl px-5 py-3.5 text-center">
+                  <span className="block text-[10px] text-slate-400 mb-1">الكود</span>
+                  <span className="block text-lg font-bold text-accent tracking-[0.15em]">
+                    {welcomeCoupon.code}
+                  </span>
+                </span>
+                <button
+                  onClick={() => handleApplyBannerCode(welcomeCoupon.code)}
+                  className="bg-white hover:bg-slate-100 active:scale-[0.98] text-navy font-bold text-[14px] px-6 py-3.5 rounded-full transition-all flex items-center gap-2 cursor-pointer"
+                >
+                  <span>استخدم الكود</span>
+                  <ArrowLeft className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ===================================================================== */}
       {/* OFFERS                                                                */}
@@ -982,6 +1083,65 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      {/* ===================================================================== */}
+      {/* TWO-UP BANNERS — subscriptions and referrals, both existing screens   */}
+      {/* ===================================================================== */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28">
+        <div className="grid md:grid-cols-2 gap-5">
+          <button
+            onClick={() => { setCurrentScreen('subscriptions'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className="group relative overflow-hidden rounded-[1.75rem] bg-brand-soft p-8 sm:p-10 text-right cursor-pointer min-h-[14rem] flex flex-col justify-between gap-6"
+          >
+            <div className="space-y-3">
+              <span className="eyebrow"><span>اشتراكات</span></span>
+              <h3 className="text-xl sm:text-2xl font-bold text-ink leading-snug max-w-[16rem]">
+                خدمة تتكرر دون أن تعيد الحجز
+              </h3>
+              <p className="text-[13px] text-muted leading-relaxed max-w-[18rem]">
+                اختر باقة دورية لسيارتك أو منزلك، ونأتيك في الموعد المتفق عليه.
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand">
+              تصفّح الاشتراكات
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+            </span>
+            <img
+              src={cardSubscriptionsClipboard}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute -bottom-6 -left-6 w-32 h-32 object-cover rounded-2xl opacity-90 group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-500"
+            />
+          </button>
+
+          <button
+            onClick={() => { setCurrentScreen('referral'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className="group relative overflow-hidden rounded-[1.75rem] bg-canvas p-8 sm:p-10 text-right cursor-pointer min-h-[14rem] flex flex-col justify-between gap-6"
+          >
+            <div className="space-y-3">
+              <span className="eyebrow"><span>ادعُ واكسب</span></span>
+              <h3 className="text-xl sm:text-2xl font-bold text-ink leading-snug max-w-[16rem]">
+                شارك نيكست مع من تعرف
+              </h3>
+              <p className="text-[13px] text-muted leading-relaxed max-w-[18rem]">
+                لكل صديق يحجز عبر رمزك، مكافأة تضاف إلى محفظتك.
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand">
+              رمز الدعوة
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+            </span>
+            <img
+              src={cardPackagesGift}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute -bottom-6 -left-6 w-32 h-32 object-cover rounded-2xl opacity-90 group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-500"
+            />
+          </button>
         </div>
       </section>
 
