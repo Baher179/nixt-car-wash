@@ -127,3 +127,8 @@
 .on-navy .bg-brand-soft { background-color: rgba(255, 255, 255, 0.1); }
 /* Primary buttons invert to the accent so they stay the loudest thing. */
 .on-navy .bg-ink { background-color: var(--color-accent); color: var(--color-navy); }
+
+/* Product renders shot on white. Multiply drops the white into whatever light
+   panel they sit on, so there is no seam between image and background. */
+.render { mix-blend-mode: multiply; }
+.on-navy .render { mix-blend-mode: normal; }

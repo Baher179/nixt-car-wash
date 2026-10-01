@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { HeaderSearch } from './HeaderSearch';
+import nixtIcon from '../../assets/brand/nixt-icon.webp';
 import {
   MapPin,
   Wallet,
@@ -135,9 +136,12 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-2.5 group text-right focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-deep rounded-xl"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-ink flex items-center justify-center text-white font-bold text-xl shadow-xs group-hover:scale-105 transition-transform">
-              <span>N</span>
-            </div>
+            <img
+              src={nixtIcon}
+              alt=""
+              aria-hidden="true"
+              className="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform"
+            />
             <div className="flex flex-col text-right">
               <span className="text-lg sm:text-xl font-bold tracking-tight text-ink leading-none">
                 NIXT

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
+import nixtIcon from '../../assets/brand/nixt-icon.webp';
 import { ShieldCheck, Phone, Mail, MapPin, Sparkles, CheckCircle2, Clock } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -62,9 +63,7 @@ export const Footer: React.FC = () => {
           {/* Brand & Description */}
           <div className="col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-navy font-bold text-xl">
-                <span>N</span>
-              </div>
+              <img src={nixtIcon} alt="" aria-hidden="true" className="w-11 h-11 object-contain" />
               <div>
                 <span className="text-2xl font-bold tracking-tight text-white">
                   NIXT <span className="text-accent text-sm font-semibold">نيكست</span>

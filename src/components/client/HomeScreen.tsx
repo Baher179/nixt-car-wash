@@ -31,6 +31,16 @@ import cardSubscriptionsClipboard from '../../assets/images/card_subscriptions_c
 import cardDiscountsCoupon from '../../assets/images/card_discounts_coupon_1788336491476.jpg';
 import heroBannerImg from '../../assets/images/hero_car_wash_banner_1788336434912.jpg';
 import tankPlasticWhite from '../../assets/images/tank_plastic_white_1789561943606.jpg';
+// NIXT brand photography — uniformed crew, branded vans, Saudi settings.
+import bCarWash from '../../assets/brand/category-car-wash-nixt-v5.webp';
+import bCarWashAlt from '../../assets/brand/category-car-wash-v3.webp';
+import bCarpet from '../../assets/brand/category-carpet-v3.webp';
+import bOnsite from '../../assets/brand/onsite-services-category-v2.webp';
+import bServicesGateway from '../../assets/brand/home-services-gateway-v2.webp';
+import bProductsGateway from '../../assets/brand/home-products-gateway-v2.webp';
+import bCollage from '../../assets/brand/services-collage.webp';
+import bSofa from '../../assets/brand/store-sofa-v2.webp';
+import bCarCare from '../../assets/brand/category-car-maintenance-v1.webp';
 import cardServicesBlueCar from '../../assets/images/card_services_blue_car_1788336446999.jpg';
 import carCareBanner from '../../assets/images/car_care_banner_1788357613398.jpg';
 import sofaCleaningImg from '../../assets/images/sofa_cleaning_item_1789560655946.jpg';
@@ -51,6 +61,7 @@ interface CategoryCardItem {
   accent: string;
   categoryKey: string;
   targetServiceId?: string;
+  isRender?: boolean;
 }
 
 /** Formats a configured numeric price into the displayed Saudi riyal string. */
@@ -156,7 +167,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       id: 'cat-cars',
       title: 'غسيل السيارات',
       subtitle: 'تلميع ونظافة شاملة لسيارتك',
-      image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80',
+      image: bCarWash,
       icon: CarIcon,
       iconStyle: 'bg-blue-50 text-blue-600 border-blue-100 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600',
       accent: 'from-blue-600/80',
@@ -167,7 +178,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       id: 'cat-carpets',
       title: 'غسيل السجاد',
       subtitle: 'عناية احترافية للسجاد والموكيت',
-      image: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80',
+      image: bCarpet,
       icon: Brush,
       iconStyle: 'bg-emerald-50 text-emerald-600 border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600',
       accent: 'from-emerald-600/80',
@@ -178,7 +189,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       id: 'cat-furniture',
       title: 'غسيل الكنب',
       subtitle: 'تجديد ونظافة عميقة لجميع أنواع الكنب',
-      image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80',
+      image: bSofa,
       icon: Sofa,
       iconStyle: 'bg-amber-50 text-amber-600 border-amber-100 group-hover:bg-amber-600 group-hover:text-white group-hover:border-amber-600',
       accent: 'from-amber-600/80',
@@ -189,7 +200,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       id: 'cat-tanks',
       title: 'تنظيف الخزانات',
       subtitle: 'مياه نظيفة وصحية لعائلتك',
-      image: 'https://images.unsplash.com/photo-1584467735815-f778f274e296?auto=format&fit=crop&w=800&q=80',
+      image: tankPlasticWhite,
+      isRender: true,
       icon: Droplets,
       iconStyle: 'bg-sky-50 text-sky-600 border-sky-100 group-hover:bg-sky-600 group-hover:text-white group-hover:border-sky-600',
       accent: 'from-sky-600/80',
@@ -211,7 +223,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       id: 'cat-others',
       title: 'خدمات أخرى',
       subtitle: 'اكتشف المزيد من الخدمات قريباً',
-      image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
+      image: bOnsite,
       icon: LayoutGrid,
       iconStyle: 'bg-indigo-50 text-indigo-600 border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600',
       accent: 'from-indigo-600/80',
@@ -241,7 +253,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         borderColor: 'border-blue-200/80',
         couponCode: 'X25',
         unitSuffix: '',
-        image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80'
+        image: bCarWash
       },
       {
         id: 'offer-carpets',
@@ -254,7 +266,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         borderColor: 'border-emerald-200/80',
         couponCode: 'CARPET20',
         unitSuffix: ' / م²',
-        image: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80'
+        image: bCarpet
       },
       {
         id: 'offer-furniture',
@@ -267,7 +279,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         borderColor: 'border-rose-200/80',
         couponCode: 'SOFA30',
         unitSuffix: '',
-        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80'
+        image: bSofa
       },
       {
         id: 'offer-cars-interior',
@@ -280,7 +292,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         borderColor: 'border-indigo-200/80',
         couponCode: 'X25',
         unitSuffix: '',
-        image: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=800&q=80'
+        image: bCarCare
       },
       {
         id: 'offer-tank-upper',
@@ -293,7 +305,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         borderColor: 'border-sky-200/80',
         couponCode: 'TANK20',
         unitSuffix: '',
-        image: 'https://images.unsplash.com/photo-1584467735815-f778f274e296?auto=format&fit=crop&w=800&q=80'
+        image: tankPlasticWhite,
+        isRender: true
       },
       {
         id: 'offer-pest',
@@ -386,32 +399,36 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         subtitle: 'تنظيف وتعقيم شامل لمياه أكثر صحة',
         rating: '4.8',
         reviewsCount: '840',
-        image: 'https://images.unsplash.com/photo-1584467735815-f778f274e296?auto=format&fit=crop&w=800&q=80',
-        badge: null as string | null
+        image: tankPlasticWhite,
+        badge: null as string | null,
+        isRender: true
       },
       {
         id: 'srv-sofa-3',
         subtitle: 'تنظيف وتعقيم وإزالة البقع مع رائحة منعشة',
         rating: '4.8',
         reviewsCount: '980',
-        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80',
-        badge: null as string | null
+        image: bSofa,
+        badge: null as string | null,
+        isRender: false
       },
       {
         id: 'srv-carpet-m2',
         subtitle: 'تنظيف عميق وإزالة البقع مع التجفيف السريع',
         rating: '4.7',
         reviewsCount: '760',
-        image: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80',
-        badge: null as string | null
+        image: bCarpet,
+        badge: null as string | null,
+        isRender: false
       },
       {
         id: 'srv-ext',
         subtitle: 'غسيل شامل للهيكل الخارجي مع تلميع وإزالة الأتربة',
         rating: '4.9',
         reviewsCount: '3200',
-        image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80',
-        badge: 'الأكثر طلباً' as string | null
+        image: bCarWash,
+        badge: 'الأكثر طلباً' as string | null,
+        isRender: false
       }
     ];
 
@@ -483,10 +500,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       cta: 'احجز غسيل السيارة',
       action: () => handleApplyBannerCode('X25'),
       showCoupon: true,
-      mainImg: cardServicesBlueCar,
-      mainAlt: 'غسيل سيارة متنقل من نيكست',
-      insetImg: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80',
-      plainMain: true
+      mainImg: bCarWash,
+      mainAlt: 'فني نيكست يغسل سيارة أمام المنزل',
+      insetImg: bCarCare,
+      plainMain: false
     },
     {
       id: 'hero-carpets',
@@ -497,9 +514,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       cta: 'احجز غسيل السجاد',
       action: () => navigateToCategoryServices('carpets'),
       showCoupon: false,
-      mainImg: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1200&q=80',
-      mainAlt: 'تنظيف السجاد بالبخار',
-      insetImg: sofaCleaningImg,
+      mainImg: bCarpet,
+      mainAlt: 'فني نيكست يستلم السجاد من المنزل',
+      insetImg: bSofa,
       plainMain: false
     },
     {
@@ -514,10 +531,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       },
       showCoupon: false,
-      mainImg: tankPlasticWhite,
-      mainAlt: 'خزان مياه نظيف',
-      insetImg: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=600&q=80',
-      plainMain: true
+      mainImg: bOnsite,
+      mainAlt: 'فريق نيكست أثناء الخدمة في الموقع',
+      insetImg: tankPlasticWhite,
+      plainMain: false
     }
   ], []);
 
@@ -756,11 +773,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
 
             {/* Imagery: one large frame plus a small offset frame */}
             <div className="lg:col-span-6 relative">
-              <div className="rounded-[2rem] overflow-hidden aspect-square bg-canvas">
+              <div className={`rounded-[2rem] overflow-hidden aspect-square ${activeSlide.plainMain ? 'bg-white p-6 sm:p-10' : 'bg-canvas'}`}>
                 <img
                   src={activeSlide.mainImg}
                   alt={activeSlide.mainAlt}
-                  className={`w-full h-full object-cover ${activeSlide.plainMain ? 'scale-[1.05]' : 'photo'}`}
+                  className={
+                    activeSlide.plainMain
+                      ? 'render w-full h-full object-contain'
+                      : 'photo w-full h-full object-cover'
+                  }
                 />
               </div>
               <div className="absolute -bottom-8 -left-2 sm:left-4 w-32 sm:w-44 rounded-2xl overflow-hidden aspect-square ring-8 ring-white bg-canvas hidden sm:block">
@@ -833,45 +854,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       </section>
 
       {/* ===================================================================== */}
-      {/* QUICK BOOK                                                            */}
-      {/* ===================================================================== */}
-      <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 pb-14 sm:pb-16">
-        <div className="bg-canvas rounded-[1.75rem] p-4 sm:p-5 ring-1 ring-hairline">
-          <div className="flex items-center justify-between gap-4 px-2 pb-4">
-            <p className="text-[13px] font-semibold text-ink">احجز بسرعة</p>
-            <button
-              onClick={() => navigateToCategoryServices('cars')}
-              className="text-[12px] font-medium text-brand-deep hover:text-ink transition-colors flex items-center gap-1.5 cursor-pointer group"
-            >
-              كل الخدمات
-              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform duration-300" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            {popularServicesData.slice(0, 3).map(item => (
-              <button
-                key={`quick-${item.id}`}
-                onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
-                className="group flex items-center gap-4 p-3 rounded-2xl hover:bg-canvas transition-colors text-right cursor-pointer min-w-0"
-              >
-                <span className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-shell">
-                  <img src={item.image} alt="" aria-hidden="true" loading="lazy"
-                    className="photo w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block text-[13px] font-semibold text-ink truncate">{item.title}</span>
-                  <span className="price block text-[13px] text-brand-deep mt-0.5">{item.price}</span>
-                </span>
-                <ArrowLeft className="w-4 h-4 text-faint shrink-0 group-hover:text-brand-deep group-hover:-translate-x-1 transition-all duration-300" />
-              </button>
-            ))}
-          </div>
-        </div>
-        </div>
-      </section>
-
-      {/* ===================================================================== */}
       {/* DESTINATION                                                           */}
       {/* ===================================================================== */}
       <section className="bg-canvas"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 space-y-12">
@@ -888,7 +870,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               title: 'الخدمات',
               desc: 'غسيل السيارات والسجاد والكنب والخزانات — في موقعك.',
               cta: 'استكشف الخدمات',
-              img: heroBannerImg,
+              img: bServicesGateway,
               onClick: () => navigateToCategoryServices('cars'),
               tint: 'bg-brand-soft'
             },
@@ -897,7 +879,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               title: 'المتجر',
               desc: 'منتجات وإكسسوارات عناية مختارة، تصلك إلى بابك.',
               cta: 'تسوّق الآن',
-              img: carCareBanner,
+              img: bProductsGateway,
               onClick: () => { setCurrentScreen('store'); window.scrollTo({ top: 0, behavior: 'smooth' }); },
               tint: 'bg-shell'
             }
@@ -943,9 +925,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               onClick={() => handleCategoryCardClick(cat)}
               className="group shrink-0 w-36 lg:w-auto text-right cursor-pointer"
             >
-              <div className="rounded-2xl overflow-hidden aspect-square mb-4 bg-shell">
+              <div className={`rounded-2xl overflow-hidden aspect-square mb-4 ${cat.isRender ? 'bg-white p-4' : 'bg-shell'}`}>
                 <img src={cat.image} alt="" aria-hidden="true" loading="lazy"
-                  className="photo w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]" />
+                  className={`w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.07] ${
+                    cat.isRender ? 'render object-contain' : 'photo object-cover'
+                  }`} />
               </div>
               <h3 className="text-[13px] font-semibold text-ink leading-snug mb-1.5">{cat.title}</h3>
               <span className="flex items-center gap-1.5 text-[12px] text-faint group-hover:text-brand-deep transition-colors">
@@ -963,31 +947,56 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       {/* ===================================================================== */}
       {welcomeCoupon && (
         <section className="bg-navy on-navy"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
-          <div className="bg-brand-soft rounded-[2rem] p-9 sm:p-12 flex flex-col sm:flex-row sm:items-center justify-between gap-8">
-            <div className="space-y-3 max-w-md">
-              <span className="eyebrow"><span>عميل جديد</span></span>
-              <h2 className="text-3xl sm:text-[2.5rem] font-bold text-ink tracking-tight leading-tight">
-                وفّر {welcomeCoupon.discountValue}% على أول حجز
-              </h2>
-              <p className="text-sm text-muted leading-relaxed">
-                استخدم الكود عند إتمام الحجز على طلب بقيمة {welcomeCoupon.minOrderValue} ر.س فأكثر.
-              </p>
+          <div className="bg-brand-soft rounded-[2rem] overflow-hidden grid lg:grid-cols-12 items-center">
+            {/* Visual fills the empty half the strip used to leave */}
+            <div className="lg:col-span-4 h-full flex items-center justify-center p-8 sm:p-10 lg:py-12">
+              {/* On the dark band multiply cannot drop the render's white
+                  backdrop, so it gets a deliberate tile instead of a seam. */}
+              <span className="bg-white rounded-3xl p-5 flex items-center justify-center w-40 lg:w-full lg:max-w-[13rem] aspect-square">
+                <img
+                  src={cardDiscountsCoupon}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  className="w-full h-full object-contain"
+                />
+              </span>
             </div>
 
-            <div className="flex items-center gap-4 shrink-0">
-              <span className="bg-white border border-dashed border-hairline rounded-2xl px-6 py-4 text-center">
-                <span className="block text-[10px] text-muted mb-1">الكود</span>
-                <span className="block text-lg font-semibold text-accent tracking-[0.18em]">
-                  {welcomeCoupon.code}
+            <div className="lg:col-span-8 p-8 sm:p-10 lg:pr-0 lg:py-12 space-y-5">
+              <span className="eyebrow"><span>عميل جديد</span></span>
+              <h2 className="text-3xl sm:text-[2.5rem] font-bold text-ink tracking-tight leading-tight max-w-md">
+                وفّر {welcomeCoupon.discountValue}% على أول حجز
+              </h2>
+              <p className="text-sm text-muted leading-relaxed max-w-sm">
+                استخدم الكود عند إتمام الحجز على طلب بقيمة {welcomeCoupon.minOrderValue} ر.س فأكثر.
+              </p>
+
+              <div className="flex flex-wrap items-stretch gap-3 pt-1">
+                {/* Ticket-style code chip: notches on both edges, dashed seam */}
+                <span className="relative bg-white rounded-xl px-7 py-3.5 flex flex-col items-center justify-center shrink-0">
+                  <span
+                    aria-hidden="true"
+                    className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-brand-soft"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-brand-soft"
+                  />
+                  <span className="block text-[10px] text-muted mb-0.5">الكود</span>
+                  <span className="block text-xl font-bold text-ink tracking-[0.2em] leading-none">
+                    {welcomeCoupon.code}
+                  </span>
                 </span>
-              </span>
-              <button
-                onClick={() => handleApplyBannerCode(welcomeCoupon.code)}
-                className="bg-ink hover:bg-brand-deep active:scale-[0.98] text-white font-medium text-[14px] px-7 py-4 rounded-full transition-colors flex items-center gap-2 cursor-pointer"
-              >
-                <span>استخدم الكود</span>
-                <ArrowLeft className="w-4 h-4" />
-              </button>
+
+                <button
+                  onClick={() => handleApplyBannerCode(welcomeCoupon.code)}
+                  className="bg-ink hover:bg-brand-deep active:scale-[0.98] text-white font-medium text-[14px] px-7 rounded-xl transition-colors flex items-center gap-2 cursor-pointer"
+                >
+                  <span>استخدم الكود</span>
+                  <ArrowLeft className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
           </div>
@@ -1020,9 +1029,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               {offerCards.map(offer => (
                 <div key={offer.id} className="shrink-0 pl-5" style={{ width: `${100 / cardsPerView}%` }}>
                   <button onClick={() => handleOfferClick(offer)} className="group w-full text-right cursor-pointer">
-                    <div className="relative rounded-2xl overflow-hidden aspect-[5/3.6] mb-6 bg-canvas">
+                    <div className={`relative rounded-2xl overflow-hidden aspect-[5/3.6] mb-6 ${offer.isRender ? 'bg-white p-5' : 'bg-canvas'}`}>
                       <img src={offer.image} alt="" aria-hidden="true" loading="lazy"
-                        className="photo w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]" />
+                        className={`w-full h-full transition-transform duration-[900ms] ease-out group-hover:scale-[1.05] ${
+                          offer.isRender ? 'render object-contain' : 'photo object-cover'
+                        }`} />
                       <span className="absolute top-4 right-4 bg-white text-ink text-[11px] font-semibold px-3 py-1.5 rounded-full">
                         {offer.badge}
                       </span>
@@ -1091,9 +1102,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
                 tabIndex={-1}
                 className="text-right cursor-pointer"
               >
-                <div className="relative rounded-2xl overflow-hidden aspect-[5/4] mb-6 bg-shell">
+                <div className={`relative rounded-2xl overflow-hidden aspect-[5/4] mb-6 ${item.isRender ? 'bg-white p-5' : 'bg-shell'}`}>
                   <img src={item.image} alt="" aria-hidden="true" loading="lazy"
-                    className="photo w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]" />
+                    className={`w-full h-full transition-transform duration-[900ms] ease-out group-hover:scale-[1.05] ${
+                      item.isRender ? 'render object-contain' : 'photo object-cover'
+                    }`} />
                   {item.badge && (
                     <span className="absolute top-4 right-4 bg-white text-ink text-[11px] font-semibold px-3 py-1.5 rounded-full">
                       {item.badge}
@@ -1161,18 +1174,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             <button key={b.id} onClick={b.onClick}
               className={`group relative overflow-hidden rounded-[2rem] ${b.tint} text-right cursor-pointer min-h-[16rem] transition-colors duration-300 hover:bg-white hover:ring-1 hover:ring-hairline`}>
               {/* Image occupies the full height of the card on its leading edge */}
-              <img
-                src={b.img}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                className="absolute inset-y-0 left-0 w-[42%] sm:w-[38%] h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
-              />
-              {/* Fade the image into the panel so the edge is not a hard seam */}
+              {/* The render is multiplied onto the panel, so its white studio
+                  background disappears instead of forming a visible seam. */}
               <span
                 aria-hidden="true"
-                className="absolute inset-y-0 left-0 w-[46%] sm:w-[42%] bg-gradient-to-l from-transparent to-[color:inherit]"
-              />
+                className="absolute inset-y-0 left-0 w-[42%] sm:w-[38%] flex items-center justify-center p-5"
+              >
+                <img
+                  src={b.img}
+                  alt=""
+                  loading="lazy"
+                  className="render max-h-full w-full object-contain transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+                />
+              </span>
 
               <div className="relative flex flex-col justify-between gap-6 h-full min-h-[16rem] p-8 sm:p-10 pl-[46%] sm:pl-[40%]">
                 <div className="space-y-3">
@@ -1221,16 +1235,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             <div className="lg:col-span-6 relative">
               <div className="rounded-[2rem] overflow-hidden aspect-[4/3] bg-white">
                 <img
-                  src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1100&q=80"
-                  alt="تنظيف المقصورة الداخلية للسيارة"
+                  src={bCollage}
+                  alt="خدمات نيكست المتنقلة"
                   loading="lazy"
                   className="photo w-full h-full object-cover"
                 />
               </div>
               <div className="absolute -bottom-9 -left-3 sm:left-8 w-36 sm:w-48 rounded-2xl overflow-hidden aspect-square ring-8 ring-canvas bg-white">
                 <img
-                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=80"
-                  alt="تنظيف الكنب بالمعدات الاحترافية"
+                  src={bCarWashAlt}
+                  alt="غسيل خارجي للسيارة"
                   loading="lazy"
                   className="photo w-full h-full object-cover"
                 />
