@@ -12,67 +12,67 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-ink text-stone-300 pt-14 pb-12 border-t border-stone-800 mt-20">
+    <footer className="bg-navy text-slate-300 pt-14 pb-12 border-t border-white/10 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Top Feature Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-12 border-b border-stone-800 text-right">
-          <div className="flex items-center gap-3.5 bg-stone-800/60 p-4 rounded-2xl border border-stone-700">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-12 border-b border-white/10 text-right">
+          <div className="flex items-center gap-3.5 bg-white/[0.04] p-4 rounded-2xl border border-white/10">
             <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accent shrink-0">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
               <h4 className="text-white text-sm font-bold">غسيل متنقل فاخر</h4>
-              <p className="text-xs text-stone-400 mt-0.5">نصلك أينما كنت بأحدث فانات الغسيل المجهزة</p>
+              <p className="text-xs text-slate-400 mt-0.5">نصلك أينما كنت بأحدث فانات الغسيل المجهزة</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 bg-stone-800/60 p-4 rounded-2xl border border-stone-700">
-            <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-accent shrink-0">
+          <div className="flex items-center gap-3.5 bg-white/[0.04] p-4 rounded-2xl border border-white/10">
+            <div className="w-11 h-11 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center text-accent shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <h4 className="text-white text-sm font-bold">مواد أصلية وآمنة</h4>
-              <p className="text-xs text-stone-400 mt-0.5">شامبو إيطالي وواكس مخصص لحماية الطلاء</p>
+              <p className="text-xs text-slate-400 mt-0.5">شامبو إيطالي وواكس مخصص لحماية الطلاء</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 bg-stone-800/60 p-4 rounded-2xl border border-stone-700">
+          <div className="flex items-center gap-3.5 bg-white/[0.04] p-4 rounded-2xl border border-white/10">
             <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
               <Clock className="w-5 h-5" />
             </div>
             <div>
               <h4 className="text-white text-sm font-bold">التزام تام بالمواعيد</h4>
-              <p className="text-xs text-stone-400 mt-0.5">كباتن محترفون وجدولة ذكية للسعة التشغيلية</p>
+              <p className="text-xs text-slate-400 mt-0.5">كباتن محترفون وجدولة ذكية للسعة التشغيلية</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 bg-stone-800/60 p-4 rounded-2xl border border-stone-700">
+          <div className="flex items-center gap-3.5 bg-white/[0.04] p-4 rounded-2xl border border-white/10">
             <div className="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div>
               <h4 className="text-white text-sm font-bold">دفع آمن وتقسيط</h4>
-              <p className="text-xs text-stone-400 mt-0.5">مدى، ميسر، أبل باي، وتقسيط تابي وتمارا</p>
+              <p className="text-xs text-slate-400 mt-0.5">مدى، ميسر، أبل باي، وتقسيط تابي وتمارا</p>
             </div>
           </div>
         </div>
 
         {/* Links Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 py-12 border-b border-stone-800 text-right">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 py-12 border-b border-white/10 text-right">
           {/* Brand & Description */}
           <div className="col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-white font-black text-xl shadow-md">
+              <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-navy font-bold text-xl">
                 <span>N</span>
               </div>
               <div>
                 <span className="text-2xl font-bold tracking-tight text-white">
                   NIXT <span className="text-accent text-sm font-semibold">نيكست</span>
                 </span>
-                <p className="text-xs text-stone-400 font-normal">المنصة الشاملة لخدمات العناية بالمركبات والمتجر الإلكتروني</p>
+                <p className="text-xs text-slate-400 font-normal">المنصة الشاملة لخدمات العناية بالمركبات والمتجر الإلكتروني</p>
               </div>
             </div>
-            <p className="text-xs text-stone-400 leading-relaxed max-w-sm">
+            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
               نوفر لك تجربة غسيل سيارات متنقلة واحترافية بأيدي كباتن مختصين وبأعلى معايير النظافة والتلميع، دون الحاجة للانتظار في المغاسل التقليدية.
             </p>
             {/* Social accounts. Hrefs are intentionally absent until the real
@@ -82,13 +82,13 @@ export const Footer: React.FC = () => {
                 <span
                   key={label}
                   aria-label={`حساب نيكست على ${label}`}
-                  className="w-8 h-8 rounded-lg bg-stone-800/80 border border-stone-700 flex items-center justify-center text-[11px] font-bold text-slate-300"
+                  className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-[11px] font-bold text-slate-300"
                 >
                   {label}
                 </span>
               ))}
             </div>
-            <div className="flex items-center gap-3 text-xs text-stone-400 pt-2">
+            <div className="flex items-center gap-3 text-xs text-slate-400 pt-2">
               <div className="flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-accent" />
                 <span dir="ltr">920000000</span>
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
           {/* Quick Services */}
           <div>
             <h5 className="text-white text-sm font-bold mb-4">الخدمات والباقات</h5>
-            <ul className="space-y-2.5 text-xs text-stone-400">
+            <ul className="space-y-2.5 text-xs text-slate-400">
               <li><button onClick={() => setCurrentScreen('home')} className="hover:text-accent transition-colors">غسيل داخلي وخارجي</button></li>
               <li><button onClick={() => setCurrentScreen('home')} className="hover:text-accent transition-colors">تلميع داخلي احترافي</button></li>
               <li><button onClick={() => setCurrentScreen('home')} className="hover:text-accent transition-colors">غسيل بالبخار والتعقيم</button></li>
@@ -115,7 +115,7 @@ export const Footer: React.FC = () => {
           {/* E-Store */}
           <div>
             <h5 className="text-white text-sm font-bold mb-4">متجر نيكست</h5>
-            <ul className="space-y-2.5 text-xs text-stone-400">
+            <ul className="space-y-2.5 text-xs text-slate-400">
               <li><button onClick={() => setCurrentScreen('store')} className="hover:text-accent transition-colors">اكسسوارات داخلية</button></li>
               <li><button onClick={() => setCurrentScreen('store')} className="hover:text-accent transition-colors">شواحن وكيابل سيارة</button></li>
               <li><button onClick={() => setCurrentScreen('store')} className="hover:text-accent transition-colors">تلبيسات مقاعد ومفارش</button></li>
@@ -127,7 +127,7 @@ export const Footer: React.FC = () => {
           {/* Policies & Info */}
           <div>
             <h5 className="text-white text-sm font-bold mb-4">روابط ومساعدة</h5>
-            <ul className="space-y-2.5 text-xs text-stone-400">
+            <ul className="space-y-2.5 text-xs text-slate-400">
               <li><button onClick={() => { setCurrentScreen('help'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-accent transition-colors">مركز المساعدة والأسئلة</button></li>
               <li><button onClick={() => { setCurrentScreen('referral'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-accent transition-colors">برنامج ادع واكسب</button></li>
               <li><button onClick={() => { setCurrentScreen('send_gift'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-accent transition-colors">إرسال الهدايا</button></li>
@@ -139,7 +139,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar: Copyright */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-center text-xs text-stone-500 border-t border-stone-800">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-center text-xs text-slate-400 border-t border-white/10">
           <p className="text-center">© 2026 شركة نيكست لتقنية المعلومات NIXT. جميع الحقوق محفوظة - موثق لدى المركز السعودي للأعمال.</p>
         </div>
       </div>

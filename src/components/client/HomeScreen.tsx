@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem } from '../../types';
+import { useReducedMotion } from 'motion/react';
 import {
   Car as CarIcon,
   Star,
@@ -18,6 +19,10 @@ import {
   CalendarClock,
   Wallet,
   Smartphone,
+  Gift,
+  Repeat,
+  Ticket,
+  Sparkles,
 } from 'lucide-react';
 
 // 3D Illustration assets matching the design
@@ -25,6 +30,7 @@ import cardPackagesGift from '../../assets/images/card_packages_gift_17883364594
 import cardSubscriptionsClipboard from '../../assets/images/card_subscriptions_clipboard_1788336474969.jpg';
 import cardDiscountsCoupon from '../../assets/images/card_discounts_coupon_1788336491476.jpg';
 import heroBannerImg from '../../assets/images/hero_car_wash_banner_1788336434912.jpg';
+import tankPlasticWhite from '../../assets/images/tank_plastic_white_1789561943606.jpg';
 import cardServicesBlueCar from '../../assets/images/card_services_blue_car_1788336446999.jpg';
 import carCareBanner from '../../assets/images/car_care_banner_1788357613398.jpg';
 import sofaCleaningImg from '../../assets/images/sofa_cleaning_item_1789560655946.jpg';
@@ -460,6 +466,77 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
   }, [coupons]);
 
   /**
+   * Hero slides. Each one speaks to a single service family, with its own
+   * copy, imagery and action.
+   *
+   * Only the car slide applies a coupon — that is the existing hero action and
+   * X25 is configured against car washing. The other two navigate only, so no
+   * discount is implied for a service it was not configured for.
+   */
+  const heroSlides = useMemo(() => [
+    {
+      id: 'hero-cars',
+      kicker: 'غسيل السيارات',
+      titleLead: 'سيارتك تلمع',
+      titleTail: 'أينما كنت',
+      lead: 'غسيل داخلي وخارجي بمعدات كاملة ومواد أصلية. نصل إلى موقعك في الموعد الذي تختاره.',
+      cta: 'احجز غسيل السيارة',
+      action: () => handleApplyBannerCode('X25'),
+      showCoupon: true,
+      mainImg: cardServicesBlueCar,
+      mainAlt: 'غسيل سيارة متنقل من نيكست',
+      insetImg: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80',
+      plainMain: true
+    },
+    {
+      id: 'hero-carpets',
+      kicker: 'غسيل السجاد والكنب',
+      titleLead: 'سجادك وكنبك',
+      titleTail: 'كالجديد',
+      lead: 'تنظيف عميق بالبخار يزيل البقع والروائح، مع التغليف والتسليم إلى باب منزلك.',
+      cta: 'احجز غسيل السجاد',
+      action: () => navigateToCategoryServices('carpets'),
+      showCoupon: false,
+      mainImg: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1200&q=80',
+      mainAlt: 'تنظيف السجاد بالبخار',
+      insetImg: sofaCleaningImg,
+      plainMain: false
+    },
+    {
+      id: 'hero-home',
+      kicker: 'خدمات المنزل',
+      titleLead: 'خزانات نظيفة',
+      titleTail: 'ومنزل آمن',
+      lead: 'تنظيف وتعقيم الخزانات العلوية والأرضية، ورش المبيدات على يد فنيين مختصين.',
+      cta: 'استكشف كل الخدمات',
+      action: () => {
+        const el = document.getElementById('services-selection-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      },
+      showCoupon: false,
+      mainImg: tankPlasticWhite,
+      mainAlt: 'خزان مياه نظيف',
+      insetImg: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=600&q=80',
+      plainMain: true
+    }
+  ], []);
+
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
+  const heroReducedMotion = useReducedMotion();
+  const activeSlide = heroSlides[heroIndex];
+
+  /* Auto-advance, held while the visitor is on the slider and switched off
+     entirely for anyone who prefers reduced motion. */
+  useEffect(() => {
+    if (heroPaused || heroReducedMotion) return;
+    const t = setInterval(() => {
+      setHeroIndex(prev => (prev + 1) % heroSlides.length);
+    }, 6500);
+    return () => clearInterval(t);
+  }, [heroPaused, heroReducedMotion, heroSlides.length]);
+
+  /**
    * Coupon surfaced in the homepage strip: configured, active and inside its
    * own validity window today. Nothing is rendered when no coupon qualifies.
    */
@@ -625,65 +702,111 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       {/* than underneath them, so nothing has to be darkened to stay readable. */}
       {/* ===================================================================== */}
       <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 pb-14 sm:pb-16">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div
+          className="relative"
+          onMouseEnter={() => setHeroPaused(true)}
+          onMouseLeave={() => setHeroPaused(false)}
+          onFocusCapture={() => setHeroPaused(true)}
+          onBlurCapture={() => setHeroPaused(false)}
+          aria-roledescription="carousel"
+          aria-label="خدمات نيكست"
+        >
+          <div
+            key={activeSlide.id}
+            className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center animate-in fade-in slide-in-from-bottom-3 duration-500"
+            aria-live="polite"
+          >
+            <div className="lg:col-span-6 space-y-8">
+              <span className="eyebrow"><span>{activeSlide.kicker}</span></span>
 
-          <div className="lg:col-span-6 space-y-8">
-            <span className="eyebrow"><span>خدمة تنظيف متنقلة</span></span>
+              <h1 className="display text-ink text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">
+                {activeSlide.titleLead}
+                <br />
+                <span className="relative inline-block">
+                  <span className="relative z-10">{activeSlide.titleTail}</span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-1.5 h-3 sm:h-4 bg-accent/45 -z-0 rounded-sm"
+                  />
+                </span>
+              </h1>
 
-            <h1 className="display text-ink text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">
-              سيارتك وسجادك
-              <br />
-              في أيدي
-              <span className="relative inline-block mr-3">
-                <span className="relative z-10">محترفة</span>
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-1.5 h-3 sm:h-4 bg-accent/45 -z-0 rounded-sm"
+              <p className="text-base sm:text-lg text-muted max-w-sm min-h-[5.5rem]">
+                {activeSlide.lead}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 pt-1">
+                <button
+                  onClick={activeSlide.action}
+                  className="bg-ink hover:bg-brand-deep active:scale-[0.98] text-white font-medium text-[15px] px-8 py-4 rounded-full transition-colors duration-200 flex items-center gap-2.5 cursor-pointer"
+                >
+                  <span>{activeSlide.cta}</span>
+                  <ArrowLeft className="w-4 h-4" />
+                </button>
+
+                {activeSlide.showCoupon && heroOffer && (
+                  <p className="text-[13px] text-muted">
+                    كود{' '}
+                    <span className="text-brand-deep font-semibold tracking-wide">{heroOffer.code}</span>
+                    {' '}يوفّر {heroOffer.percent}%
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Imagery: one large frame plus a small offset frame */}
+            <div className="lg:col-span-6 relative">
+              <div className="rounded-[2rem] overflow-hidden aspect-square bg-canvas">
+                <img
+                  src={activeSlide.mainImg}
+                  alt={activeSlide.mainAlt}
+                  className={`w-full h-full object-cover ${activeSlide.plainMain ? 'scale-[1.05]' : 'photo'}`}
                 />
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-muted max-w-sm">
-              نصلك أينما كنت بمعدات كاملة وفنيين مختصين. اختر الموعد الذي
-              يناسبك، ونتولى الباقي.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 pt-1">
-              <button
-                onClick={() => handleApplyBannerCode('X25')}
-                className="bg-ink hover:bg-brand-deep active:scale-[0.98] text-white font-medium text-[15px] px-8 py-4 rounded-full transition-colors duration-200 flex items-center gap-2.5 cursor-pointer"
-              >
-                <span>احجز الخدمة الآن</span>
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-
-              {heroOffer && (
-                <p className="text-[13px] text-muted">
-                  كود{' '}
-                  <span className="text-brand-deep font-semibold tracking-wide">{heroOffer.code}</span>
-                  {' '}يوفّر {heroOffer.percent}%
-                </p>
-              )}
+              </div>
+              <div className="absolute -bottom-8 -left-2 sm:left-4 w-32 sm:w-44 rounded-2xl overflow-hidden aspect-square ring-8 ring-white bg-canvas hidden sm:block">
+                <img
+                  src={activeSlide.insetImg}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  className="photo w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Imagery: one tall frame plus a small offset frame */}
-          <div className="lg:col-span-6 relative">
-            <div className="rounded-[2rem] overflow-hidden aspect-square bg-white">
-              <img
-                src={cardServicesBlueCar}
-                alt="غسيل سيارة متنقل من نيكست"
-                className="w-full h-full object-cover scale-[1.05]"
-              />
+          {/* Slide controls */}
+          <div className="flex items-center justify-between gap-6 mt-14 sm:mt-10">
+            <div className="flex items-center gap-2" role="tablist" aria-label="شرائح الخدمات">
+              {heroSlides.map((sl, i) => (
+                <button
+                  key={sl.id}
+                  role="tab"
+                  aria-selected={heroIndex === i}
+                  aria-label={sl.kicker}
+                  onClick={() => setHeroIndex(i)}
+                  className={`h-[3px] rounded-full transition-all duration-300 cursor-pointer ${
+                    heroIndex === i ? 'w-10 bg-ink' : 'w-5 bg-hairline hover:bg-faint'
+                  }`}
+                />
+              ))}
             </div>
-            <div className="absolute -bottom-8 -left-2 sm:left-4 w-32 sm:w-44 rounded-2xl overflow-hidden aspect-square ring-8 ring-canvas bg-white hidden sm:block">
-              <img
-                src={sofaCleaningImg}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                className="photo w-full h-full object-cover"
-              />
+
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                onClick={() => setHeroIndex(prev => (prev - 1 + heroSlides.length) % heroSlides.length)}
+                aria-label="الشريحة السابقة"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setHeroIndex(prev => (prev + 1) % heroSlides.length)}
+                aria-label="الشريحة التالية"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
@@ -691,13 +814,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         {/* Trust row on a hairline */}
         <div className="mt-20 sm:mt-24 pt-8 border-t border-hairline grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
           {[
-            { k: 'فنيون معتمدون', v: 'فريق مدرب وفانات مجهزة بالكامل' },
-            { k: 'مواعيد مرنة', v: 'تختار اليوم والوقت الذي يناسبك' },
-            { k: 'أسعار واضحة', v: 'السعر شامل الضريبة بلا مفاجآت' }
+            { k: 'فنيون معتمدون', v: 'فريق مدرب وفانات مجهزة بالكامل', Icon: BadgeCheck },
+            { k: 'مواعيد مرنة', v: 'تختار اليوم والوقت الذي يناسبك', Icon: CalendarClock },
+            { k: 'أسعار واضحة', v: 'السعر شامل الضريبة بلا مفاجآت', Icon: Wallet }
           ].map(item => (
-            <div key={item.k} className="space-y-2">
-              <p className="text-[15px] font-semibold text-ink">{item.k}</p>
-              <p className="text-[13px] text-muted leading-relaxed">{item.v}</p>
+            <div key={item.k} className="flex items-start gap-4">
+              <span className="w-11 h-11 rounded-xl bg-brand-soft text-brand-deep flex items-center justify-center shrink-0">
+                <item.Icon className="w-5 h-5" />
+              </span>
+              <div className="space-y-1.5 min-w-0">
+                <p className="text-[15px] font-semibold text-ink">{item.k}</p>
+                <p className="text-[13px] text-muted leading-relaxed">{item.v}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -1031,18 +1159,32 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             }
           ].map(b => (
             <button key={b.id} onClick={b.onClick}
-              className={`group relative overflow-hidden rounded-[2rem] ${b.tint} p-9 sm:p-11 text-right cursor-pointer min-h-[15rem] flex flex-col justify-between gap-6 transition-colors duration-300 hover:bg-white hover:ring-1 hover:ring-hairline`}>
-              <div className="space-y-3">
-                <span className="eyebrow"><span>{b.kicker}</span></span>
-                <h3 className="text-2xl font-bold text-ink leading-snug max-w-[16rem] tracking-tight">{b.title}</h3>
-                <p className="text-[13px] text-muted leading-relaxed max-w-[18rem]">{b.desc}</p>
+              className={`group relative overflow-hidden rounded-[2rem] ${b.tint} text-right cursor-pointer min-h-[16rem] transition-colors duration-300 hover:bg-white hover:ring-1 hover:ring-hairline`}>
+              {/* Image occupies the full height of the card on its leading edge */}
+              <img
+                src={b.img}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="absolute inset-y-0 left-0 w-[42%] sm:w-[38%] h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+              />
+              {/* Fade the image into the panel so the edge is not a hard seam */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-0 left-0 w-[46%] sm:w-[42%] bg-gradient-to-l from-transparent to-[color:inherit]"
+              />
+
+              <div className="relative flex flex-col justify-between gap-6 h-full min-h-[16rem] p-8 sm:p-10 pl-[46%] sm:pl-[40%]">
+                <div className="space-y-3">
+                  <span className="eyebrow"><span>{b.kicker}</span></span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-ink leading-snug tracking-tight">{b.title}</h3>
+                  <p className="text-[13px] text-muted leading-relaxed">{b.desc}</p>
+                </div>
+                <span className="inline-flex items-center gap-2 text-[13px] font-medium text-brand-deep">
+                  {b.cta}
+                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+                </span>
               </div>
-              <span className="inline-flex items-center gap-2 text-[13px] font-medium text-brand-deep">
-                {b.cta}
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
-              </span>
-              <img src={b.img} alt="" aria-hidden="true" loading="lazy"
-                className="photo absolute -bottom-6 -left-6 w-32 h-32 object-cover rounded-2xl group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-500" />
             </button>
           ))}
         </div>
@@ -1063,9 +1205,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
 
               <dl>
                 {whyNixtItems.map((item, i) => (
-                  <div key={item.id} className={`py-6 ${i > 0 ? 'border-t border-hairline' : ''}`}>
-                    <dt className="text-[17px] font-semibold text-ink mb-1.5">{item.title}</dt>
-                    <dd className="text-[14px] text-muted leading-relaxed">{item.desc}</dd>
+                  <div key={item.id} className={`flex items-start gap-5 py-6 ${i > 0 ? 'border-t border-hairline' : ''}`}>
+                    <span className="w-11 h-11 rounded-xl bg-white/10 text-accent flex items-center justify-center shrink-0">
+                      <item.icon className="w-5 h-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <dt className="text-[17px] font-semibold text-ink mb-1.5">{item.title}</dt>
+                      <dd className="text-[14px] text-muted leading-relaxed">{item.desc}</dd>
+                    </div>
                   </div>
                 ))}
               </dl>
