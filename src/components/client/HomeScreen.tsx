@@ -3,12 +3,10 @@ import { useApp } from '../../context/AppContext';
 import { ServiceItem } from '../../types';
 import {
   Car as CarIcon,
-  Sparkles,
   Star,
   ChevronLeft,
   ChevronRight,
   ArrowLeft,
-  Flame,
   LayoutGrid,
   Heart,
   Sofa,
@@ -19,14 +17,7 @@ import {
   BadgeCheck,
   CalendarClock,
   Wallet,
-  Gift,
-  CalendarCheck,
-  Repeat,
-  Ticket,
   Smartphone,
-  QrCode,
-  CheckCircle2,
-  Tag
 } from 'lucide-react';
 
 // 3D Illustration assets matching the design
@@ -237,7 +228,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         title: 'غسيل خارجي للسيارة',
         serviceId: 'srv-ext',
         subtitle: 'رغوة واكس وتلميع الجنوط وتسويد الإطارات',
-        badge: 'خصم 25% 🔥',
+        badge: 'خصم 25%',
         badgeColor: 'bg-blue-600 text-white',
         bgGradient: 'from-blue-50/90 via-sky-50/40 to-white',
         borderColor: 'border-blue-200/80',
@@ -250,7 +241,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         title: 'غسيل السجاد الفاخر',
         serviceId: 'srv-carpet-m2',
         subtitle: 'تنظيف عميق بالبخار وإزالة البقع مع التغليف',
-        badge: 'خصم 33% ⚡',
+        badge: 'خصم 33%',
         badgeColor: 'bg-emerald-600 text-white',
         bgGradient: 'from-emerald-50/90 via-teal-50/40 to-white',
         borderColor: 'border-emerald-200/80',
@@ -263,7 +254,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         title: 'غسيل الكنب والمجالس',
         serviceId: 'srv-sofa-3',
         subtitle: 'رغوة جافة وتطهير بالبخار يزيل أصعب البقع',
-        badge: 'وفر 40 ر.س ✨',
+        badge: 'وفر 40 ر.س',
         badgeColor: 'bg-rose-500 text-white',
         bgGradient: 'from-rose-50/90 via-pink-50/40 to-white',
         borderColor: 'border-rose-200/80',
@@ -276,7 +267,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         title: 'غسيل داخلي متكامل للسيارة',
         serviceId: 'srv-interior',
         subtitle: 'تنظيف المراتب والديكورات وتعقيم التكييف مع تعطير',
-        badge: 'خصم 25% 🚗',
+        badge: 'خصم 25%',
         badgeColor: 'bg-indigo-600 text-white',
         bgGradient: 'from-indigo-50/90 via-blue-50/40 to-white',
         borderColor: 'border-indigo-200/80',
@@ -289,7 +280,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         title: 'تنظيف وتعقيم خزان علوي',
         serviceId: 'srv-tank-upper',
         subtitle: 'تفريغ الرواسب وتطهير بالكلور الصحي المعتمد',
-        badge: 'خصم 30% 💧',
+        badge: 'خصم 30%',
         badgeColor: 'bg-sky-600 text-white',
         bgGradient: 'from-sky-50/90 via-cyan-50/40 to-white',
         borderColor: 'border-sky-200/80',
@@ -302,7 +293,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
         title: 'مكافحة الحشرات ورش مبيدات',
         serviceId: 'srv-pest',
         subtitle: 'مبيدات منخفضة الرائحة مع متابعة ما بعد الخدمة',
-        badge: 'وفر 60 ر.س 🛡️',
+        badge: 'وفر 60 ر.س',
         badgeColor: 'bg-amber-600 text-white',
         bgGradient: 'from-amber-50/90 via-orange-50/40 to-white',
         borderColor: 'border-amber-200/80',
@@ -587,713 +578,659 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
 
 
 
+  /**
+   * One editorial header for every section: a numbered eyebrow, a large
+   * title, an optional lead and a hairline. Replaces the repeated centred
+   * title/subtitle stack so sections read as a sequence, not a list.
+   */
+  const SectionHead: React.FC<{
+    index: string;
+    kicker: string;
+    title: React.ReactNode;
+    lead?: string;
+    action?: { label: string; onClick: () => void };
+  }> = ({ index, kicker, title, lead, action }) => (
+    <header className="space-y-5">
+      <div className="flex items-end justify-between gap-6">
+        <div className="space-y-3 min-w-0">
+          <span className="eyebrow">
+            <span className="tabular-nums">{index}</span>
+            <span>{kicker}</span>
+          </span>
+          <h2 className="section-title max-w-2xl">{title}</h2>
+          {lead && (
+            <p className="text-[15px] text-muted max-w-lg leading-relaxed">{lead}</p>
+          )}
+        </div>
+
+        {action && (
+          <button
+            onClick={action.onClick}
+            className="hidden sm:flex shrink-0 items-center gap-2 text-[13px] font-bold text-ink hover:text-brand transition-colors cursor-pointer group pb-1"
+          >
+            <span>{action.label}</span>
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+          </button>
+        )}
+      </div>
+      <div className="rule" />
+    </header>
+  );
+
   return (
-    <div className="animate-in fade-in duration-300 text-right" dir="rtl">
+    <div className="animate-in fade-in duration-500 text-right bg-white" dir="rtl">
 
       {/* ===================================================================== */}
       {/* HERO                                                                  */}
       {/* ===================================================================== */}
-      <section className="relative w-full overflow-hidden bg-[#07162F]">
+      <section className="relative overflow-hidden bg-navy">
         <img
           src={heroBannerImg}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Navy veil keeps the Arabic headline readable over the photograph */}
-        <div className="absolute inset-0 bg-gradient-to-l from-[#07162F]/35 via-[#07162F]/80 to-[#07162F]/96" />
-        <div className="absolute inset-0 bg-[#07162F]/35 lg:bg-transparent" />
+        {/* Two-stop veil: deep on the reading side, clearing toward the car. */}
+        <div className="absolute inset-0 bg-gradient-to-l from-navy/20 via-navy/85 to-navy" />
+        <div className="absolute inset-0 bg-navy/40 lg:bg-transparent" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
-          <div className="grid lg:grid-cols-12 gap-10 items-center">
+        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 pt-20 pb-16 sm:pt-28 sm:pb-20 lg:pt-36 lg:pb-28">
+          <div className="max-w-3xl space-y-8">
+            <span className="eyebrow !text-accent">
+              <span>خدمة متنقلة</span>
+            </span>
 
-            {/* Copy */}
-            <div className="lg:col-span-7 space-y-6">
-              <h1 className="text-[2rem] leading-[1.2] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.15] font-bold text-white tracking-tight">
-                سيارتك وسجادك
-                <br />
-                <span className="text-[#5FA0FF]">في أيدي محترفة</span>
-              </h1>
+            <h1 className="display text-white text-[2.5rem] sm:text-6xl lg:text-7xl">
+              سيارتك وسجادك
+              <br />
+              <span className="text-[#6FA8FF]">في أيدي محترفة</span>
+            </h1>
 
-              <p className="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed max-w-xl">
-                خدمات تنظيف عالية الجودة في أي مكان ووقت
-                <br />
-                احجز الآن واستمتع بالنظافة والراحة
-              </p>
+            <p className="text-base sm:text-lg text-slate-300/90 max-w-md">
+              نصلك أينما كنت بمعدات كاملة وفنيين مختصين. اختر الموعد الذي
+              يناسبك، ونتولى الباقي.
+            </p>
 
-              <div className="pt-1">
-                <button
-                  onClick={() => handleApplyBannerCode('X25')}
-                  className="bg-[#FFC928] hover:bg-amber-300 active:scale-95 text-[#10182B] font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg shadow-amber-400/20 transition-all duration-200 flex items-center gap-2 cursor-pointer"
-                >
-                  <span>احجز الخدمة الآن</span>
-                  <ArrowLeft className="w-4 h-4" />
-                </button>
-              </div>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-4 pt-2">
+              <button
+                onClick={() => handleApplyBannerCode('X25')}
+                className="bg-accent hover:bg-amber-300 active:scale-[0.98] text-navy font-bold text-[15px] px-8 py-4 rounded-full transition-all duration-200 flex items-center gap-2.5 cursor-pointer"
+              >
+                <span>احجز الخدمة الآن</span>
+                <ArrowLeft className="w-4 h-4" />
+              </button>
 
-              {/* Trust indicators */}
-              <div className="flex flex-wrap items-center gap-x-7 gap-y-3 pt-6">
-                {[
-                  { icon: BadgeCheck, label: 'فنيون معتمدون' },
-                  { icon: CalendarClock, label: 'مواعيد مرنة' },
-                  { icon: Wallet, label: 'أسعار واضحة' }
-                ].map(item => (
-                  <div key={item.label} className="flex items-center gap-2">
-                    <span className="w-7 h-7 rounded-full bg-white/10 border border-white/15 flex items-center justify-center shrink-0">
-                      <item.icon className="w-3.5 h-3.5 text-[#FFC928]" />
-                    </span>
-                    <span className="text-xs sm:text-sm font-medium text-slate-200">{item.label}</span>
-                  </div>
-                ))}
-              </div>
+              {heroOffer && (
+                <p className="text-sm text-slate-300">
+                  استخدم كود{' '}
+                  <span className="text-accent font-bold tracking-wide">{heroOffer.code}</span>{' '}
+                  ووفّر {heroOffer.percent}% على أول غسيل
+                </p>
+              )}
             </div>
+          </div>
 
-            {/* Floating glass offer card */}
-            {heroOffer && (
-              <div className="lg:col-span-5 flex lg:justify-start">
-                <div className="bg-[#0B1E3D]/75 backdrop-blur-xl border border-white/12 rounded-2xl px-6 py-5 shadow-2xl w-full max-w-xs">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-0.5">
-                      <p className="text-2xl sm:text-3xl font-bold text-white">
-                        خصم {heroOffer.percent}%
-                      </p>
-                      <p className="text-xs sm:text-sm text-slate-300 font-normal">
-                        على غسيل السيارات
-                      </p>
-                    </div>
-                    <span className="bg-[#FFC928] text-[#10182B] text-xs font-bold px-3 py-1.5 rounded-lg shrink-0">
-                      {heroOffer.code}
-                    </span>
-                  </div>
-                </div>
+          {/* Trust row, set on a hairline rather than in pills */}
+          <div className="mt-16 sm:mt-20 pt-7 border-t border-white/12 grid grid-cols-1 sm:grid-cols-3 gap-7 sm:gap-10 max-w-4xl">
+            {[
+              { k: 'فنيون معتمدون', v: 'فريق مدرب وفانات مجهزة بالكامل' },
+              { k: 'مواعيد مرنة', v: 'تختار اليوم والوقت الذي يناسبك' },
+              { k: 'أسعار واضحة', v: 'السعر شامل الضريبة بلا مفاجآت' }
+            ].map(item => (
+              <div key={item.k} className="space-y-1.5">
+                <p className="text-[15px] font-bold text-white">{item.k}</p>
+                <p className="text-[13px] text-slate-400 leading-relaxed">{item.v}</p>
               </div>
-            )}
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="bg-[#F7FAFF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-16 sm:space-y-20">
+      {/* ===================================================================== */}
+      {/* DESTINATION                                                           */}
+      {/* ===================================================================== */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 space-y-10">
+        <SectionHead
+          index="٠١"
+          kicker="الوجهات"
+          title="اختر وجهتك"
+          lead="احجز خدمة في موقعك، أو تسوّق منتجات العناية وتصلك إلى بابك."
+        />
 
-          {/* ================================================================= */}
-          {/* CHOOSE YOUR DESTINATION                                           */}
-          {/* ================================================================= */}
-          <section className="space-y-7">
-            <div className="text-center space-y-2">
-              <h2 className="text-[1.75rem] sm:text-3xl font-bold text-[#10182B] tracking-tight">اختر وجهتك</h2>
-              <p className="text-sm text-[#667085]">اختر ما يناسبك وابدأ تجربتك الآن</p>
+        <div className="grid md:grid-cols-2 gap-5">
+          {/* Services */}
+          <button
+            onClick={() => navigateToCategoryServices('cars')}
+            className="group relative overflow-hidden rounded-[1.75rem] min-h-[19rem] sm:min-h-[23rem] text-right cursor-pointer"
+          >
+            <img
+              src={cardServicesBlueCar}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/15" />
+
+            <div className="relative h-full flex flex-col justify-end gap-3 p-8 sm:p-10">
+              <h3 className="text-3xl sm:text-[2.5rem] font-bold text-white tracking-tight">الخدمات</h3>
+              <p className="text-sm text-slate-300 max-w-[18rem] leading-relaxed">
+                غسيل السيارات والسجاد والكنب والخزانات — في موقعك.
+              </p>
+              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-accent pt-2">
+                استكشف الخدمات
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+              </span>
             </div>
+          </button>
 
-            <div className="grid md:grid-cols-2 gap-5">
-              {/* Services banner */}
-              <div
-                role="button"
-                tabIndex={0}
-                onClick={() => navigateToCategoryServices('cars')}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigateToCategoryServices('cars'); }}
-                className="group relative overflow-hidden rounded-3xl min-h-[17rem] sm:min-h-[20rem] bg-[#0B3C9E] cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
+          {/* Store */}
+          <button
+            onClick={() => { setCurrentScreen('store'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className="group relative overflow-hidden rounded-[1.75rem] min-h-[19rem] sm:min-h-[23rem] text-right cursor-pointer bg-[#F2EEE6]"
+          >
+            <img
+              src={carCareBanner}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1B1409] via-[#1B1409]/55 to-transparent" />
+
+            <div className="relative h-full flex flex-col justify-end gap-3 p-8 sm:p-10">
+              <h3 className="text-3xl sm:text-[2.5rem] font-bold text-white tracking-tight">المتجر</h3>
+              <p className="text-sm text-stone-300 max-w-[18rem] leading-relaxed">
+                منتجات وإكسسوارات عناية مختارة، تصلك إلى بابك.
+              </p>
+              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-accent pt-2">
+                تسوّق الآن
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+              </span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      {/* ===================================================================== */}
+      {/* CATEGORIES                                                            */}
+      {/* ===================================================================== */}
+      <section id="services-selection-section" className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 space-y-10">
+        <SectionHead
+          index="٠٢"
+          kicker="الأقسام"
+          title="اختر الخدمة التي تحتاجها"
+          action={{ label: 'كل الخدمات', onClick: () => navigateToCategoryServices('cars') }}
+        />
+
+        <div className="flex gap-4 overflow-x-auto pb-2 -mx-5 px-5 sm:mx-0 sm:px-0 lg:grid lg:grid-cols-6 lg:overflow-visible scrollbar-none">
+          {categoryItems.map(cat => (
+            <button
+              key={cat.id}
+              id={cat.id === 'cat-cars' ? 'btn-view-all-services' : undefined}
+              onClick={() => handleCategoryCardClick(cat)}
+              className="group shrink-0 w-36 lg:w-auto text-right cursor-pointer"
+            >
+              <div className="relative rounded-2xl overflow-hidden aspect-square mb-3.5">
                 <img
-                  src={cardServicesBlueCar}
+                  src={cat.image}
                   alt=""
                   aria-hidden="true"
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-l from-[#0B3C9E]/25 via-[#0E4BB8]/80 to-[#0A3284]/95" />
-
-                <div className="relative h-full flex flex-col justify-center gap-4 p-7 sm:p-9 max-w-[22rem]">
-                  <span className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <CarIcon className="w-6 h-6 text-white" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/55 to-transparent" />
+                <span className="absolute inset-x-0 bottom-0 p-3">
+                  <span className="block text-[13px] font-bold text-white leading-snug">
+                    {cat.title}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white">الخدمات</h3>
-                  <p className="text-sm text-blue-100/90 leading-relaxed">
-                    حجز خدمات تنظيف السيارات والسجاد في موقعك بسهولة
-                  </p>
-                  <span className="inline-flex items-center gap-2.5 text-sm font-bold text-white pt-1">
-                    <span className="w-9 h-9 rounded-full bg-white/15 border border-white/25 flex items-center justify-center group-hover:bg-white group-hover:text-[#0B3C9E] transition-colors duration-300">
-                      <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-                    </span>
-                    استكشف الخدمات
-                  </span>
-                </div>
+                </span>
               </div>
+              <span className="flex items-center gap-1.5 text-[12px] text-muted group-hover:text-brand transition-colors">
+                احجز
+                <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform duration-300" />
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
 
-              {/* Store banner */}
-              <div
-                role="button"
-                tabIndex={0}
-                onClick={() => { setCurrentScreen('store'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setCurrentScreen('store'); window.scrollTo({ top: 0, behavior: 'smooth' }); } }}
-                className="group relative overflow-hidden rounded-3xl min-h-[17rem] sm:min-h-[20rem] bg-[#FBF6EC] border border-[#F0E6D4] cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                <img
-                  src={carCareBanner}
-                  alt=""
-                  aria-hidden="true"
-                  loading="lazy"
-                  className="absolute left-0 top-0 h-full w-1/2 object-cover opacity-95 group-hover:scale-[1.04] transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#FBF6EC]/70 to-[#FBF6EC]" />
+      {/* ===================================================================== */}
+      {/* OFFERS                                                                */}
+      {/* ===================================================================== */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 space-y-10">
+        <SectionHead
+          index="٠٣"
+          kicker="لفترة محدودة"
+          title="خدمات عليها عروض"
+          action={{
+            label: 'كل العروض',
+            onClick: () => { setCurrentScreen('offers'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+          }}
+        />
 
-                <div className="relative h-full flex flex-col justify-center gap-4 p-7 sm:p-9 max-w-[20rem]">
-                  <span className="w-12 h-12 rounded-2xl bg-[#FFC928]/20 border border-[#FFC928]/40 flex items-center justify-center">
-                    <Tag className="w-6 h-6 text-[#B8860B]" />
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#10182B]">المتجر</h3>
-                  <p className="text-sm text-[#667085] leading-relaxed">
-                    منتجات العناية بالسيارات والسجاد بجودة عالية
-                  </p>
-                  <span className="inline-flex items-center gap-2.5 text-sm font-bold text-[#10182B] pt-1">
-                    <span className="w-9 h-9 rounded-full bg-white border border-[#E5EBF4] flex items-center justify-center group-hover:bg-[#10182B] group-hover:text-white transition-colors duration-300">
-                      <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-                    </span>
-                    تسوق الآن
-                  </span>
+        <div
+          className="relative"
+          onMouseEnter={() => setIsHoveredOffers(true)}
+          onMouseLeave={() => setIsHoveredOffers(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-[600ms] ease-out"
+              style={{ transform: `translateX(${offerSlideIndex * (100 / cardsPerView)}%)` }}
+            >
+              {offerCards.map(offer => (
+                <div key={offer.id} className="shrink-0 pl-4" style={{ width: `${100 / cardsPerView}%` }}>
+                  <button
+                    onClick={() => handleOfferClick(offer)}
+                    className="group w-full text-right cursor-pointer"
+                  >
+                    <div className="relative rounded-2xl overflow-hidden aspect-[5/3.6] mb-5">
+                      <img
+                        src={offer.image}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+                      />
+                      <span className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-navy text-[11px] font-bold px-3 py-1.5 rounded-full">
+                        {offer.badge}
+                      </span>
+                    </div>
+
+                    <div className="space-y-2.5">
+                      <h3 className="text-[17px] font-bold text-ink leading-snug line-clamp-1">
+                        {offer.title}
+                      </h3>
+                      <p className="text-[13px] text-muted leading-relaxed line-clamp-2 min-h-[2.75rem]">
+                        {offer.subtitle}
+                      </p>
+
+                      <div className="flex items-baseline gap-2.5 pt-1">
+                        <span className="price text-2xl text-ink">{offer.price}</span>
+                        {offer.originalPrice && (
+                          <span className="price text-[13px] text-faint line-through font-medium">
+                            {offer.originalPrice}
+                          </span>
+                        )}
+                      </div>
+
+                      <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand pt-1">
+                        اطلب الخدمة
+                        <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1.5 transition-transform duration-300" />
+                      </span>
+                    </div>
+                  </button>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          {/* ================================================================= */}
-          {/* SERVICE CATEGORIES                                                */}
-          {/* ================================================================= */}
-          <section id="services-selection-section" className="space-y-7">
-            <div className="text-center space-y-2">
-              <h2 className="text-[1.75rem] sm:text-3xl font-bold text-[#10182B] tracking-tight">
-                اختر الخدمة التي تحتاجها
-              </h2>
-              <p className="text-sm text-[#667085]">خدماتنا في متناولك بكل سهولة</p>
-            </div>
-
-            {/* Horizontal scroll on mobile, 6-up grid from large screens */}
-            <div className="flex gap-3.5 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 lg:grid lg:grid-cols-6 lg:overflow-visible scrollbar-none">
-              {categoryItems.map(cat => (
-                <button
-                  key={cat.id}
-                  id={cat.id === 'cat-cars' ? 'btn-view-all-services' : undefined}
-                  onClick={() => handleCategoryCardClick(cat)}
-                  className={`group shrink-0 w-[9.5rem] lg:w-auto bg-white rounded-2xl p-2.5 text-right transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer border ${
-                    selectedCatId === cat.id
-                      ? 'border-[#1267F4] shadow-md shadow-blue-500/10'
-                      : 'border-[#E5EBF4] shadow-xs'
-                  }`}
-                >
-                  <div className="relative rounded-xl overflow-hidden aspect-4/3">
-                    <img
-                      src={cat.image}
-                      alt={cat.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                  </div>
-                  <div className="pt-3 pb-1 px-1 flex items-center justify-between gap-2">
-                    <h3 className="text-xs sm:text-[13px] font-bold text-[#10182B] leading-tight line-clamp-2">
-                      {cat.title}
-                    </h3>
-                    <span className="w-6 h-6 shrink-0 rounded-full bg-[#EEF5FF] group-hover:bg-[#1267F4] flex items-center justify-center transition-colors duration-300">
-                      <ArrowLeft className="w-3 h-3 text-[#1267F4] group-hover:text-white transition-colors" />
-                    </span>
-                  </div>
-                </button>
               ))}
             </div>
-          </section>
+          </div>
 
-          {/* ================================================================= */}
-          {/* SERVICES ON OFFER                                                 */}
-          {/* ================================================================= */}
-          <section className="space-y-7">
-            <div className="relative text-center space-y-2">
-              <h2 className="text-[1.75rem] sm:text-3xl font-bold text-[#10182B] tracking-tight flex items-center justify-center gap-2">
-                <Flame className="w-6 h-6 text-orange-500" />
-                خدمات عليها عروض
-              </h2>
-              <p className="text-sm text-[#667085]">لا تفوت أفضل الأسعار لفترة محدودة</p>
-              <button
-                onClick={() => { setCurrentScreen('offers'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="lg:absolute lg:left-0 lg:top-1 mx-auto lg:mx-0 mt-3 lg:mt-0 bg-white hover:bg-[#EEF5FF] text-[#1267F4] font-bold text-xs px-4 py-2 rounded-full border border-[#E5EBF4] flex items-center gap-1.5 cursor-pointer transition-all"
-              >
-                <span>عرض جميع العروض</span>
-                <ArrowLeft className="w-3.5 h-3.5" />
-              </button>
+          {/* Controls sit together under the rail rather than floating over it */}
+          <div className="flex items-center justify-between gap-6 pt-9">
+            <div className="flex items-center gap-1.5">
+              {Array.from({ length: maxOfferSlideIndex + 1 }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setOfferSlideIndex(idx)}
+                  aria-label={`الشريحة ${idx + 1}`}
+                  aria-current={offerSlideIndex === idx}
+                  className={`h-[3px] rounded-full transition-all duration-300 cursor-pointer ${
+                    offerSlideIndex === idx ? 'w-8 bg-ink' : 'w-4 bg-hairline hover:bg-faint'
+                  }`}
+                />
+              ))}
             </div>
 
-            <div
-              className="relative"
-              onMouseEnter={() => setIsHoveredOffers(true)}
-              onMouseLeave={() => setIsHoveredOffers(false)}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
+            <div className="hidden sm:flex items-center gap-2">
               <button
                 onClick={prevOfferSlide}
-                aria-label="السابق"
-                className="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-[#E5EBF4] shadow-md items-center justify-center text-[#10182B] hover:bg-[#1267F4] hover:text-white hover:border-[#1267F4] active:scale-90 transition-all cursor-pointer"
+                aria-label="العروض السابقة"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
               <button
                 onClick={nextOfferSlide}
-                aria-label="التالي"
-                className="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-[#E5EBF4] shadow-md items-center justify-center text-[#10182B] hover:bg-[#1267F4] hover:text-white hover:border-[#1267F4] active:scale-90 transition-all cursor-pointer"
+                aria-label="العروض التالية"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
               >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <div className="overflow-hidden">
-                <div
-                  className="flex transition-transform duration-500 ease-out"
-                  style={{ transform: `translateX(${offerSlideIndex * (100 / cardsPerView)}%)` }}
-                >
-                  {offerCards.map(offer => (
-                    <div key={offer.id} className="shrink-0 px-2" style={{ width: `${100 / cardsPerView}%` }}>
-                      <div
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => handleOfferClick(offer)}
-                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleOfferClick(offer); }}
-                        className={`group h-full bg-white rounded-2xl border ${offer.borderColor} shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden flex gap-3 p-3`}
-                      >
-                        {/* Text side (right in RTL) */}
-                        <div className="flex-1 min-w-0 flex flex-col gap-2 py-1">
-                          <span className={`self-start ${offer.badgeColor} text-[10px] font-bold px-2 py-0.5 rounded-full`}>
-                            {offer.badge}
-                          </span>
-                          <h3 className="text-sm font-bold text-[#10182B] leading-tight line-clamp-2">
-                            {offer.title}
-                          </h3>
-                          <div className="flex items-baseline gap-2 flex-wrap">
-                            <span className="text-lg font-bold text-[#10182B]">{offer.price}</span>
-                            {offer.originalPrice && (
-                              <span className="text-[11px] text-[#98A2B3] line-through">{offer.originalPrice}</span>
-                            )}
-                          </div>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); handleOfferClick(offer); }}
-                            className="mt-auto w-full bg-[#1267F4] hover:bg-[#0E52C7] active:scale-[0.98] text-white font-bold text-xs py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                          >
-                            <span>اطلب الخدمة الآن</span>
-                            <ArrowLeft className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-
-                        {/* Image side (left in RTL) */}
-                        <div className="w-[7.5rem] shrink-0 rounded-xl overflow-hidden">
-                          <img
-                            src={offer.image}
-                            alt={offer.title}
-                            loading="lazy"
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center gap-1.5 pt-6">
-                {Array.from({ length: maxOfferSlideIndex + 1 }).map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setOfferSlideIndex(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      offerSlideIndex === idx ? 'w-6 bg-[#1267F4]' : 'w-1.5 bg-[#CFD8E8] hover:bg-[#9FB2D0]'
-                    }`}
-                    aria-label={`الشريحة ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ================================================================= */}
-          {/* POPULAR SERVICES                                                  */}
-          {/* ================================================================= */}
-          <section className="space-y-7">
-            <div className="relative text-center space-y-2">
-              <h2 className="text-[1.75rem] sm:text-3xl font-bold text-[#10182B] tracking-tight">أشهر الخدمات</h2>
-              <p className="text-sm text-[#667085]">الخدمات الأكثر طلباً من عملائنا</p>
-              <button
-                onClick={() => navigateToCategoryServices('cars')}
-                className="lg:absolute lg:left-0 lg:top-1 mx-auto lg:mx-0 mt-3 lg:mt-0 bg-white hover:bg-[#EEF5FF] text-[#1267F4] font-bold text-xs px-4 py-2 rounded-full border border-[#E5EBF4] flex items-center gap-1.5 cursor-pointer transition-all"
-              >
-                <span>عرض الكل</span>
-                <ArrowLeft className="w-3.5 h-3.5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {popularServicesData.map(item => (
-                <div
-                  key={item.id}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
-                  onKeyDown={(e) => {
-                    if ((e.key === 'Enter' || e.key === ' ') && item.fallbackService) handleServiceClick(item.fallbackService);
-                  }}
-                  className="group bg-white rounded-2xl border border-[#E5EBF4] shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col"
-                >
-                  <div className="relative h-40 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                    <button
-                      onClick={(e) => toggleFavorite(item.id, e)}
-                      aria-label="إضافة للمفضلة"
-                      className="absolute top-3 left-3 w-8 h-8 rounded-full bg-white/95 shadow-sm flex items-center justify-center hover:scale-110 active:scale-95 transition-transform cursor-pointer"
-                    >
-                      <Heart
-                        className={`w-4 h-4 transition-colors ${
-                          favoriteServiceIds.includes(item.id) ? 'fill-rose-500 text-rose-500' : 'text-[#98A2B3]'
-                        }`}
-                      />
-                    </button>
-                    {item.badge && (
-                      <span className="absolute top-3 right-3 bg-[#1267F4] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                        {item.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="p-4 space-y-2 flex-1 flex flex-col">
-                    <h3 className="text-[15px] font-bold text-[#10182B] leading-tight line-clamp-1">{item.title}</h3>
-                    <p className="text-xs text-[#667085] leading-relaxed line-clamp-2 flex-1">{item.subtitle}</p>
-
-                    <div className="flex items-center gap-1.5">
-                      <Star className="w-3.5 h-3.5 fill-[#FFC928] text-[#FFC928]" />
-                      <span className="text-xs font-bold text-[#10182B]">{item.rating}</span>
-                      <span className="text-[11px] text-[#98A2B3]">({item.reviewsCount} تقييم)</span>
-                    </div>
-
-                    <p className="text-lg font-bold text-[#10182B] pt-0.5">{item.price}</p>
-
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (item.fallbackService) handleServiceClick(item.fallbackService);
-                      }}
-                      className="w-full border border-[#1267F4]/25 bg-[#EEF5FF] hover:bg-[#1267F4] hover:text-white active:scale-[0.98] text-[#1267F4] font-bold text-xs py-2.5 rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                    >
-                      <CalendarCheck className="w-3.5 h-3.5" />
-                      <span>إضافة طلب</span>
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        </div>
-      </div>
-
-      {/* ===================================================================== */}
-      {/* WHY NIXT — full-bleed light blue band breaking the card-grid rhythm    */}
-      {/* ===================================================================== */}
-      <section className="bg-gradient-to-b from-[#EEF5FF] to-[#F7FAFF] border-y border-[#E5EBF4]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <div className="text-center space-y-2 mb-12">
-            <h2 className="text-[1.75rem] sm:text-3xl font-bold text-[#10182B] tracking-tight">
-              لماذا تختار NIXT؟
-            </h2>
-            <p className="text-sm text-[#667085]">تجربة تنظيف احترافية وآمنة ومريحة</p>
           </div>
+        </div>
+      </section>
 
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            {/* Benefits */}
-            <div className="lg:col-span-7 grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-8">
-              {whyNixtItems.map(item => (
-                <div key={item.id} className="text-center space-y-3">
-                  <span className="mx-auto w-14 h-14 rounded-full bg-[#1267F4] shadow-lg shadow-blue-500/25 flex items-center justify-center">
-                    <item.icon className="w-6 h-6 text-white" />
-                  </span>
-                  <h3 className="text-sm font-bold text-[#10182B]">{item.title}</h3>
-                  <p className="text-xs text-[#667085] leading-relaxed">{item.desc}</p>
+      {/* ===================================================================== */}
+      {/* POPULAR                                                               */}
+      {/* ===================================================================== */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 space-y-10">
+        <SectionHead
+          index="٠٤"
+          kicker="الأكثر طلباً"
+          title="أشهر الخدمات"
+          action={{ label: 'عرض الكل', onClick: () => navigateToCategoryServices('cars') }}
+        />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+          {popularServicesData.map(item => (
+            <article key={item.id} className="group flex flex-col">
+              {/* Image is a second route to the same screen. It is removed from the
+                  tab order so each card offers one keyboard stop, not two, and
+                  carries a name for pointer/AT users who do reach it. */}
+              <button
+                onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
+                aria-label={`${item.title} — عرض التفاصيل`}
+                tabIndex={-1}
+                className="text-right cursor-pointer"
+              >
+                <div className="relative rounded-2xl overflow-hidden aspect-[5/4] mb-5">
+                  <img
+                    src={item.image}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+                  />
+                  {item.badge && (
+                    <span className="absolute top-4 right-4 bg-navy text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
+                      {item.badge}
+                    </span>
+                  )}
                 </div>
-              ))}
+              </button>
+
+              {/* Favourite is its own control, outside the card link */}
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <h3 className="text-[16px] font-bold text-ink leading-snug">{item.title}</h3>
+                <button
+                  onClick={(e) => toggleFavorite(item.id, e)}
+                  aria-label={favoriteServiceIds.includes(item.id) ? `إزالة ${item.title} من المفضلة` : `إضافة ${item.title} إلى المفضلة`}
+                  aria-pressed={favoriteServiceIds.includes(item.id)}
+                  className="shrink-0 p-1 -m-1 cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+                >
+                  <Heart
+                    className={`w-[18px] h-[18px] transition-colors ${
+                      favoriteServiceIds.includes(item.id) ? 'fill-rose-500 text-rose-500' : 'text-faint'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <p className="text-[13px] text-muted leading-relaxed line-clamp-2 mb-3 flex-1">
+                {item.subtitle}
+              </p>
+
+              <div className="flex items-center gap-1.5 mb-4 text-[12px]">
+                <Star className="w-3.5 h-3.5 fill-accent text-accent" />
+                <span className="font-bold text-ink tabular-nums">{item.rating}</span>
+                <span className="text-faint tabular-nums">({item.reviewsCount})</span>
+              </div>
+
+              <div className="flex items-center justify-between gap-3 pt-4 border-t border-hairline">
+                <span className="price text-xl text-ink">{item.price}</span>
+                <button
+                  onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
+                  className="text-[13px] font-bold text-brand hover:text-navy transition-colors flex items-center gap-1.5 cursor-pointer"
+                >
+                  احجز
+                  <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform duration-300" />
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ===================================================================== */}
+      {/* WHY NIXT — dark band, the one tonal break in the page                 */}
+      {/* ===================================================================== */}
+      <section className="mt-24 sm:mt-32 bg-navy text-white">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
+          <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+
+            <div className="lg:col-span-6 space-y-10">
+              <div className="space-y-4">
+                <span className="eyebrow !text-accent"><span>لماذا نيكست</span></span>
+                <h2 className="section-title !text-white max-w-md">
+                  تجربة تنظيف تستحق الثقة
+                </h2>
+              </div>
+
+              <dl className="space-y-0">
+                {whyNixtItems.map((item, i) => (
+                  <div
+                    key={item.id}
+                    className={`flex items-start gap-5 py-6 ${i > 0 ? 'border-t border-white/10' : ''}`}
+                  >
+                    <span className="text-[13px] font-bold text-accent tabular-nums pt-0.5 shrink-0 w-6">
+                      {['٠١', '٠٢', '٠٣', '٠٤'][i]}
+                    </span>
+                    <div className="space-y-1.5 min-w-0">
+                      <dt className="text-[17px] font-bold text-white">{item.title}</dt>
+                      <dd className="text-[14px] text-slate-400 leading-relaxed">{item.desc}</dd>
+                    </div>
+                  </div>
+                ))}
+              </dl>
             </div>
 
-            {/* Overlapping imagery */}
-            <div className="lg:col-span-5 relative min-h-[16rem] sm:min-h-[19rem]">
-              <div className="absolute top-0 right-0 w-[68%] rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+            {/* Offset imagery */}
+            <div className="lg:col-span-6 relative">
+              <div className="rounded-[1.75rem] overflow-hidden aspect-[4/3]">
                 <img
-                  src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=900&q=80"
+                  src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1100&q=80"
                   alt="تنظيف المقصورة الداخلية للسيارة"
                   loading="lazy"
-                  className="w-full h-full object-cover aspect-4/3"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute bottom-0 left-0 w-[58%] rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+              <div className="absolute -bottom-10 -left-4 sm:left-6 w-40 sm:w-52 rounded-2xl overflow-hidden aspect-square ring-8 ring-navy">
                 <img
-                  src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=900&q=80"
+                  src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=700&q=80"
                   alt="تنظيف السجاد بالمعدات الاحترافية"
                   loading="lazy"
-                  className="w-full h-full object-cover aspect-square"
+                  className="w-full h-full object-cover"
                 />
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute bottom-6 right-2 sm:right-6 bg-white rounded-xl shadow-lg border border-[#E5EBF4] px-4 py-3 flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-lg bg-[#EEF5FF] flex items-center justify-center shrink-0">
-                  <Sparkles className="w-4.5 h-4.5 text-[#1267F4]" />
-                </span>
-                <div className="text-right">
-                  <p className="text-xs font-bold text-[#10182B] whitespace-nowrap">خدمة متكاملة</p>
-                  <p className="text-[11px] text-[#667085] whitespace-nowrap">للسيارات والسجاد</p>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="bg-[#F7FAFF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-16 sm:space-y-20">
+      {/* ===================================================================== */}
+      {/* PACKAGES / SUBSCRIPTIONS / GIFTS                                      */}
+      {/* ===================================================================== */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-24 sm:pt-32 space-y-10">
+        <SectionHead
+          index="٠٥"
+          kicker="وفّر أكثر"
+          title="الباقات والاشتراكات والهدايا"
+          lead="خيارات متكررة ومُهداة لمن يحتاج الخدمة أكثر من مرة."
+        />
 
-          {/* ================================================================= */}
-          {/* PACKAGES, SUBSCRIPTIONS & GIFTS                                   */}
-          {/* ================================================================= */}
-          <section className="space-y-7">
-            <div className="text-center space-y-2">
-              <h2 className="text-[1.75rem] sm:text-3xl font-bold text-[#10182B] tracking-tight">
-                الباقات والاشتراكات والهدايا
-              </h2>
-              <p className="text-sm text-[#667085]">وفر أكثر مع باقاتنا وخياراتنا المميزة</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {[
-                {
-                  id: 'nav-gifts',
-                  screen: 'send_gift' as const,
-                  title: 'الهدايا',
-                  desc: 'بطاقات مصممة لجميع احتياجاتك',
-                  cta: 'عرض الهدايا',
-                  icon: Gift,
-                  image: cardPackagesGift,
-                  titleTone: 'text-[#D98A00]',
-                  iconTone: 'bg-[#FFF6E0] text-[#D98A00] border-[#FFE2A8]',
-                  shell: 'border-[#F6E3BE] bg-gradient-to-l from-[#FFF8EA] to-white'
-                },
-                {
-                  id: 'nav-subscriptions',
-                  screen: 'subscriptions' as const,
-                  title: 'الاشتراكات',
-                  desc: 'اشتراكات دورية واستمرارية للخدمة',
-                  cta: 'عرض الاشتراكات',
-                  icon: Repeat,
-                  image: cardSubscriptionsClipboard,
-                  titleTone: 'text-emerald-600',
-                  iconTone: 'bg-emerald-50 text-emerald-600 border-emerald-100',
-                  shell: 'border-emerald-100 bg-gradient-to-l from-emerald-50/70 to-white'
-                },
-                {
-                  id: 'nav-offers',
-                  screen: 'offers' as const,
-                  title: 'العروض',
-                  desc: 'خصومات وخدمات لفترة محدودة',
-                  cta: 'عرض العروض',
-                  icon: Ticket,
-                  image: cardDiscountsCoupon,
-                  titleTone: 'text-purple-600',
-                  iconTone: 'bg-purple-50 text-purple-600 border-purple-100',
-                  shell: 'border-purple-100 bg-gradient-to-l from-purple-50/70 to-white'
-                }
-              ].map(card => {
-                const go = () => {
-                  setCurrentScreen(card.screen);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-                return (
-                  <div
-                    key={card.id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={go}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') go(); }}
-                    className={`group relative overflow-hidden rounded-2xl border p-5 sm:p-6 shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer ${card.shell}`}
-                  >
-                    <div className="space-y-2 min-w-0 z-10">
-                      <span className={`w-10 h-10 rounded-xl border flex items-center justify-center ${card.iconTone}`}>
-                        <card.icon className="w-5 h-5" />
-                      </span>
-                      <h3 className={`text-lg font-bold ${card.titleTone}`}>{card.title}</h3>
-                      <p className="text-xs text-[#667085] leading-relaxed">{card.desc}</p>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); go(); }}
-                        className="mt-1 bg-white hover:bg-[#F7FAFF] active:scale-95 text-[#10182B] font-bold text-xs px-4 py-2 rounded-full border border-[#E5EBF4] flex items-center gap-1.5 cursor-pointer transition-all"
-                      >
-                        <span>{card.cta}</span>
-                        <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
-                      </button>
-                    </div>
-
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform duration-500">
-                      <img src={card.image} alt={card.title} loading="lazy" className="w-full h-full object-cover" />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* ================================================================= */}
-          {/* CUSTOMER REVIEWS                                                  */}
-          {/* ================================================================= */}
-          <section className="space-y-7">
-            <div className="text-center space-y-2">
-              <h2 className="text-[1.75rem] sm:text-3xl font-bold text-[#10182B] tracking-tight">آراء وتقييمات العملاء</h2>
-              <p className="text-sm text-[#667085]">تجارب وآراء حقيقية لعملائنا في مختلف مدن المملكة</p>
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setIsHoveredReviews(true)}
-              onMouseLeave={() => setIsHoveredReviews(false)}
-              onTouchStart={handleReviewsTouchStart}
-              onTouchEnd={handleReviewsTouchEnd}
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            {
+              id: 'nav-gifts',
+              screen: 'send_gift' as const,
+              title: 'الهدايا',
+              desc: 'أرسل باقة أو رصيد محفظة لمن تحب.',
+              cta: 'عرض الهدايا',
+              image: cardPackagesGift
+            },
+            {
+              id: 'nav-subscriptions',
+              screen: 'subscriptions' as const,
+              title: 'الاشتراكات',
+              desc: 'خدمة دورية تتجدد دون أن تعيد الحجز.',
+              cta: 'عرض الاشتراكات',
+              image: cardSubscriptionsClipboard
+            },
+            {
+              id: 'nav-offers',
+              screen: 'offers' as const,
+              title: 'العروض',
+              desc: 'خصومات سارية لفترة محدودة.',
+              cta: 'عرض العروض',
+              image: cardDiscountsCoupon
+            }
+          ].map(card => (
+            <button
+              key={card.id}
+              onClick={() => { setCurrentScreen(card.screen); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="group relative overflow-hidden rounded-2xl bg-canvas hover:bg-brand-soft transition-colors duration-300 p-7 text-right cursor-pointer flex flex-col gap-3 min-h-[13rem]"
             >
+              <div className="w-12 h-12 rounded-xl overflow-hidden mb-1">
+                <img src={card.image} alt="" aria-hidden="true" loading="lazy" className="w-full h-full object-cover" />
+              </div>
+              <h3 className="text-xl font-bold text-ink">{card.title}</h3>
+              <p className="text-[13px] text-muted leading-relaxed flex-1">{card.desc}</p>
+              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand">
+                {card.cta}
+                <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1.5 transition-transform duration-300" />
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* ===================================================================== */}
+      {/* REVIEWS                                                               */}
+      {/* ===================================================================== */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-24 sm:pt-32 space-y-10">
+        <SectionHead
+          index="٠٦"
+          kicker="آراء العملاء"
+          title="ماذا يقول عملاؤنا"
+          lead="تجارب موثقة من عملاء في مختلف مدن المملكة."
+        />
+
+        <div
+          className="relative"
+          onMouseEnter={() => setIsHoveredReviews(true)}
+          onMouseLeave={() => setIsHoveredReviews(false)}
+          onTouchStart={handleReviewsTouchStart}
+          onTouchEnd={handleReviewsTouchEnd}
+        >
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-[600ms] ease-out"
+              style={{ transform: `translateX(${reviewsSlideIndex * (100 / cardsPerView)}%)` }}
+            >
+              {customerReviewsData.map(review => (
+                <div key={review.id} className="shrink-0 pl-4" style={{ width: `${100 / cardsPerView}%` }}>
+                  <figure className="h-full bg-canvas rounded-2xl p-7 flex flex-col gap-5">
+                    <div className="flex items-center gap-1" aria-label={`التقييم ${review.rating} من 5`}>
+                      {Array.from({ length: review.rating }).map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
+                      ))}
+                    </div>
+
+                    <blockquote className="text-[15px] text-ink-soft leading-[1.9] flex-1">
+                      {review.review}
+                    </blockquote>
+
+                    <figcaption className="flex items-center gap-3 pt-5 border-t border-hairline">
+                      <span className={`w-10 h-10 rounded-full ${review.avatarBg} flex items-center justify-center text-sm font-bold shrink-0`}>
+                        {review.initial}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[14px] font-bold text-ink truncate">{review.name}</span>
+                        <span className="block text-[12px] text-faint truncate">{review.location}</span>
+                      </span>
+                      <span className="text-[11px] font-bold text-brand bg-white px-2.5 py-1 rounded-full shrink-0 max-w-[8rem] truncate">
+                        {review.service}
+                      </span>
+                    </figcaption>
+                  </figure>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between gap-6 pt-9">
+            <div className="flex items-center gap-1.5">
+              {Array.from({ length: maxReviewsSlideIndex + 1 }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setReviewsSlideIndex(idx)}
+                  aria-label={`الشريحة ${idx + 1}`}
+                  aria-current={reviewsSlideIndex === idx}
+                  className={`h-[3px] rounded-full transition-all duration-300 cursor-pointer ${
+                    reviewsSlideIndex === idx ? 'w-8 bg-ink' : 'w-4 bg-hairline hover:bg-faint'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="hidden sm:flex items-center gap-2">
               <button
                 onClick={prevReviewsSlide}
-                aria-label="السابق"
-                className="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-[#E5EBF4] shadow-md items-center justify-center text-[#10182B] hover:bg-[#1267F4] hover:text-white hover:border-[#1267F4] active:scale-90 transition-all cursor-pointer"
+                aria-label="الآراء السابقة"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
               <button
                 onClick={nextReviewsSlide}
-                aria-label="التالي"
-                className="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-[#E5EBF4] shadow-md items-center justify-center text-[#10182B] hover:bg-[#1267F4] hover:text-white hover:border-[#1267F4] active:scale-90 transition-all cursor-pointer"
+                aria-label="الآراء التالية"
+                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
-
-              <div className="overflow-hidden">
-                <div
-                  className="flex transition-transform duration-500 ease-out"
-                  style={{ transform: `translateX(${reviewsSlideIndex * (100 / cardsPerView)}%)` }}
-                >
-                  {customerReviewsData.map(review => (
-                    <div key={review.id} className="shrink-0 px-2" style={{ width: `${100 / cardsPerView}%` }}>
-                      <div className="h-full bg-white rounded-2xl border border-[#E5EBF4] shadow-xs hover:shadow-md transition-shadow duration-300 p-5 flex flex-col gap-3.5">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-full ${review.avatarBg} flex items-center justify-center font-bold text-sm shrink-0`}>
-                            {review.initial}
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <div className="flex items-center gap-1.5">
-                              <h4 className="text-sm font-bold text-[#10182B] truncate">{review.name}</h4>
-                              <CheckCircle2 className="w-3.5 h-3.5 text-[#1267F4] shrink-0" aria-label="عميل موثق" />
-                            </div>
-                            <p className="text-[11px] text-[#667085] truncate">{review.location}</p>
-                          </div>
-                          <div className="flex items-center gap-0.5 shrink-0">
-                            {Array.from({ length: review.rating }).map((_, i) => (
-                              <Star key={i} className="w-3 h-3 fill-[#FFC928] text-[#FFC928]" />
-                            ))}
-                          </div>
-                        </div>
-
-                        <p className="text-xs text-[#667085] leading-relaxed flex-1">{review.review}</p>
-
-                        <div className="flex items-center justify-between gap-2 pt-3 border-t border-[#F0F4FA]">
-                          <span className="text-[11px] font-bold text-[#1267F4] bg-[#EEF5FF] px-2.5 py-1 rounded-full truncate">
-                            {review.service}
-                          </span>
-                          <span className="text-[11px] text-[#98A2B3] shrink-0">{review.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center gap-1.5 pt-6">
-                {Array.from({ length: maxReviewsSlideIndex + 1 }).map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setReviewsSlideIndex(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      reviewsSlideIndex === idx ? 'w-6 bg-[#1267F4]' : 'w-1.5 bg-[#CFD8E8] hover:bg-[#9FB2D0]'
-                    }`}
-                    aria-label={`الشريحة ${idx + 1}`}
-                  />
-                ))}
-              </div>
             </div>
-          </section>
-
-          {/* ================================================================= */}
-          {/* APP DOWNLOAD BANNER                                               */}
-          {/* NOTE: the store buttons and QR are presentational placeholders —  */}
-          {/* no App Store / Google Play listing has been supplied yet.         */}
-          {/* ================================================================= */}
-          <section className="relative overflow-hidden rounded-3xl bg-[#07162F]">
-            {/* Decorative glow shapes */}
-            <div className="absolute -top-20 -left-16 w-72 h-72 rounded-full bg-[#1267F4]/25 blur-3xl" />
-            <div className="absolute -bottom-24 right-10 w-64 h-64 rounded-full bg-[#1267F4]/15 blur-3xl" />
-
-            <div className="relative grid lg:grid-cols-2 gap-8 items-center p-8 sm:p-10 lg:p-12">
-              <div className="space-y-5 order-2 lg:order-1">
-                <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
-                  حمل تطبيق NIXT الآن
-                </h2>
-                <p className="text-sm text-slate-300 leading-relaxed max-w-md">
-                  أسهل وأسرع طريقة لحجز خدمات التنظيف
-                </p>
-
-                <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <span className="bg-white/10 border border-white/15 rounded-xl px-5 py-2.5 flex items-center gap-2.5 text-white">
-                    <Smartphone className="w-5 h-5 shrink-0" />
-                    <span className="text-right leading-tight">
-                      <span className="block text-[10px] text-slate-400">قريباً على</span>
-                      <span className="block text-sm font-bold">App Store</span>
-                    </span>
-                  </span>
-                  <span className="bg-white/10 border border-white/15 rounded-xl px-5 py-2.5 flex items-center gap-2.5 text-white">
-                    <Smartphone className="w-5 h-5 shrink-0" />
-                    <span className="text-right leading-tight">
-                      <span className="block text-[10px] text-slate-400">قريباً على</span>
-                      <span className="block text-sm font-bold">Google Play</span>
-                    </span>
-                  </span>
-
-                  <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5">
-                    <span className="w-12 h-12 rounded-lg bg-white flex items-center justify-center shrink-0">
-                      <QrCode className="w-8 h-8 text-[#07162F]" />
-                    </span>
-                    <span className="text-[11px] text-slate-300 leading-tight max-w-[7rem]">
-                      امسح الكود للتحميل عند توفر التطبيق
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Phone mockups */}
-              <div className="order-1 lg:order-2 flex justify-center lg:justify-end gap-4" aria-hidden="true">
-                {[heroBannerImg, cardServicesBlueCar].map((img, i) => (
-                  <div
-                    key={i}
-                    className={`w-32 sm:w-40 rounded-[1.75rem] border-[6px] border-slate-800 bg-slate-800 shadow-2xl overflow-hidden ${
-                      i === 0 ? 'translate-y-4' : '-translate-y-2'
-                    }`}
-                  >
-                    <div className="h-4 bg-slate-800 flex items-center justify-center">
-                      <span className="w-10 h-1 rounded-full bg-slate-600" />
-                    </div>
-                    <img src={img} alt="" loading="lazy" className="w-full aspect-[9/16] object-cover" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* ===================================================================== */}
+      {/* APP — store links and QR are placeholders until listings exist        */}
+      {/* ===================================================================== */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-24 sm:pb-32">
+        <div className="rounded-[1.75rem] bg-canvas overflow-hidden">
+          <div className="grid lg:grid-cols-12 items-center gap-10">
+            <div className="lg:col-span-7 p-9 sm:p-14 space-y-6">
+              <span className="eyebrow"><span>التطبيق</span></span>
+              <h2 className="section-title max-w-md">احجز من جوالك في أقل من دقيقة</h2>
+              <p className="text-[15px] text-muted max-w-sm leading-relaxed">
+                تطبيق نيكست قيد الإطلاق. سجّل اهتمامك الآن ونخبرك فور توفره.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <span className="inline-flex items-center gap-2.5 bg-white border border-hairline rounded-xl px-5 py-3 text-ink">
+                  <Smartphone className="w-4 h-4 text-faint shrink-0" />
+                  <span className="leading-tight">
+                    <span className="block text-[10px] text-faint">قريباً على</span>
+                    <span className="block text-[13px] font-bold">App Store</span>
+                  </span>
+                </span>
+                <span className="inline-flex items-center gap-2.5 bg-white border border-hairline rounded-xl px-5 py-3 text-ink">
+                  <Smartphone className="w-4 h-4 text-faint shrink-0" />
+                  <span className="leading-tight">
+                    <span className="block text-[10px] text-faint">قريباً على</span>
+                    <span className="block text-[13px] font-bold">Google Play</span>
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 h-full min-h-[16rem] relative" aria-hidden="true">
+              <img
+                src={heroBannerImg}
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-canvas lg:to-canvas/90" />
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };
