@@ -973,7 +973,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.06]"
             />
-            <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-navy/10 via-navy/75 to-navy" />
+            <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-navy via-navy/85 to-transparent" />
 
             <span className="relative h-full flex flex-col sm:flex-row sm:items-center justify-center sm:justify-between gap-5 px-7 sm:px-10">
               <span className="space-y-2">
@@ -1376,7 +1376,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.06]"
           />
-          <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-navy/10 via-navy/70 to-navy" />
+          <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-navy via-navy/85 to-transparent" />
 
           <span className="relative h-full flex flex-col sm:flex-row sm:items-center justify-center sm:justify-between gap-5 px-7 sm:px-10">
             <span className="space-y-2">

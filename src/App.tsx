@@ -85,11 +85,9 @@ const AppContent: React.FC = () => {
         {/* Other Website Pages (Store, Packages, Offers, Services, Booking, etc.) */}
         {!isAccountScreen(currentScreen) && currentScreen !== 'home' && (
           <div className="w-full">
-            {currentScreen === 'store' && (
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6">
-                <StoreScreen />
-              </div>
-            )}
+            {/* Store renders full-bleed so it can use the same colour bands
+                as the homepage; it sets its own container widths inside. */}
+            {currentScreen === 'store' && <StoreScreen />}
             {currentScreen === 'cart' && (
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6">
                 <CartScreen />

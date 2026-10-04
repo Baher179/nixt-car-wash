@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { StoreProduct } from '../../types';
-import { ServicesStoreSwitcher } from '../common/ServicesStoreSwitcher';
 import { StoreCategoryTemplate } from './StoreCategoryTemplate';
+import storeHeroImg from '../../assets/brand/home-products-gateway-v2.webp';
+import servicesBannerImg from '../../assets/brand/home-services-gateway-v2.webp';
 import {
   ShoppingBag,
   Star,
@@ -128,13 +129,13 @@ export const StoreScreen: React.FC = () => {
     {
       bgGradient: 'from-amber-50/90 via-orange-50/40 to-white',
       borderColor: 'border-amber-200/80',
-      badgeColor: 'bg-amber-600 text-white',
+      badgeColor: 'bg-amber-700 text-white',
       couponCode: 'SAVE20'
     },
     {
       bgGradient: 'from-sky-50/90 via-cyan-50/40 to-white',
       borderColor: 'border-sky-200/80',
-      badgeColor: 'bg-sky-600 text-white',
+      badgeColor: 'bg-sky-700 text-white',
       couponCode: 'CARE25'
     },
     {
@@ -146,13 +147,13 @@ export const StoreScreen: React.FC = () => {
     {
       bgGradient: 'from-emerald-50/90 via-teal-50/40 to-white',
       borderColor: 'border-emerald-200/80',
-      badgeColor: 'bg-emerald-600 text-white',
+      badgeColor: 'bg-emerald-700 text-white',
       couponCode: 'CLEAN15'
     },
     {
       bgGradient: 'from-rose-50/90 via-pink-50/40 to-white',
       borderColor: 'border-rose-200/80',
-      badgeColor: 'bg-rose-600 text-white',
+      badgeColor: 'bg-rose-700 text-white',
       couponCode: 'NEXT40'
     },
     {
@@ -491,9 +492,10 @@ export const StoreScreen: React.FC = () => {
 
   // ELSE: RENDER THE STORE HOMEPAGE
   return (
-    <div id="store-homepage" className="space-y-10 sm:space-y-12 pb-28 animate-in fade-in duration-300 text-right">
+    <div id="store-homepage" className="pb-28 animate-in fade-in duration-300 text-right bg-canvas">
       {/* 1. SERVICE BOOKING BANNER (If user navigated from booking flow) */}
       {isBookingMode && (
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-6">
         <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white rounded-3xl p-5 sm:p-6 shadow-xl border-2 border-amber-400/40 relative overflow-hidden text-right">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
             <div className="space-y-2 max-w-2xl">
@@ -507,7 +509,7 @@ export const StoreScreen: React.FC = () => {
                 </span>
               </div>
 
-              <h2 className="text-lg sm:text-xl font-black font-['Cairo'] text-white">
+              <h2 className="text-lg sm:text-xl font-black text-white">
                 أنت الآن تتصفح المتجر لإضافة منتجات إلى: <span className="text-amber-300 font-black">{serviceBookingContext?.serviceName || 'طلب الخدمة'}</span>
               </h2>
 
@@ -537,56 +539,62 @@ export const StoreScreen: React.FC = () => {
             </div>
           </div>
         </div>
+        </div>
       )}
 
-      {/* 2. MAIN STORE HERO BANNER (Standard mode) */}
+      {/* 2. STORE HERO — full-bleed, matching the homepage */}
       {!isBookingMode && (
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 text-white p-6 sm:p-8 shadow-lg">
-          <div className="relative z-10 space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-black shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>متجر نيكست الرسمي للأصليات</span>
-            </div>
+        <section className="relative overflow-hidden bg-navy">
+          <img
+            src={storeHeroImg}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Darkening sits behind the copy, leaving the photograph visible */}
+          <div className="absolute inset-y-0 right-0 w-full lg:w-[62%] bg-gradient-to-l from-navy via-navy/90 to-transparent" />
+          <div className="absolute inset-0 bg-navy/30 sm:bg-navy/15 lg:bg-navy/5" />
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-['Cairo'] leading-tight">
-              اكسسوارات وعناية فائقة لمركبتك ومنزلك
-            </h1>
+          <div className="relative max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 lg:py-24">
+            <div className="max-w-2xl space-y-6">
+              <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-white px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold">
+                <Sparkles className="w-3.5 h-3.5 text-accent" />
+                <span>متجر نيكست الرسمي للأصليات</span>
+              </span>
 
-            <p className="text-xs sm:text-sm text-white/95 leading-relaxed font-medium">
-              جميع منتجات العناية المعتمدة للسيارات، مستلزمات تغليف وحفظ السجاد، شامبو الكنب الفوري، وعروض الغسيل مع توصيل سريع لباب بيتك!
-            </p>
+              <h1 className="display text-white text-[2rem] sm:text-5xl lg:text-[3.25rem]">
+                إكسسوارات وعناية
+                <br />
+                <span className="relative inline-block">
+                  <span className="relative z-10">لمركبتك ومنزلك</span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-1 h-2.5 sm:h-3.5 bg-accent/55 -z-0 rounded-sm"
+                  />
+                </span>
+              </h1>
 
-            {/* Quick Trust Highlights */}
-            <div className="flex flex-wrap items-center gap-3 pt-2 text-[11px] font-bold text-slate-950">
-              <span className="bg-white/90 px-3 py-1 rounded-xl flex items-center gap-1.5 shadow-2xs">
-                <Truck className="w-3.5 h-3.5 text-blue-600" />
-                توصيل سريع 1-3 أيام
-              </span>
-              <span className="bg-white/90 px-3 py-1 rounded-xl flex items-center gap-1.5 shadow-2xs">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                منتجات أصلية 100%
-              </span>
-              <span className="bg-white/90 px-3 py-1 rounded-xl flex items-center gap-1.5 shadow-2xs">
-                <PackageCheck className="w-3.5 h-3.5 text-amber-600" />
-                تغليف آمن ومحكم
-              </span>
+              <p className="text-sm sm:text-base text-slate-200 max-w-lg">
+                منتجات العناية المعتمدة للسيارات، مستلزمات تغليف وحفظ السجاد،
+                وشامبو الكنب — مع توصيل إلى باب بيتك.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                <span className="chip"><Truck className="w-3.5 h-3.5 text-brand" />توصيل 1-3 أيام</span>
+                <span className="chip"><ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />منتجات أصلية 100%</span>
+                <span className="chip"><PackageCheck className="w-3.5 h-3.5 text-amber-600" />تغليف آمن ومحكم</span>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* 3. PERSISTENT SWITCHER */}
-      {!isBookingMode && (
-        <div className="py-1">
-          <ServicesStoreSwitcher activeTab="store" className="py-1" />
-        </div>
+        </section>
       )}
 
       {/* SEARCH RESULTS VIEW (If searching) */}
       {searchQuery.trim() && (
-        <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm space-y-4 animate-in fade-in">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10">
+        <div className="bg-white rounded-3xl p-5 sm:p-6 ring-1 ring-hairline space-y-4 animate-in fade-in">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <h3 className="text-base font-black font-['Cairo'] text-slate-900">
+            <h3 className="text-base font-black text-slate-900">
               نتائج البحث عن: <span className="text-blue-600">&quot;{searchQuery}&quot;</span>
             </h3>
             <span className="text-xs font-bold text-slate-500">
@@ -598,7 +606,7 @@ export const StoreScreen: React.FC = () => {
             <div className="py-12 text-center text-slate-500 space-y-2">
               <ShoppingBag className="w-10 h-10 text-slate-300 mx-auto" />
               <p className="text-sm font-bold">لا توجد منتجات مطابقة لكلمة البحث</p>
-              <p className="text-xs text-slate-400">جرب البحث بكلمات أخرى أو تصفح الأقسام أدناه</p>
+              <p className="text-xs text-faint">جرب البحث بكلمات أخرى أو تصفح الأقسام أدناه</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4">
@@ -611,7 +619,7 @@ export const StoreScreen: React.FC = () => {
                   <div className="h-32 rounded-xl overflow-hidden bg-white mb-2">
                     <img src={prod.image} alt={prod.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                   </div>
-                  <h4 className="text-xs font-black text-slate-900 line-clamp-2 font-['Cairo']">{prod.name}</h4>
+                  <h4 className="text-xs font-black text-slate-900 line-clamp-2">{prod.name}</h4>
                   <div className="mt-2 flex items-center justify-between">
                     <span className="text-sm font-black text-blue-700">{prod.price.toFixed(2)} ر.س</span>
                     <button
@@ -627,23 +635,20 @@ export const StoreScreen: React.FC = () => {
             </div>
           )}
         </div>
+        </div>
       )}
 
       {/* 4. MAIN CATEGORIES SECTION - Swipeable Carousel with Centered Text & Compact Cards */}
       {!searchQuery.trim() && (
-        <section className="space-y-4">
-          {/* Header: Centered text */}
-          <div className="flex flex-col items-center justify-center text-center px-1 pb-1">
-            <div className="space-y-1 text-center">
-              <h2 className="text-lg sm:text-xl font-black font-['Cairo'] text-slate-900 flex items-center justify-center gap-2">
-                <Grid className="w-5 h-5 text-blue-600" />
-                <span>أقسام المتجر الرئيسية</span>
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                تصفح أقسام ومنتجات المتجر المعتمدة بكل سهولة وراحة
-              </p>
+        <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+          <header className="space-y-6 mb-12">
+            <div className="space-y-4">
+              <span className="eyebrow"><span>الأقسام</span></span>
+              <h2 className="section-title max-w-2xl">أقسام المتجر</h2>
+              <p className="text-[15px] text-muted max-w-md">تصفّح أقسام ومنتجات المتجر المعتمدة بكل سهولة.</p>
             </div>
-          </div>
+            <div className="rule" />
+          </header>
 
           {/* Swipeable Categories Carousel Container */}
           <div
@@ -744,7 +749,7 @@ export const StoreScreen: React.FC = () => {
                         <div className="space-y-0.5 w-full my-auto px-1 text-center">
                           <h3 className={`text-xs sm:text-sm font-black leading-tight ${
                             isComingSoon ? 'text-indigo-950 group-hover:text-indigo-600' : 'text-slate-900 group-hover:text-blue-600'
-                          } transition-colors line-clamp-1 font-['Cairo']`}>
+                          } transition-colors line-clamp-1`}>
                             {cat.title}
                           </h3>
                           <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium line-clamp-1 leading-relaxed">
@@ -786,24 +791,21 @@ export const StoreScreen: React.FC = () => {
               </div>
             )}
           </div>
+          </div>
         </section>
       )}
 
       {/* 5. DEALS CAROUSEL SECTION (عروض وتخفيضات حصرية - تصميم مطابق للصورة 2) */}
       {!searchQuery.trim() && dealsProducts.length > 0 && (
-        <section className="space-y-4 sm:space-y-5">
-          {/* Header: Centered Text */}
-          <div className="flex flex-col items-center justify-center text-center pb-1">
-            <div className="space-y-1">
-              <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-center justify-center gap-1.5 font-['Cairo']">
-                <span>عروض وتخفيضات حصرية</span>
-                <span className="text-amber-500">🔥</span>
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                لا تفوت أفضل الأسعار والخصومات لفترة محدودة على منتجات العناية المختارة
-              </p>
+        <section className="bg-canvas"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+          <header className="space-y-6 mb-12">
+            <div className="space-y-4">
+              <span className="eyebrow"><span>لفترة محدودة</span></span>
+              <h2 className="section-title max-w-2xl">عروض وتخفيضات</h2>
+              <p className="text-[15px] text-muted max-w-md">لا تفوّت أفضل الأسعار على منتجات العناية المختارة.</p>
             </div>
-          </div>
+            <div className="rule" />
+          </header>
 
           {/* Offer Cards Slider Container with Navigation Arrows */}
           <div
@@ -873,7 +875,7 @@ export const StoreScreen: React.FC = () => {
                           </div>
 
                           {/* Title */}
-                          <h4 className="text-base sm:text-lg font-black text-slate-900 tracking-tight leading-snug group-hover/card:text-blue-600 transition-colors line-clamp-1 font-['Cairo']">
+                          <h4 className="text-base sm:text-lg font-black text-slate-900 tracking-tight leading-snug group-hover/card:text-blue-600 transition-colors line-clamp-1">
                             {prod.name}
                           </h4>
 
@@ -884,11 +886,11 @@ export const StoreScreen: React.FC = () => {
 
                           {/* Price Display */}
                           <div className="flex items-baseline gap-1.5 pt-0.5">
-                            <span className="text-base sm:text-lg font-black text-slate-900 tracking-tight font-['Cairo']">
+                            <span className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
                               {prod.price.toFixed(2)} ر.س
                             </span>
                             {prod.originalPrice && (
-                              <span className="text-xs text-slate-400 line-through font-medium font-['Cairo']">
+                              <span className="text-xs text-faint line-through font-medium">
                                 {prod.originalPrice.toFixed(2)} ر.س
                               </span>
                             )}
@@ -1017,24 +1019,21 @@ export const StoreScreen: React.FC = () => {
               ))}
             </div>
           </div>
+          </div>
         </section>
       )}
 
       {/* 6. BEST-SELLERS SECTION (المنتجات الأكثر مبيعاً من فئات مختلفة) */}
       {!searchQuery.trim() && bestSellerProducts.length > 0 && (
-        <section className="space-y-4 sm:space-y-5">
-          {/* Header: Centered Text */}
-          <div className="flex flex-col items-center justify-center text-center pb-1">
-            <div className="space-y-1">
-              <h2 className="text-xl sm:text-2xl font-black font-['Cairo'] text-slate-900 flex items-center justify-center gap-2">
-                <Star className="w-5 h-5 text-amber-500 fill-amber-400" />
-                <span>المنتجات الأكثر مبيعاً</span>
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                المنتجات الأعلى طلباً والأكثر تقييماً من عملائنا في مختلف الفئات
-              </p>
+        <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+          <header className="space-y-6 mb-12">
+            <div className="space-y-4">
+              <span className="eyebrow"><span>الأكثر طلباً</span></span>
+              <h2 className="section-title max-w-2xl">المنتجات الأكثر مبيعاً</h2>
+              <p className="text-[15px] text-muted max-w-md">الأعلى طلباً والأكثر تقييماً من عملائنا في مختلف الفئات.</p>
             </div>
-          </div>
+            <div className="rule" />
+          </header>
 
           {/* Best-Sellers Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
@@ -1080,10 +1079,10 @@ export const StoreScreen: React.FC = () => {
                           {prod.categoryLabel}
                         </span>
                       )}
-                      <h4 className="text-xs sm:text-sm font-black text-slate-900 line-clamp-2 leading-snug font-['Cairo'] group-hover:text-blue-600 transition-colors">
+                      <h4 className="text-xs sm:text-sm font-black text-slate-900 line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">
                         {prod.name}
                       </h4>
-                      <div className="flex items-center gap-1 text-[11px] text-slate-400 mt-1">
+                      <div className="flex items-center gap-1 text-[11px] text-faint mt-1">
                         <Truck className="w-3 h-3 text-blue-600 shrink-0" />
                         <span>
                           {isBookingMode
@@ -1097,13 +1096,13 @@ export const StoreScreen: React.FC = () => {
                     <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
                       <div>
                         <div className="flex items-baseline gap-0.5">
-                          <span className="text-base sm:text-lg font-black text-blue-700 font-['Cairo']">
+                          <span className="text-base sm:text-lg font-black text-blue-700">
                             {prod.price.toFixed(2)}
                           </span>
                           <span className="text-[10px] font-bold text-slate-600">ر.س</span>
                         </div>
                         {prod.originalPrice && (
-                          <span className="text-[10px] text-slate-400 line-through block -mt-1 font-['Cairo']">
+                          <span className="text-[10px] text-faint line-through block -mt-1">
                             {prod.originalPrice.toFixed(2)} ر.س
                           </span>
                         )}
@@ -1199,27 +1198,21 @@ export const StoreScreen: React.FC = () => {
               );
             })}
           </div>
+          </div>
         </section>
       )}
 
       {/* 7. CUSTOMER REVIEWS & RATINGS SECTION */}
       {!searchQuery.trim() && (
-        <section className="space-y-4 sm:space-y-5 relative">
-          {/* Header: Centered Title & Badges */}
-          <div className="flex flex-col items-center justify-center text-center pb-1">
-            <div className="space-y-1.5 max-w-xl mx-auto">
-              <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-800 border border-amber-200/70 text-[11px] font-black px-3 py-1 rounded-full shadow-2xs">
-                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                <span>تجارب حقيقية موثقة</span>
-              </div>
-              <h2 className="text-xl sm:text-2xl font-black font-['Cairo'] text-slate-900 tracking-tight">
-                آراء وتقييمات العملاء
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                نفخر بثقة آلاف العملاء في جميع مدن المملكة بفضل جودة المنتجات الأصلية وسرعة التوصيل
-              </p>
+        <section className="bg-canvas"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 relative">
+          <header className="space-y-6 mb-12">
+            <div className="space-y-4">
+              <span className="eyebrow"><span>آراء العملاء</span></span>
+              <h2 className="section-title max-w-2xl">ماذا يقول عملاؤنا</h2>
+              <p className="text-[15px] text-muted max-w-md">تجارب موثقة من عملاء في مختلف مدن المملكة.</p>
             </div>
-          </div>
+            <div className="rule" />
+          </header>
 
           {/* Customer Reviews Interactive Carousel Container */}
           <div
@@ -1276,8 +1269,8 @@ export const StoreScreen: React.FC = () => {
                               {rev.initial}
                             </div>
                             <div>
-                              <h4 className="text-xs sm:text-sm font-black text-slate-900 font-['Cairo']">{rev.name}</h4>
-                              <span className="text-[11px] text-slate-400 font-medium block">{rev.city}</span>
+                              <h4 className="text-xs sm:text-sm font-black text-slate-900">{rev.name}</h4>
+                              <span className="text-[11px] text-faint font-medium block">{rev.city}</span>
                             </div>
                           </div>
 
@@ -1300,7 +1293,7 @@ export const StoreScreen: React.FC = () => {
                       </div>
 
                       {/* Footer: Date & Verified purchase */}
-                      <div className="pt-2.5 border-t border-slate-200/70 flex items-center justify-between text-[11px] text-slate-400">
+                      <div className="pt-2.5 border-t border-slate-200/70 flex items-center justify-between text-[11px] text-faint">
                         <span>{rev.date}</span>
                         <span className="text-emerald-600 font-bold flex items-center gap-1">
                           <Check className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -1329,6 +1322,50 @@ export const StoreScreen: React.FC = () => {
                 />
               ))}
             </div>
+          </div>
+          </div>
+        </section>
+      )}
+
+      {/* 7b. SERVICES AD BANNER — closes the page by sending shoppers to the
+           booking side, mirroring the store banner on the homepage. */}
+      {!searchQuery.trim() && (
+        <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 sm:py-14">
+          <button
+            onClick={() => {
+              setActiveStoreCategory(null);
+              setCurrentScreen('home');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            aria-label="تصفّح خدمات نيكست المتنقلة"
+            className="card-i group relative block w-full overflow-hidden rounded-[1.75rem] bg-navy h-[17rem] sm:h-[14rem] lg:h-[16rem] text-right cursor-pointer"
+          >
+            <img
+              src={servicesBannerImg}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.06]"
+            />
+            <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-navy via-navy/85 to-transparent" />
+
+            <span className="relative h-full flex flex-col sm:flex-row sm:items-center justify-center sm:justify-between gap-5 px-7 sm:px-10">
+              <span className="space-y-2">
+                <span className="block text-[11px] font-bold tracking-[0.18em] text-accent">خدمات نيكست</span>
+                <span className="block text-2xl sm:text-[1.75rem] lg:text-3xl font-bold text-white tracking-tight max-w-md">
+                  نغسل سيارتك وسجادك في موقعك
+                </span>
+                <span className="block text-[13px] text-slate-300 max-w-sm">
+                  فنيون مختصون وفانات مجهزة تصلك في الموعد الذي تختاره.
+                </span>
+              </span>
+
+              <span className="shrink-0 inline-flex w-fit items-center gap-2.5 bg-accent group-hover:bg-white text-navy font-bold text-[14px] px-6 py-3 rounded-full transition-colors duration-300">
+                احجز خدمة
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+              </span>
+            </span>
+          </button>
           </div>
         </section>
       )}
@@ -1413,7 +1450,7 @@ export const StoreScreen: React.FC = () => {
               <span className="text-xs font-black text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-0.5 rounded-full inline-block">
                 أقسام قادمة قريباً ✨
               </span>
-              <h3 className="text-lg font-black font-['Cairo'] text-slate-900">
+              <h3 className="text-lg font-black text-slate-900">
                 نعمل على توفير أقسام جديدة قريباً!
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed pt-1 font-medium">
