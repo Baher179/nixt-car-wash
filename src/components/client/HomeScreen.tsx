@@ -20,9 +20,9 @@ import {
   Wallet,
   Smartphone,
   Gift,
-  Repeat,
   Ticket,
   Sparkles,
+  Flame,
 } from 'lucide-react';
 
 // 3D Illustration assets matching the design
@@ -41,9 +41,6 @@ import bProductsGateway from '../../assets/brand/home-products-gateway-v2.webp';
 import bCollage from '../../assets/brand/services-collage.webp';
 import bSofa from '../../assets/brand/store-sofa-v2.webp';
 import bCarCare from '../../assets/brand/category-car-maintenance-v1.webp';
-import cardServicesBlueCar from '../../assets/images/card_services_blue_car_1788336446999.jpg';
-import carCareBanner from '../../assets/images/car_care_banner_1788357613398.jpg';
-import sofaCleaningImg from '../../assets/images/sofa_cleaning_item_1789560655946.jpg';
 
 interface HomeScreenProps {
   onSelectService?: (service: ServiceItem) => void;
@@ -497,6 +494,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       titleLead: 'سيارتك تلمع',
       titleTail: 'أينما كنت',
       lead: 'غسيل داخلي وخارجي بمعدات كاملة ومواد أصلية. نصل إلى موقعك في الموعد الذي تختاره.',
+      points: ['رغوة واكس ومناشف مايكروفايبر معقمة', 'تلميع الجنوط وتسويد الإطارات', 'تنظيف المقصورة وتعقيم فتحات التكييف'],
       cta: 'احجز غسيل السيارة',
       action: () => handleApplyBannerCode('X25'),
       showCoupon: true,
@@ -511,6 +509,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       titleLead: 'سجادك وكنبك',
       titleTail: 'كالجديد',
       lead: 'تنظيف عميق بالبخار يزيل البقع والروائح، مع التغليف والتسليم إلى باب منزلك.',
+      points: ['غسيل بالبخار وإزالة البقع والروائح', 'استلام وتسليم إلى باب منزلك', 'تغليف بعد التنظيف'],
       cta: 'احجز غسيل السجاد',
       action: () => navigateToCategoryServices('carpets'),
       showCoupon: false,
@@ -525,6 +524,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       titleLead: 'خزانات نظيفة',
       titleTail: 'ومنزل آمن',
       lead: 'تنظيف وتعقيم الخزانات العلوية والأرضية، ورش المبيدات على يد فنيين مختصين.',
+      points: ['تفريغ الرواسب وتطهير الخزان', 'رش مبيدات منخفضة الرائحة', 'فنيون مختصون بمعدات كاملة'],
       cta: 'استكشف كل الخدمات',
       action: () => {
         const el = document.getElementById('services-selection-section');
@@ -683,7 +683,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
   };
 
 
-  /** Editorial section header: tracked eyebrow, large light title, hairline. */
+  /** Editorial section header: tracked eyebrow, large title, hairline. */
   const SectionHead: React.FC<{
     kicker: string;
     title: React.ReactNode;
@@ -718,86 +718,99 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       {/* HERO — ivory, type-led. The photograph sits beside the words rather   */}
       {/* than underneath them, so nothing has to be darkened to stay readable. */}
       {/* ===================================================================== */}
-      <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 pb-14 sm:pb-16">
-        <div
-          className="relative"
-          onMouseEnter={() => setHeroPaused(true)}
-          onMouseLeave={() => setHeroPaused(false)}
-          onFocusCapture={() => setHeroPaused(true)}
-          onBlurCapture={() => setHeroPaused(false)}
-          aria-roledescription="carousel"
-          aria-label="خدمات نيكست"
-        >
+      <section
+        className="relative overflow-hidden bg-navy"
+        onMouseEnter={() => setHeroPaused(true)}
+        onMouseLeave={() => setHeroPaused(false)}
+        onFocusCapture={() => setHeroPaused(true)}
+        onBlurCapture={() => setHeroPaused(false)}
+        aria-roledescription="carousel"
+        aria-label="خدمات نيكست"
+      >
+        {/* Full-bleed background. Each slide cross-fades in place. */}
+        {heroSlides.map((sl, i) => (
+          <img
+            key={sl.id}
+            src={sl.mainImg}
+            alt=""
+            aria-hidden="true"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1100ms] ease-out ${
+              heroIndex === i ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+
+        {/* The darkening sits behind the copy only: a panel anchored to the
+            reading side that fades out well before the left edge, so most of
+            the photograph stays visible. A faint wash keeps the chips legible. */}
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[62%] bg-gradient-to-l from-navy via-navy/90 to-transparent" />
+        <div className="absolute inset-0 bg-navy/30 sm:bg-navy/15 lg:bg-navy/5" />
+
+        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24 lg:py-28">
           <div
             key={activeSlide.id}
-            className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center animate-in fade-in slide-in-from-bottom-3 duration-500"
+            className="max-w-2xl space-y-6 animate-in fade-in slide-in-from-bottom-3 duration-500"
             aria-live="polite"
           >
-            <div className="lg:col-span-6 space-y-8">
-              <span className="eyebrow"><span>{activeSlide.kicker}</span></span>
+            <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-white px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold">
+              <Sparkles className="w-3.5 h-3.5 text-accent" />
+              <span>{activeSlide.kicker}</span>
+            </span>
 
-              <h1 className="display text-ink text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">
-                {activeSlide.titleLead}
-                <br />
-                <span className="relative inline-block">
-                  <span className="relative z-10">{activeSlide.titleTail}</span>
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-1.5 h-3 sm:h-4 bg-accent/45 -z-0 rounded-sm"
-                  />
-                </span>
-              </h1>
+            <h1 className="display text-white text-[2.25rem] sm:text-5xl lg:text-[3.75rem]">
+              {activeSlide.titleLead}
+              <br />
+              <span className="relative inline-block">
+                <span className="relative z-10">{activeSlide.titleTail}</span>
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-1 h-2.5 sm:h-3.5 bg-accent/55 -z-0 rounded-sm"
+                />
+              </span>
+            </h1>
 
-              <p className="text-base sm:text-lg text-muted max-w-sm min-h-[5.5rem]">
-                {activeSlide.lead}
-              </p>
+            <p className="text-sm sm:text-base text-slate-200 max-w-lg">
+              {activeSlide.lead}
+            </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-1">
-                <button
-                  onClick={activeSlide.action}
-                  className="bg-ink hover:bg-brand-deep active:scale-[0.98] text-white font-medium text-[15px] px-8 py-4 rounded-full transition-colors duration-200 flex items-center gap-2.5 cursor-pointer"
-                >
-                  <span>{activeSlide.cta}</span>
-                  <ArrowLeft className="w-4 h-4" />
-                </button>
+            <ul className="space-y-2.5 pt-1 min-h-[6.5rem]">
+              {activeSlide.points.map(pt => (
+                <li key={pt} className="flex items-start gap-2.5 text-[13px] sm:text-sm text-slate-200">
+                  <BadgeCheck className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <span>{pt}</span>
+                </li>
+              ))}
+            </ul>
 
-                {activeSlide.showCoupon && heroOffer && (
-                  <p className="text-[13px] text-muted">
-                    كود{' '}
-                    <span className="text-brand-deep font-semibold tracking-wide">{heroOffer.code}</span>
-                    {' '}يوفّر {heroOffer.percent}%
-                  </p>
-                )}
-              </div>
+            <div className="flex flex-wrap items-center gap-4 pt-1">
+              <button
+                onClick={activeSlide.action}
+                className="bg-accent hover:bg-amber-300 active:scale-[0.98] text-navy font-bold text-[14px] sm:text-[15px] px-7 py-3.5 rounded-xl transition-colors duration-200 flex items-center gap-2.5 cursor-pointer"
+              >
+                <span>{activeSlide.cta}</span>
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+
+              {activeSlide.showCoupon && heroOffer && (
+                <p className="text-[13px] text-slate-300">
+                  كود{' '}
+                  <span className="text-accent font-bold tracking-wide">{heroOffer.code}</span>
+                  {' '}يوفّر {heroOffer.percent}%
+                </p>
+              )}
             </div>
 
-            {/* Imagery: one large frame plus a small offset frame */}
-            <div className="lg:col-span-6 relative">
-              <div className={`rounded-[2rem] overflow-hidden aspect-square ${activeSlide.plainMain ? 'bg-white p-6 sm:p-10' : 'bg-canvas'}`}>
-                <img
-                  src={activeSlide.mainImg}
-                  alt={activeSlide.mainAlt}
-                  className={
-                    activeSlide.plainMain
-                      ? 'render w-full h-full object-contain'
-                      : 'photo w-full h-full object-cover'
-                  }
-                />
-              </div>
-              <div className="absolute -bottom-8 -left-2 sm:left-4 w-32 sm:w-44 rounded-2xl overflow-hidden aspect-square ring-8 ring-white bg-canvas hidden sm:block">
-                <img
-                  src={activeSlide.insetImg}
-                  alt=""
-                  aria-hidden="true"
-                  loading="lazy"
-                  className="photo w-full h-full object-cover"
-                />
-              </div>
+            {/* Trust chips, in the same form the inner screens use */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-3">
+              <span className="chip"><BadgeCheck className="w-3.5 h-3.5 text-brand" />فنيون معتمدون</span>
+              <span className="chip"><CalendarClock className="w-3.5 h-3.5 text-emerald-600" />مواعيد مرنة</span>
+              <span className="chip"><Wallet className="w-3.5 h-3.5 text-amber-600" />أسعار شاملة الضريبة</span>
             </div>
           </div>
 
           {/* Slide controls */}
-          <div className="flex items-center justify-between gap-6 mt-14 sm:mt-10">
+          <div className="flex items-center justify-between gap-6 mt-12">
             <div className="flex items-center gap-2" role="tablist" aria-label="شرائح الخدمات">
               {heroSlides.map((sl, i) => (
                 <button
@@ -807,7 +820,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
                   aria-label={sl.kicker}
                   onClick={() => setHeroIndex(i)}
                   className={`h-[3px] rounded-full transition-all duration-300 cursor-pointer ${
-                    heroIndex === i ? 'w-10 bg-ink' : 'w-5 bg-hairline hover:bg-faint'
+                    heroIndex === i ? 'w-10 bg-accent' : 'w-5 bg-white/30 hover:bg-white/60'
                   }`}
                 />
               ))}
@@ -817,39 +830,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               <button
                 onClick={() => setHeroIndex(prev => (prev - 1 + heroSlides.length) % heroSlides.length)}
                 aria-label="الشريحة السابقة"
-                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
+                className="w-11 h-11 rounded-full border border-white/25 flex items-center justify-center text-white hover:bg-white hover:text-navy active:scale-95 transition-all cursor-pointer"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setHeroIndex(prev => (prev + 1) % heroSlides.length)}
                 aria-label="الشريحة التالية"
-                className="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:border-ink active:scale-95 transition-all cursor-pointer"
+                className="w-11 h-11 rounded-full border border-white/25 flex items-center justify-center text-white hover:bg-white hover:text-navy active:scale-95 transition-all cursor-pointer"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Trust row on a hairline */}
-        <div className="mt-20 sm:mt-24 pt-8 border-t border-hairline grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
-          {[
-            { k: 'فنيون معتمدون', v: 'فريق مدرب وفانات مجهزة بالكامل', Icon: BadgeCheck },
-            { k: 'مواعيد مرنة', v: 'تختار اليوم والوقت الذي يناسبك', Icon: CalendarClock },
-            { k: 'أسعار واضحة', v: 'السعر شامل الضريبة بلا مفاجآت', Icon: Wallet }
-          ].map(item => (
-            <div key={item.k} className="flex items-start gap-4">
-              <span className="w-11 h-11 rounded-xl bg-brand-soft text-brand-deep flex items-center justify-center shrink-0">
-                <item.Icon className="w-5 h-5" />
-              </span>
-              <div className="space-y-1.5 min-w-0">
-                <p className="text-[15px] font-semibold text-ink">{item.k}</p>
-                <p className="text-[13px] text-muted leading-relaxed">{item.v}</p>
-              </div>
-            </div>
-          ))}
-        </div>
         </div>
       </section>
 
