@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Riyal } from './Riyal';
 import { useApp } from '../../context/AppContext';
 import { HeaderSearch } from './HeaderSearch';
 import nixtIcon from '../../assets/brand/nixt-icon.webp';
@@ -233,7 +234,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Wallet className="w-4 h-4 text-emerald-600 shrink-0" />
             <span className="price text-[13px] whitespace-nowrap">
-              {walletBalance.toFixed(2)} <span className="text-[10px] font-medium text-muted">ر.س</span>
+              {walletBalance.toFixed(2)} <span className="text-[10px] font-medium text-muted"><Riyal /></span>
             </span>
           </button>
 
@@ -496,7 +497,7 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="flex flex-col leading-none min-w-0">
                 <span className="text-[10px] text-faint mb-1">رصيد المحفظة</span>
                 <span className="price text-xs text-ink truncate">
-                  {walletBalance.toFixed(2)} <span className="text-[10px] font-medium text-muted">ر.س</span>
+                  {walletBalance.toFixed(2)} <span className="text-[10px] font-medium text-muted"><Riyal /></span>
                 </span>
               </span>
             </button>

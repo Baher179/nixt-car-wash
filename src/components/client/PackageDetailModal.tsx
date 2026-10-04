@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem } from '../../types';
 import confetti from 'canvas-confetti';
@@ -408,11 +409,11 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
               <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-1">
                 <span className="text-xs font-bold text-slate-500 block">المبلغ الإجمالي</span>
                 <span className="text-2xl sm:text-3xl font-black text-blue-700 font-['Cairo']">
-                  {activePkg.price.toFixed(2)} ر.س
+                  {activePkg.price.toFixed(2)} <Riyal />
                 </span>
                 {useWallet && walletBalance > 0 && (
                   <span className="text-[11px] font-bold text-emerald-600 block pt-1">
-                    خصم المحفظة: {Math.min(walletBalance, activePkg.price).toFixed(2)} ر.س
+                    خصم المحفظة: {Math.min(walletBalance, activePkg.price).toFixed(2)} <Riyal />
                   </span>
                 )}
               </div>

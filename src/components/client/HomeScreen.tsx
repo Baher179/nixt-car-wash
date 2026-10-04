@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem } from '../../types';
 import { useReducedMotion } from 'motion/react';
@@ -60,7 +61,7 @@ interface CategoryCardItem {
 }
 
 /** Formats a configured numeric price into the displayed Saudi riyal string. */
-const formatSAR = (value: number): string => `${value.toFixed(2)} ر.س`;
+const formatSAR = (value: number): string => value.toFixed(2);
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
   const {
@@ -322,7 +323,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       const svc = serviceById.get(def.serviceId);
       return {
         ...def,
-        price: svc ? `${formatSAR(svc.price)}${def.unitSuffix}` : '',
+        price: svc ? formatSAR(svc.price) : '',
         originalPrice: svc?.originalPrice ? formatSAR(svc.originalPrice) : ''
       };
     });
@@ -984,7 +985,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
                 <span className="block text-[13px] text-slate-300">
                   بكود{' '}
                   <span className="font-bold text-accent tracking-[0.15em]">{welcomeCoupon.code}</span>
-                  {' '}على طلب بقيمة {welcomeCoupon.minOrderValue} ر.س فأكثر
+                  {' '}على طلب بقيمة {welcomeCoupon.minOrderValue} <Riyal /> فأكثر
                 </span>
               </span>
 
@@ -1038,9 +1039,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
                       <h3 className="text-[18px] font-semibold text-ink leading-snug line-clamp-1">{offer.title}</h3>
                       <p className="text-[13px] text-muted leading-relaxed line-clamp-2 min-h-[2.75rem]">{offer.subtitle}</p>
                       <div className="flex items-baseline gap-3 pt-1">
-                        <span className="price text-2xl text-ink">{offer.price}</span>
+                        <span className="price text-2xl text-ink inline-flex items-baseline gap-1.5">
+                          {offer.price}
+                          <Riyal />
+                          {offer.unitSuffix && <span className="text-[13px] font-normal text-muted">{offer.unitSuffix}</span>}
+                        </span>
                         {offer.originalPrice && (
-                          <span className="price text-[13px] text-faint line-through font-normal">{offer.originalPrice}</span>
+                          <span className="price text-[13px] text-faint line-through font-normal inline-flex items-baseline gap-1">
+                            {offer.originalPrice}
+                            <Riyal />
+                          </span>
                         )}
                       </div>
                       <span className="inline-flex items-center gap-2 text-[13px] font-medium text-accent pt-1">
@@ -1132,7 +1140,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               </div>
 
               <div className="flex items-center justify-between gap-3 pt-4 border-t border-hairline">
-                <span className="price text-xl text-ink">{item.price}</span>
+                <span className="price text-xl text-ink inline-flex items-baseline gap-1.5">
+                  {item.price}
+                  <Riyal />
+                </span>
                 <button
                   onClick={() => item.fallbackService && handleServiceClick(item.fallbackService)}
                   className="text-[13px] font-medium text-brand-deep hover:text-ink transition-colors flex items-center gap-1.5 cursor-pointer"

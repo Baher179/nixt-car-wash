@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { Riyal } from './Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem, StoreProduct } from '../../types';
 import { Search, X, Clock } from 'lucide-react';
@@ -250,7 +251,7 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
 
                   {item.price !== undefined && (
                     <span className="text-xs font-bold text-slate-900 shrink-0 mr-2">
-                      {item.price} <span className="text-[10px] font-normal text-slate-500">ر.س</span>
+                      {item.price} <span className="text-[10px] font-normal text-slate-500"><Riyal /></span>
                     </span>
                   )}
                 </button>

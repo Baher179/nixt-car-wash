@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { Riyal } from '../components/common/Riyal';
 import {
   Car,
   Address,
@@ -1134,7 +1135,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const notif: AppNotification = {
       id: `notif-${Date.now()}`,
       title: giftType === 'package' ? '🎁 تم إرسال باقة كهدية بنجاح' : '🎁 تم إرسال هدية الرصيد بنجاح',
-      message: `تم إرسال ${giftType === 'package' ? packageItem?.title : `${amount} ر.س`} إلى ${recipientName || recipientPhone} مع كود الهدية: ${giftCode}`,
+      message: `تم إرسال ${giftType === 'package' ? packageItem?.title : `${amount} <Riyal />`} إلى ${recipientName || recipientPhone} مع كود الهدية: ${giftCode}`,
       target: 'customers',
       channel: 'in_app',
       createdAt: new Date().toISOString(),

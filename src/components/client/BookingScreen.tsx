@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem, Car, Address, AddonProduct, CarpetItemOption } from '../../types';
 import { INITIAL_CARPET_ITEMS } from '../../data/initialData';
@@ -694,7 +695,7 @@ export const BookingScreen: React.FC = () => {
                     <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 self-start sm:self-auto shadow-2xs">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                       <span>
-                        تم تحديد {pestItemsInAddons.reduce((s, a) => s + (a.quantity || 1), 0)} عنصر ({pestItemsTotal.toFixed(2)} ر.س)
+                        تم تحديد {pestItemsInAddons.reduce((s, a) => s + (a.quantity || 1), 0)} عنصر ({pestItemsTotal.toFixed(2)} <Riyal />)
                       </span>
                     </div>
                   )}
@@ -703,7 +704,7 @@ export const BookingScreen: React.FC = () => {
                     <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 self-start sm:self-auto shadow-2xs">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                       <span>
-                        تم تحديد {tankItemsInAddons.reduce((s, a) => s + (a.quantity || 1), 0)} عنصر ({tankItemsTotal.toFixed(2)} ر.س)
+                        تم تحديد {tankItemsInAddons.reduce((s, a) => s + (a.quantity || 1), 0)} عنصر ({tankItemsTotal.toFixed(2)} <Riyal />)
                       </span>
                     </div>
                   )}
@@ -712,7 +713,7 @@ export const BookingScreen: React.FC = () => {
                     <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 self-start sm:self-auto shadow-2xs">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                       <span>
-                        تم تحديد {sofaItemsInAddons.reduce((s, a) => s + (a.quantity || 1), 0)} عنصر ({sofaItemsTotal.toFixed(2)} ر.س)
+                        تم تحديد {sofaItemsInAddons.reduce((s, a) => s + (a.quantity || 1), 0)} عنصر ({sofaItemsTotal.toFixed(2)} <Riyal />)
                       </span>
                     </div>
                   )}
@@ -775,7 +776,7 @@ export const BookingScreen: React.FC = () => {
                                 <span className="text-slate-500">
                                   فئة: {c.category === 'suv' ? 'جيب SUV' : c.category === 'luxury' ? 'فاخرة' : 'سيدان'}
                                 </span>
-                                <span className="font-black text-blue-700 text-sm">{priceForThisCar.toFixed(2)} ر.س</span>
+                                <span className="font-black text-blue-700 text-sm">{priceForThisCar.toFixed(2)} <Riyal /></span>
                               </div>
                             </div>
                           );
@@ -826,7 +827,7 @@ export const BookingScreen: React.FC = () => {
 
                                 <div className="flex items-center gap-1 text-emerald-600 font-black text-sm sm:text-base pt-0.5">
                                   <span>{item.price.toFixed(2)}</span>
-                                  <span className="text-xs font-bold">ر.س</span>
+                                  <span className="text-xs font-bold"><Riyal /></span>
                                 </div>
                               </div>
                             </div>
@@ -919,7 +920,7 @@ export const BookingScreen: React.FC = () => {
 
                                 <div className="flex items-center gap-1 text-emerald-600 font-black text-sm sm:text-base pt-0.5">
                                   <span>{item.price.toFixed(2)}</span>
-                                  <span className="text-xs font-bold">ر.س</span>
+                                  <span className="text-xs font-bold"><Riyal /></span>
                                 </div>
                               </div>
                             </div>
@@ -1012,7 +1013,7 @@ export const BookingScreen: React.FC = () => {
 
                                 <div className="flex items-center gap-1 text-emerald-600 font-black text-sm sm:text-base pt-0.5">
                                   <span>{item.price.toFixed(2)}</span>
-                                  <span className="text-xs font-bold">ر.س</span>
+                                  <span className="text-xs font-bold"><Riyal /></span>
                                 </div>
                               </div>
                             </div>
@@ -1190,7 +1191,7 @@ export const BookingScreen: React.FC = () => {
                               <div className="space-y-0.5">
                                 <h4 className="text-xs font-black text-amber-950">{customCarpet.name}</h4>
                                 <p className="text-[11px] text-amber-800">{customCarpet.description}</p>
-                                <span className="text-xs font-black text-amber-900 block">{customCarpet.price.toFixed(2)} ر.س</span>
+                                <span className="text-xs font-black text-amber-900 block">{customCarpet.price.toFixed(2)} <Riyal /></span>
                               </div>
 
                               <div className="flex items-center gap-2 bg-white border border-amber-200 rounded-xl p-1 shadow-2xs">
@@ -1235,7 +1236,7 @@ export const BookingScreen: React.FC = () => {
                             <div className="space-y-1">
                               <h4 className="text-xs font-black text-slate-900">{item.name}</h4>
                               <p className="text-[11px] text-slate-500">{item.dimensionsTag}</p>
-                              <span className="text-xs font-black text-blue-700 block">{item.price.toFixed(2)} ر.س</span>
+                              <span className="text-xs font-black text-blue-700 block">{item.price.toFixed(2)} <Riyal /></span>
                             </div>
 
                             <div className="flex items-center gap-2">
@@ -1522,7 +1523,7 @@ export const BookingScreen: React.FC = () => {
                           >
                             <h4 className="text-xs font-black text-slate-900">{addon.name}</h4>
                             <p className="text-[11px] text-slate-500">{addon.description}</p>
-                            <span className="text-xs font-black text-blue-700 mt-1 block">+{addon.price.toFixed(2)} ر.س</span>
+                            <span className="text-xs font-black text-blue-700 mt-1 block">+{addon.price.toFixed(2)} <Riyal /></span>
                           </div>
 
                           {isSelected ? (
@@ -1594,7 +1595,7 @@ export const BookingScreen: React.FC = () => {
                             <img src={prod.image} alt={prod.name} className="w-10 h-10 rounded-lg object-cover" />
                             <div>
                               <span className="text-xs font-bold text-slate-900 line-clamp-1">{prod.name}</span>
-                              <span className="text-[10px] text-amber-700 font-bold">{prod.price.toFixed(2)} ر.س</span>
+                              <span className="text-[10px] text-amber-700 font-bold">{prod.price.toFixed(2)} <Riyal /></span>
                             </div>
                           </div>
 
@@ -1655,7 +1656,7 @@ export const BookingScreen: React.FC = () => {
                               {addon.image && <img src={addon.image} alt={addon.name} className="w-8 h-8 rounded-lg object-cover shrink-0" />}
                               <div className="min-w-0">
                                 <span className="text-xs font-bold text-slate-900 truncate block">{addon.name}</span>
-                                <span className="text-[10px] text-amber-800 font-bold">{(addon.price * (addon.quantity || 1)).toFixed(2)} ر.س</span>
+                                <span className="text-[10px] text-amber-800 font-bold">{(addon.price * (addon.quantity || 1)).toFixed(2)} <Riyal /></span>
                               </div>
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0 bg-amber-50 border border-amber-300 rounded-xl p-1 shadow-2xs">
@@ -1809,7 +1810,7 @@ export const BookingScreen: React.FC = () => {
 
                     {appliedCoupon && (
                       <div className="flex items-center justify-between bg-emerald-50 text-emerald-800 text-xs p-2 rounded-xl border border-emerald-200">
-                        <span>تم تطبيق كوبون {appliedCoupon.code} بنجاح (-{couponDiscountAmount.toFixed(2)} ر.س)</span>
+                        <span>تم تطبيق كوبون {appliedCoupon.code} بنجاح (-{couponDiscountAmount.toFixed(2)} <Riyal />)</span>
                         <button
                           type="button"
                           onClick={() => {
@@ -1873,7 +1874,7 @@ export const BookingScreen: React.FC = () => {
                         <Wallet className="w-5 h-5 text-emerald-600" />
                         <div>
                           <span className="text-xs font-bold text-slate-900 block">المحفظة الإلكترونية</span>
-                          <span className="text-[11px] text-slate-500">رصيدك المتاح: {walletBalance.toFixed(2)} ر.س</span>
+                          <span className="text-[11px] text-slate-500">رصيدك المتاح: {walletBalance.toFixed(2)} <Riyal /></span>
                         </div>
                       </div>
                       <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${
@@ -1897,7 +1898,7 @@ export const BookingScreen: React.FC = () => {
                       <span className="bg-[#3BFF9C] text-slate-950 font-black text-xs px-2 py-0.5 rounded">tabby</span>
                       <div>
                         <span className="text-xs font-bold text-slate-900 block">قسمها على 4 دفعات بدون فوائد مع تابي</span>
-                        <span className="text-[11px] text-slate-500">{(totalAmount / 4).toFixed(2)} ر.س / دفعة</span>
+                        <span className="text-[11px] text-slate-500">{(totalAmount / 4).toFixed(2)} <Riyal /> / دفعة</span>
                       </div>
                     </div>
                     <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${
@@ -1949,7 +1950,7 @@ export const BookingScreen: React.FC = () => {
                     title="يرجى تأكيد الحجز والدفع من ملخص الطلب على اليسار"
                   >
                     <CheckCircle2 className="w-5 h-5 text-slate-400" />
-                    <span>تأكيد الحجز والدفع ({finalDueAmount.toFixed(2)} ر.س)</span>
+                    <span>تأكيد الحجز والدفع ({finalDueAmount.toFixed(2)} <Riyal />)</span>
                   </button>
                 </div>
               </div>
@@ -2001,7 +2002,7 @@ export const BookingScreen: React.FC = () => {
                   {pestItemsInAddons.map(a => (
                     <div key={a.id} className="flex items-center justify-between text-xs text-slate-700">
                       <span className="truncate max-w-[170px]">{a.name} × {a.quantity || 1}</span>
-                      <span className="font-bold">{(a.price * (a.quantity || 1)).toFixed(2)} ر.س</span>
+                      <span className="font-bold">{(a.price * (a.quantity || 1)).toFixed(2)} <Riyal /></span>
                     </div>
                   ))}
                 </div>
@@ -2014,7 +2015,7 @@ export const BookingScreen: React.FC = () => {
                   {tankItemsInAddons.map(a => (
                     <div key={a.id} className="flex items-center justify-between text-xs text-slate-700">
                       <span className="truncate max-w-[170px]">{a.name} × {a.quantity || 1}</span>
-                      <span className="font-bold">{(a.price * (a.quantity || 1)).toFixed(2)} ر.س</span>
+                      <span className="font-bold">{(a.price * (a.quantity || 1)).toFixed(2)} <Riyal /></span>
                     </div>
                   ))}
                 </div>
@@ -2027,7 +2028,7 @@ export const BookingScreen: React.FC = () => {
                   {sofaItemsInAddons.map(a => (
                     <div key={a.id} className="flex items-center justify-between text-xs text-slate-700">
                       <span className="truncate max-w-[170px]">{a.name} × {a.quantity || 1}</span>
-                      <span className="font-bold">{(a.price * (a.quantity || 1)).toFixed(2)} ر.س</span>
+                      <span className="font-bold">{(a.price * (a.quantity || 1)).toFixed(2)} <Riyal /></span>
                     </div>
                   ))}
                 </div>
@@ -2040,7 +2041,7 @@ export const BookingScreen: React.FC = () => {
                   {bookingAddons.filter(a => !a.id.startsWith('sofa-') && !a.id.startsWith('tank-') && !a.id.startsWith('pest-')).map(a => (
                     <div key={a.id} className="flex items-center justify-between text-xs text-slate-700">
                       <span className="truncate max-w-[170px]">{a.name} × {a.quantity || 1}</span>
-                      <span className="font-bold">{(a.price * (a.quantity || 1)).toFixed(2)} ر.س</span>
+                      <span className="font-bold">{(a.price * (a.quantity || 1)).toFixed(2)} <Riyal /></span>
                     </div>
                   ))}
                 </div>
@@ -2051,36 +2052,36 @@ export const BookingScreen: React.FC = () => {
                 {isPestControlService ? (
                   <div className="flex items-center justify-between font-bold text-slate-800">
                     <span>مجموع عناصر مكافحة الحشرات:</span>
-                    <span className="text-blue-600 font-black">{pestItemsTotal.toFixed(2)} ر.س</span>
+                    <span className="text-blue-600 font-black">{pestItemsTotal.toFixed(2)} <Riyal /></span>
                   </div>
                 ) : isTankService ? (
                   <div className="flex items-center justify-between font-bold text-slate-800">
                     <span>مجموع عناصر الخزانات:</span>
-                    <span className="text-blue-600 font-black">{tankItemsTotal.toFixed(2)} ر.س</span>
+                    <span className="text-blue-600 font-black">{tankItemsTotal.toFixed(2)} <Riyal /></span>
                   </div>
                 ) : isSofaService ? (
                   <div className="flex items-center justify-between font-bold text-slate-800">
                     <span>مجموع عناصر الكنب:</span>
-                    <span className="text-blue-600 font-black">{sofaItemsTotal.toFixed(2)} ر.س</span>
+                    <span className="text-blue-600 font-black">{sofaItemsTotal.toFixed(2)} <Riyal /></span>
                   </div>
                 ) : (
                   <div className="flex items-center justify-between">
                     <span>سعر الخدمة الأساسي:</span>
-                    <span>{baseServicePrice.toFixed(2)} ر.س</span>
+                    <span>{baseServicePrice.toFixed(2)} <Riyal /></span>
                   </div>
                 )}
 
                 {addonsTotal > (isPestControlService ? pestItemsTotal : isTankService ? tankItemsTotal : isSofaService ? sofaItemsTotal : 0) && (
                   <div className="flex items-center justify-between">
                     <span>مجموع الإضافات الأخرى:</span>
-                    <span>+{(addonsTotal - (isPestControlService ? pestItemsTotal : isTankService ? tankItemsTotal : isSofaService ? sofaItemsTotal : 0)).toFixed(2)} ر.س</span>
+                    <span>+{(addonsTotal - (isPestControlService ? pestItemsTotal : isTankService ? tankItemsTotal : isSofaService ? sofaItemsTotal : 0)).toFixed(2)} <Riyal /></span>
                   </div>
                 )}
 
                 {deliveryFee > 0 ? (
                   <div className="flex items-center justify-between">
                     <span>رسوم التوصيل والنقل:</span>
-                    <span>+{deliveryFee.toFixed(2)} ر.س</span>
+                    <span>+{deliveryFee.toFixed(2)} <Riyal /></span>
                   </div>
                 ) : (
                   <div className="flex items-center justify-between text-emerald-700 font-bold">
@@ -2092,20 +2093,20 @@ export const BookingScreen: React.FC = () => {
                 {couponDiscountAmount > 0 && (
                   <div className="flex items-center justify-between text-emerald-700 font-bold">
                     <span>خصم الكوبون:</span>
-                    <span>-{couponDiscountAmount.toFixed(2)} ر.س</span>
+                    <span>-{couponDiscountAmount.toFixed(2)} <Riyal /></span>
                   </div>
                 )}
 
                 {walletDeduction > 0 && (
                   <div className="flex items-center justify-between text-emerald-700 font-bold">
                     <span>خصم المحفظة:</span>
-                    <span>-{walletDeduction.toFixed(2)} ر.س</span>
+                    <span>-{walletDeduction.toFixed(2)} <Riyal /></span>
                   </div>
                 )}
 
                 <div className="flex items-center justify-between text-slate-900 font-black text-sm pt-2 border-t border-slate-200">
                   <span>المبلغ الإجمالي المستحق:</span>
-                  <span className="text-blue-600 text-lg">{finalDueAmount.toFixed(2)} ر.س</span>
+                  <span className="text-blue-600 text-lg">{finalDueAmount.toFixed(2)} <Riyal /></span>
                 </div>
               </div>
 
@@ -2221,7 +2222,7 @@ export const BookingScreen: React.FC = () => {
                 <div className="flex items-center justify-between text-xs sm:text-sm text-slate-500">
                   <span className="font-bold">سعر القطعة</span>
                   <span className="font-bold text-slate-700">
-                    {activeSofaModalItem.price.toFixed(2)} ر.س
+                    {activeSofaModalItem.price.toFixed(2)} <Riyal />
                   </span>
                 </div>
 
@@ -2234,7 +2235,7 @@ export const BookingScreen: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-1 text-base sm:text-lg font-black text-blue-600">
                     <span>{(activeSofaModalItem.price * sofaModalQuantity).toFixed(2)}</span>
-                    <span className="text-xs font-bold">ر.س</span>
+                    <span className="text-xs font-bold"><Riyal /></span>
                   </div>
                 </div>
               </div>
@@ -2247,7 +2248,7 @@ export const BookingScreen: React.FC = () => {
               >
                 <ShoppingCart className="w-5 h-5" />
                 <span>
-                  اضف إلى السلة • {(activeSofaModalItem.price * sofaModalQuantity).toFixed(2)} ر.س
+                  اضف إلى السلة • {(activeSofaModalItem.price * sofaModalQuantity).toFixed(2)} <Riyal />
                 </span>
               </button>
             </div>
@@ -2336,7 +2337,7 @@ export const BookingScreen: React.FC = () => {
                 <div className="flex items-center justify-between text-xs sm:text-sm text-slate-500">
                   <span className="font-bold">سعر القطعة</span>
                   <span className="font-bold text-slate-700">
-                    {activeTankModalItem.price.toFixed(2)} ر.س
+                    {activeTankModalItem.price.toFixed(2)} <Riyal />
                   </span>
                 </div>
 
@@ -2349,7 +2350,7 @@ export const BookingScreen: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-1 text-base sm:text-lg font-black text-blue-600">
                     <span>{(activeTankModalItem.price * tankModalQuantity).toFixed(2)}</span>
-                    <span className="text-xs font-bold">ر.س</span>
+                    <span className="text-xs font-bold"><Riyal /></span>
                   </div>
                 </div>
               </div>
@@ -2362,7 +2363,7 @@ export const BookingScreen: React.FC = () => {
               >
                 <ShoppingCart className="w-5 h-5" />
                 <span>
-                  اضف إلى السلة • {(activeTankModalItem.price * tankModalQuantity).toFixed(2)} ر.س
+                  اضف إلى السلة • {(activeTankModalItem.price * tankModalQuantity).toFixed(2)} <Riyal />
                 </span>
               </button>
             </div>
@@ -2451,7 +2452,7 @@ export const BookingScreen: React.FC = () => {
                 <div className="flex items-center justify-between text-xs sm:text-sm text-slate-500">
                   <span className="font-bold">سعر القطعة</span>
                   <span className="font-bold text-slate-700">
-                    {activePestModalItem.price.toFixed(2)} ر.س
+                    {activePestModalItem.price.toFixed(2)} <Riyal />
                   </span>
                 </div>
 
@@ -2464,7 +2465,7 @@ export const BookingScreen: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-1 text-base sm:text-lg font-black text-blue-600">
                     <span>{(activePestModalItem.price * pestModalQuantity).toFixed(2)}</span>
-                    <span className="text-xs font-bold">ر.س</span>
+                    <span className="text-xs font-bold"><Riyal /></span>
                   </div>
                 </div>
               </div>
@@ -2477,7 +2478,7 @@ export const BookingScreen: React.FC = () => {
               >
                 <ShoppingCart className="w-5 h-5" />
                 <span>
-                  اضف إلى السلة • {(activePestModalItem.price * pestModalQuantity).toFixed(2)} ر.س
+                  اضف إلى السلة • {(activePestModalItem.price * pestModalQuantity).toFixed(2)} <Riyal />
                 </span>
               </button>
             </div>
@@ -2494,7 +2495,7 @@ export const BookingScreen: React.FC = () => {
               <div className="text-center">
                 <h4 className="text-base font-bold text-slate-900">تأكيد سداد وحجز الخدمة</h4>
                 <p className="text-xs text-slate-500 mt-1">
-                  المبلغ المطلوب: <strong className="text-blue-600">{finalDueAmount.toFixed(2)} ر.س</strong>
+                  المبلغ المطلوب: <strong className="text-blue-600">{finalDueAmount.toFixed(2)} <Riyal /></strong>
                 </p>
               </div>
 

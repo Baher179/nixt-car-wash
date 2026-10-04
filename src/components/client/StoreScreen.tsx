@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { StoreProduct } from '../../types';
 import { StoreCategoryTemplate } from './StoreCategoryTemplate';
@@ -621,7 +622,7 @@ export const StoreScreen: React.FC = () => {
                   </div>
                   <h4 className="text-xs font-black text-slate-900 line-clamp-2">{prod.name}</h4>
                   <div className="mt-2 flex items-center justify-between">
-                    <span className="text-sm font-black text-blue-700">{prod.price.toFixed(2)} ر.س</span>
+                    <span className="text-sm font-black text-blue-700">{prod.price.toFixed(2)} <Riyal /></span>
                     <button
                       type="button"
                       onClick={e => handleAddToCart(prod, e)}
@@ -862,36 +863,35 @@ export const StoreScreen: React.FC = () => {
                     >
                       <div
                         onClick={() => openProductDetail(prod)}
-                        className={`relative overflow-hidden rounded-3xl border ${theme.borderColor} bg-gradient-to-l ${theme.bgGradient} p-4 sm:p-5 shadow-xs hover:shadow-lg transition-all duration-300 flex items-center justify-between min-h-[185px] sm:min-h-[195px] cursor-pointer group/card`}
+                        className={`card-i relative overflow-hidden rounded-3xl border ${theme.borderColor} bg-gradient-to-l ${theme.bgGradient} p-5 sm:p-6 flex items-center gap-4 min-h-[230px] sm:min-h-[240px] cursor-pointer group/card`}
                       >
                         {/* Right Content (Text & Action Button) */}
-                        <div className="z-10 space-y-2 max-w-[62%]">
+                        <div className="z-10 space-y-2.5 flex-1 min-w-0">
                           {/* Badges row */}
                           <div className="flex items-center gap-1.5 flex-wrap">
                             <span className={`${theme.badgeColor} text-[11px] sm:text-xs font-black px-2.5 py-0.5 rounded-full shadow-2xs flex items-center gap-1`}>
                               <span>خصم {discountPct}%</span>
-                              <span>🏷️</span>
                             </span>
                           </div>
 
                           {/* Title */}
-                          <h4 className="text-base sm:text-lg font-black text-slate-900 tracking-tight leading-snug group-hover/card:text-blue-600 transition-colors line-clamp-1">
+                          <h4 className="text-[15px] sm:text-base font-bold text-ink tracking-tight leading-snug group-hover/card:text-brand transition-colors line-clamp-2 min-h-[2.6rem]">
                             {prod.name}
                           </h4>
 
                           {/* Subtitle */}
-                          <p className="text-[11px] sm:text-xs text-slate-500 font-medium line-clamp-1">
+                          <p className="text-[11px] sm:text-xs text-muted font-medium line-clamp-2">
                             {prod.categoryLabel || 'منتج أصلي معتمد وتوصيل سريع'}
                           </p>
 
                           {/* Price Display */}
                           <div className="flex items-baseline gap-1.5 pt-0.5">
                             <span className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
-                              {prod.price.toFixed(2)} ر.س
+                              {prod.price.toFixed(2)} <Riyal />
                             </span>
                             {prod.originalPrice && (
                               <span className="text-xs text-faint line-through font-medium">
-                                {prod.originalPrice.toFixed(2)} ر.س
+                                {prod.originalPrice.toFixed(2)} <Riyal />
                               </span>
                             )}
                           </div>
@@ -1099,11 +1099,11 @@ export const StoreScreen: React.FC = () => {
                           <span className="text-base sm:text-lg font-black text-blue-700">
                             {prod.price.toFixed(2)}
                           </span>
-                          <span className="text-[10px] font-bold text-slate-600">ر.س</span>
+                          <span className="text-[10px] font-bold text-slate-600"><Riyal /></span>
                         </div>
                         {prod.originalPrice && (
                           <span className="text-[10px] text-faint line-through block -mt-1">
-                            {prod.originalPrice.toFixed(2)} ر.س
+                            {prod.originalPrice.toFixed(2)} <Riyal />
                           </span>
                         )}
                       </div>

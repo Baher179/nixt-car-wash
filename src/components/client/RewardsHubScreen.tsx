@@ -1,4 +1,5 @@
 import React from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import {
   Gift,
@@ -64,7 +65,7 @@ export const RewardsHubScreen: React.FC = () => {
               <div className="text-right">
                 <span className="text-xs text-blue-100 block">رصيدك بالمحفظة</span>
                 <span className="text-base font-black font-mono text-white leading-tight">
-                  {walletBalance.toFixed(0)} <span className="text-xs text-amber-300 font-bold">ر.س</span>
+                  {walletBalance.toFixed(0)} <span className="text-xs text-amber-300 font-bold"><Riyal /></span>
                 </span>
               </div>
             </div>
@@ -104,7 +105,7 @@ export const RewardsHubScreen: React.FC = () => {
 
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200/70">
                 <Award className="w-3.5 h-3.5 text-amber-600" />
-                <span>مكافأة 25 ر.س</span>
+                <span>مكافأة 25 <Riyal /></span>
               </span>
             </div>
 
@@ -120,7 +121,7 @@ export const RewardsHubScreen: React.FC = () => {
 
             {/* Description */}
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5">
-              شارك رمز دعوتك الحصري مع أصدقائك ومعارفك. يحصل صديقك على خصم مميز على أول طلب، وتحصل أنت على رصيد 25 ر.س يُضاف فوراً إلى محفظتك!
+              شارك رمز دعوتك الحصري مع أصدقائك ومعارفك. يحصل صديقك على خصم مميز على أول طلب، وتحصل أنت على رصيد 25 <Riyal /> يُضاف فوراً إلى محفظتك!
             </p>
 
             {/* Feature Bullets */}
@@ -129,7 +130,7 @@ export const RewardsHubScreen: React.FC = () => {
                 <div className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
                   <Check className="w-2.5 h-2.5 stroke-[3]" />
                 </div>
-                <span className="font-medium">رصيد 25 ر.س فوري بالمحفظة لكل صديق مسجل</span>
+                <span className="font-medium">رصيد 25 <Riyal /> فوري بالمحفظة لكل صديق مسجل</span>
               </div>
               
               <div className="flex items-center gap-2 text-xs text-slate-700">
@@ -212,7 +213,7 @@ export const RewardsHubScreen: React.FC = () => {
                 <div className="w-4 h-4 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
                   <Check className="w-2.5 h-2.5 stroke-[3]" />
                 </div>
-                <span className="font-medium">إمكانية شحن رصيد هدية نقدي يبدأ من 20 ر.س</span>
+                <span className="font-medium">إمكانية شحن رصيد هدية نقدي يبدأ من 20 <Riyal /></span>
               </div>
 
               <div className="flex items-center gap-2 text-xs text-slate-700">

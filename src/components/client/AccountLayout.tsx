@@ -1,4 +1,5 @@
 import React from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp, AppScreen } from '../../context/AppContext';
 import { AccountSidebar } from './AccountSidebar';
 import {
@@ -62,7 +63,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ currentScreen, chi
                     {user.name || 'عميل نيكست'}
                   </h3>
                   <span className="text-[10px] font-bold bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded-md border border-blue-200/60 shrink-0">
-                    {walletBalance.toFixed(0)} ر.س
+                    {walletBalance.toFixed(0)} <Riyal />
                   </span>
                 </div>
                 <p className="text-xs text-slate-500 font-mono mt-0.5" dir="ltr">

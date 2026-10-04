@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { StoreProduct } from '../../types';
 import carCareBannerImg from '../../assets/images/car_care_banner_1788357613398.jpg';
@@ -979,11 +980,11 @@ export const StoreCategoryTemplate: React.FC<StoreCategoryTemplateProps> = ({
                           {/* Price Display */}
                           <div className="flex items-baseline gap-1.5 pt-0.5">
                             <span className="text-base sm:text-lg font-black text-slate-900 tracking-tight font-['Cairo']">
-                              {prod.price.toFixed(2)} ر.س
+                              {prod.price.toFixed(2)} <Riyal />
                             </span>
                             {prod.originalPrice && (
                               <span className="text-xs text-slate-400 line-through font-medium">
-                                {prod.originalPrice.toFixed(2)} ر.س
+                                {prod.originalPrice.toFixed(2)} <Riyal />
                               </span>
                             )}
                           </div>
@@ -1220,11 +1221,11 @@ export const StoreCategoryTemplate: React.FC<StoreCategoryTemplateProps> = ({
                           <span className="text-base sm:text-lg font-black text-blue-700 font-['Cairo']">
                             {prod.price.toFixed(2)}
                           </span>
-                          <span className="text-[10px] font-bold text-slate-600">ر.س</span>
+                          <span className="text-[10px] font-bold text-slate-600"><Riyal /></span>
                         </div>
                         {prod.originalPrice && (
                           <span className="text-[10px] text-slate-400 line-through block -mt-1 font-['Cairo']">
-                            {prod.originalPrice.toFixed(2)} ر.س
+                            {prod.originalPrice.toFixed(2)} <Riyal />
                           </span>
                         )}
                       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import {
   ArrowRight,
@@ -144,11 +145,11 @@ export const SendGiftScreen: React.FC = () => {
             <p className="text-sm text-slate-600 leading-relaxed font-normal">
               {giftMode === 'package' && selectedPackage ? (
                 <>
-                  تم إرسال هدية <strong className="text-blue-600 font-bold">"{selectedPackage.title}"</strong> بقيمة <strong className="text-emerald-600 font-bold">{selectedPackage.price} ر.س</strong> إلى الرقم ({recipientPhone}) عبر رسالة نصية SMS.
+                  تم إرسال هدية <strong className="text-blue-600 font-bold">"{selectedPackage.title}"</strong> بقيمة <strong className="text-emerald-600 font-bold">{selectedPackage.price} <Riyal /></strong> إلى الرقم ({recipientPhone}) عبر رسالة نصية SMS.
                 </>
               ) : (
                 <>
-                  تم إرسال كود الهدية بقيمة <strong className="text-emerald-600 font-bold">{giftAmount} ر.س</strong> إلى الرقم ({recipientPhone}) عبر رسالة نصية SMS تحتوي على رابط شحن الرصيد بالمحفظة.
+                  تم إرسال كود الهدية بقيمة <strong className="text-emerald-600 font-bold">{giftAmount} <Riyal /></strong> إلى الرقم ({recipientPhone}) عبر رسالة نصية SMS تحتوي على رابط شحن الرصيد بالمحفظة.
                 </>
               )}
             </p>
@@ -351,10 +352,10 @@ export const SendGiftScreen: React.FC = () => {
                                 <span className="text-sm font-bold text-blue-700">
                                   {pkg.price.toFixed(2)}
                                 </span>
-                                <span className="text-[10px] font-medium text-slate-500">ر.س</span>
+                                <span className="text-[10px] font-medium text-slate-500"><Riyal /></span>
                                 {pkg.originalPrice && (
                                   <span className="text-[10px] text-slate-400 font-normal line-through mr-1">
-                                    {pkg.originalPrice} ر.س
+                                    {pkg.originalPrice} <Riyal />
                                   </span>
                                 )}
                               </div>
@@ -484,7 +485,7 @@ export const SendGiftScreen: React.FC = () => {
                   <div>
                     <span className="text-xs font-semibold text-slate-900 block">الدفع من رصيد المحفظة</span>
                     <span className={`text-[10px] ${walletBalance >= currentTotalToPay ? 'text-emerald-600 font-medium' : 'text-red-500'}`}>
-                      المتوفر: {walletBalance.toFixed(2)} ر.س
+                      المتوفر: {walletBalance.toFixed(2)} <Riyal />
                       {walletBalance < currentTotalToPay && ' (الرصيد غير كافٍ)'}
                     </span>
                   </div>
@@ -510,7 +511,7 @@ export const SendGiftScreen: React.FC = () => {
               <div className="flex items-center justify-between text-slate-900 font-bold pt-1 border-t border-slate-200">
                 <span>الإجمالي المطلوب سداده:</span>
                 <span className="text-base text-blue-700 font-bold">
-                  {currentTotalToPay.toFixed(2)} ر.س
+                  {currentTotalToPay.toFixed(2)} <Riyal />
                 </span>
               </div>
             </div>

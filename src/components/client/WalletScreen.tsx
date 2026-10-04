@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import confetti from 'canvas-confetti';
 import {
@@ -308,7 +309,7 @@ export const WalletScreen: React.FC = () => {
                   <span className={`text-sm sm:text-base font-bold ${
                     isWalletEnabled ? 'text-emerald-600' : 'text-slate-500'
                   }`}>
-                    ر.س
+                    <Riyal />
                   </span>
                 </div>
               </div>
@@ -592,7 +593,7 @@ export const WalletScreen: React.FC = () => {
                     مجموع الإيداعات بالفترة
                   </span>
                   <span className="text-xl font-black text-emerald-700 block">
-                    {totalIn.toFixed(2)} ر.س
+                    {totalIn.toFixed(2)} <Riyal />
                   </span>
                 </div>
                 <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs">
@@ -607,7 +608,7 @@ export const WalletScreen: React.FC = () => {
                     مجموع المصروفات بالفترة
                   </span>
                   <span className="text-xl font-black text-rose-600 block">
-                    {totalOut.toFixed(2)} ر.س
+                    {totalOut.toFixed(2)} <Riyal />
                   </span>
                 </div>
                 <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 shadow-2xs">
@@ -709,7 +710,7 @@ export const WalletScreen: React.FC = () => {
                                 isPositive ? 'text-emerald-600' : 'text-rose-600'
                               }`}
                             >
-                              {isPositive ? `+${tx.amount.toFixed(2)}` : `${tx.amount.toFixed(2)}`} ر.س
+                              {isPositive ? `+${tx.amount.toFixed(2)}` : `${tx.amount.toFixed(2)}`} <Riyal />
                             </span>
                           </td>
                         </tr>
@@ -763,7 +764,7 @@ export const WalletScreen: React.FC = () => {
                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                     }`}
                   >
-                    {val} ر.س
+                    {val} <Riyal />
                   </button>
                 ))}
               </div>
@@ -781,7 +782,7 @@ export const WalletScreen: React.FC = () => {
                   className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm font-black text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none text-right"
                   placeholder="100"
                 />
-                <span className="absolute left-3 top-3 text-xs font-bold text-slate-400">ر.س</span>
+                <span className="absolute left-3 top-3 text-xs font-bold text-slate-400"><Riyal /></span>
               </div>
             </div>
 

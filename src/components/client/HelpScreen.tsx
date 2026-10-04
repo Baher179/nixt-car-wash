@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import {
   ArrowRight,
@@ -384,7 +385,7 @@ export const HelpScreen: React.FC = () => {
                             </span>
                           </div>
                           <span className="text-xs font-black text-blue-600 font-['Cairo']">
-                            {ord.totalAmount} ر.س
+                            {ord.totalAmount} <Riyal />
                           </span>
                         </div>
                       ))}

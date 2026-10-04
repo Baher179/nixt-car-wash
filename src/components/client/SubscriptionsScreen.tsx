@@ -1,4 +1,5 @@
 import React from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { UserSubscription } from '../../types';
 import { INITIAL_USER_SUBSCRIPTIONS } from '../../data/initialData';
@@ -72,7 +73,7 @@ export const SubscriptionsScreen: React.FC<SubscriptionsScreenProps> = () => {
                   </h3>
                   {sub.price && (
                     <span className="text-xs font-black text-slate-900 bg-slate-100 px-2.5 py-1 rounded-xl font-mono shrink-0">
-                      {sub.price} ر.س
+                      {sub.price} <Riyal />
                     </span>
                   )}
                 </div>

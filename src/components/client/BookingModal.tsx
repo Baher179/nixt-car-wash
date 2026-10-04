@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem, Car, Address, AddonProduct } from '../../types';
 import { CarpetBookingFlow } from './CarpetBookingFlow';
@@ -390,7 +391,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               </div>
               <div className="flex items-center justify-between text-xs">
                 <span className="text-slate-500 text-[11px]">الفئة: {c.category === 'suv' ? 'جيب SUV' : 'سيدان'}</span>
-                <span className="font-bold text-blue-700">{priceForThisCar.toFixed(2)} ر.س</span>
+                <span className="font-bold text-blue-700">{priceForThisCar.toFixed(2)} <Riyal /></span>
               </div>
             </div>
           );
@@ -523,7 +524,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
                   <div className="flex items-center gap-3 shrink-0">
                     <span className="text-xs font-black text-blue-700">
-                      {addon.price.toFixed(2)} ر.س
+                      {addon.price.toFixed(2)} <Riyal />
                     </span>
                     {!isCarpetOrFurniture && (
                       isSelected ? (
@@ -614,7 +615,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   </div>
                   <div>
                     <h5 className="text-xs font-black text-slate-900">أخرى (مقاس مخصص)</h5>
-                    <p className="text-[11px] text-slate-500 leading-tight">أدخل مقاسات السجاد غير المتوفرة في القائمة ({pricePerMeter} ر.س / للمتر)</p>
+                    <p className="text-[11px] text-slate-500 leading-tight">أدخل مقاسات السجاد غير المتوفرة في القائمة ({pricePerMeter} <Riyal /> / للمتر)</p>
                   </div>
                 </div>
               </div>
@@ -651,7 +652,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   <div className="flex items-center justify-between bg-white p-2 rounded-lg border border-slate-100">
                     <div className="flex flex-col">
                       <span className="text-[10px] text-slate-500">التكلفة الإجمالية:</span>
-                      <span className="font-black text-blue-700 text-sm">{customPrice.toFixed(2)} ر.س</span>
+                      <span className="font-black text-blue-700 text-sm">{customPrice.toFixed(2)} <Riyal /></span>
                     </div>
                     
                     {selectedCustomAddon ? (
@@ -745,7 +746,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                             {prod.name}
                           </h6>
                           <div className="flex items-center gap-1 mt-0.5">
-                            <span className="text-[10px] font-black text-amber-600">{prod.price.toFixed(2)} ر.س</span>
+                            <span className="text-[10px] font-black text-amber-600">{prod.price.toFixed(2)} <Riyal /></span>
                             {prod.originalPrice && (
                               <span className="text-[9px] text-slate-400 line-through">{prod.originalPrice.toFixed(2)}</span>
                             )}
@@ -945,7 +946,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 <div>
                   <span className="text-xs text-slate-500 font-medium block">السعر الأساسي للخدمة</span>
                   <div className="text-xl font-bold text-blue-700">
-                    {baseServicePrice.toFixed(2)} <span className="text-xs font-semibold">ر.س</span>
+                    {baseServicePrice.toFixed(2)} <span className="text-xs font-semibold"><Riyal /></span>
                   </div>
                 </div>
                 <div className="text-left text-xs">
@@ -1085,7 +1086,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                             {a.quantity && a.quantity > 1 ? (
                               <span className="font-black bg-white/70 px-1 rounded text-[9px]">x{a.quantity}</span>
                             ) : null}
-                            <span className="opacity-75">({(a.price * (a.quantity || 1)).toFixed(2)} ر.س)</span>
+                            <span className="opacity-75">({(a.price * (a.quantity || 1)).toFixed(2)} <Riyal />)</span>
                           </span>
                         );
                       })}
@@ -1198,14 +1199,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 {addonsTotal > 0 && (
                   <div className="flex justify-between">
                     <span className="text-slate-600">إجمالي الخدمات الإضافية</span>
-                    <span className="font-bold text-slate-800">{addonsTotal.toFixed(2)} ر.س</span>
+                    <span className="font-bold text-slate-800">{addonsTotal.toFixed(2)} <Riyal /></span>
                   </div>
                 )}
 
                 {deliveryFee > 0 ? (
                   <div className="flex justify-between text-slate-600">
                     <span>رسوم الخدمة والانتقال</span>
-                    <span className="font-bold text-slate-800">{deliveryFee.toFixed(2)} ر.س</span>
+                    <span className="font-bold text-slate-800">{deliveryFee.toFixed(2)} <Riyal /></span>
                   </div>
                 ) : (
                   <div className="flex justify-between text-emerald-600 font-bold">
@@ -1217,18 +1218,18 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-emerald-600 font-bold">
                     <span>خصم الكوبون (على الخدمات)</span>
-                    <span>- {discountAmount.toFixed(2)} ر.س</span>
+                    <span>- {discountAmount.toFixed(2)} <Riyal /></span>
                   </div>
                 )}
 
                 <div className="flex justify-between text-slate-500 pt-1 border-t border-slate-100">
                   <span>ضريبة القيمة المضافة (15% شاملة)</span>
-                  <span>{vatAmount.toFixed(2)} ر.س</span>
+                  <span>{vatAmount.toFixed(2)} <Riyal /></span>
                 </div>
 
                 <div className="flex justify-between font-bold text-sm text-blue-700 pt-2 border-t border-slate-200">
                   <span>المبلغ الإجمالي للدفع</span>
-                  <span className="text-base">{totalAmount.toFixed(2)} ر.س</span>
+                  <span className="text-base">{totalAmount.toFixed(2)} <Riyal /></span>
                 </div>
               </div>
 
@@ -1258,7 +1259,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       </div>
                       <div>
                         <span className="text-xs font-bold text-slate-900 block">المحفظة الإلكترونية</span>
-                        <span className="text-[11px] text-slate-500">رصيدك الحالي: {walletBalance.toFixed(2)} ر.س</span>
+                        <span className="text-[11px] text-slate-500">رصيدك الحالي: {walletBalance.toFixed(2)} <Riyal /></span>
                       </div>
                     </div>
                     <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${
@@ -1308,7 +1309,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       </span>
                       <div>
                         <span className="text-xs font-bold text-slate-900 block">قسمها على 4 دفعات بدون فوائد مع تابي</span>
-                        <span className="text-[11px] text-slate-500">{(totalAmount / 4).toFixed(2)} ر.س / دفعة</span>
+                        <span className="text-[11px] text-slate-500">{(totalAmount / 4).toFixed(2)} <Riyal /> / دفعة</span>
                       </div>
                     </div>
                     <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${
@@ -1370,7 +1371,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           <div>
             <span className="text-[11px] text-slate-400 block font-medium">المجموع الكلي:</span>
             <span className="text-lg font-bold text-blue-700">
-              {totalAmount.toFixed(2)} ر.س
+              {totalAmount.toFixed(2)} <Riyal />
             </span>
           </div>
 
@@ -1409,7 +1410,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   تأكيد سداد وحجز الخدمة
                 </h4>
                 <p className="text-xs text-slate-500 mt-1 font-normal">
-                  المبلغ المطلوب: {totalAmount.toFixed(2)} ر.س
+                  المبلغ المطلوب: {totalAmount.toFixed(2)} <Riyal />
                 </p>
               </div>
 
@@ -1562,7 +1563,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                               {prod.name}
                             </h5>
                             <div className="flex items-center gap-1.5 mt-0.5">
-                              <span className="text-xs font-black text-amber-600">{prod.price.toFixed(2)} ر.س</span>
+                              <span className="text-xs font-black text-amber-600">{prod.price.toFixed(2)} <Riyal /></span>
                               {prod.originalPrice && (
                                 <span className="text-[10px] text-slate-400 line-through">
                                   {prod.originalPrice.toFixed(2)}

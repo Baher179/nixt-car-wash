@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { OrderStatus, ServiceItem, StoreProduct, Captain, Coupon, CoverageZone, TimeSlotCapacity } from '../../types';
 import {
@@ -205,7 +206,7 @@ export const AdminDashboard: React.FC = () => {
                 <div className="space-y-1">
                   <span className="text-xs text-slate-400 font-semibold">إجمالي الإيرادات</span>
                   <h3 className="text-2xl font-bold text-emerald-400">
-                    {totalRevenue.toFixed(2)} <span className="text-xs">ر.س</span>
+                    {totalRevenue.toFixed(2)} <span className="text-xs"><Riyal /></span>
                   </h3>
                   <span className="text-[10px] text-slate-400 font-normal">+18% مقارنة بالأسبوع الماضي</span>
                 </div>
@@ -278,7 +279,7 @@ export const AdminDashboard: React.FC = () => {
                       <span className="text-slate-400">({o.customerName})</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-emerald-400 font-bold">{o.totalAmount.toFixed(2)} ر.س</span>
+                      <span className="text-emerald-400 font-bold">{o.totalAmount.toFixed(2)} <Riyal /></span>
                       <span className="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px] font-bold">
                         {o.status}
                       </span>
@@ -435,7 +436,7 @@ export const AdminDashboard: React.FC = () => {
                           )}
                         </select>
                       </td>
-                      <td className="p-3.5 font-bold text-emerald-400">{order.totalAmount.toFixed(2)} ر.س</td>
+                      <td className="p-3.5 font-bold text-emerald-400">{order.totalAmount.toFixed(2)} <Riyal /></td>
                       <td className="p-3.5 text-center">
                         <button
                           onClick={() => {
@@ -537,7 +538,7 @@ export const AdminDashboard: React.FC = () => {
                       <img src={s.image} alt={s.title} className="w-14 h-14 rounded-xl object-cover" />
                       <div>
                         <h6 className="text-xs font-black text-white">{s.title}</h6>
-                        <span className="text-xs font-bold text-amber-400">{s.price.toFixed(2)} ر.س</span>
+                        <span className="text-xs font-bold text-amber-400">{s.price.toFixed(2)} <Riyal /></span>
                         <div className="text-[10px] text-slate-400">سيدان: {s.pricingByCarCategory?.sedan || s.price} | SUV: {s.pricingByCarCategory?.suv || s.price}</div>
                       </div>
                     </div>
@@ -566,7 +567,7 @@ export const AdminDashboard: React.FC = () => {
                       <img src={p.image} alt={p.title} className="w-14 h-14 rounded-xl object-cover" />
                       <div>
                         <h6 className="text-xs font-black text-white">{p.title}</h6>
-                        <span className="text-xs font-bold text-amber-400">{p.price.toFixed(2)} ر.س</span>
+                        <span className="text-xs font-bold text-amber-400">{p.price.toFixed(2)} <Riyal /></span>
                         <p className="text-[10px] text-slate-400">{p.tag || 'باقة حصرية'}</p>
                       </div>
                     </div>
@@ -602,7 +603,7 @@ export const AdminDashboard: React.FC = () => {
                     <img src={prod.image} alt={prod.name} className="w-14 h-14 rounded-xl object-cover" />
                     <div>
                       <h6 className="text-xs font-black text-white line-clamp-1">{prod.name}</h6>
-                      <span className="text-xs font-bold text-amber-400">{prod.price.toFixed(2)} ر.س</span>
+                      <span className="text-xs font-bold text-amber-400">{prod.price.toFixed(2)} <Riyal /></span>
                       <span className="text-[10px] text-slate-400 block">المخزون: {prod.stock} قطعة</span>
                     </div>
                   </div>
@@ -967,7 +968,7 @@ export const AdminDashboard: React.FC = () => {
                   className="p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white"
                 >
                   <option value="percentage">نسبة مئوية (%)</option>
-                  <option value="fixed">مبلغ ثابت (ر.س)</option>
+                  <option value="fixed">مبلغ ثابت (<Riyal />)</option>
                 </select>
                 <input
                   type="number"

@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem } from '../../types';
 import {
@@ -889,7 +890,7 @@ export const CategoryServicesScreen: React.FC<CategoryServicesScreenProps> = () 
                                 <span className="text-base sm:text-lg font-black text-blue-700">
                                   {service.price.toFixed(2)}
                                 </span>
-                                <span className="text-xs font-bold text-slate-700">ر.س</span>
+                                <span className="text-xs font-bold text-slate-700"><Riyal /></span>
                                 {hasDiscount && (
                                   <span className="text-[11px] text-slate-400 line-through">
                                     {service.originalPrice?.toFixed(2)}
@@ -1010,7 +1011,7 @@ export const CategoryServicesScreen: React.FC<CategoryServicesScreenProps> = () 
                                 <span>{washCount} غسلات شاملة</span>
                               </span>
                               <span className="text-[11px] text-slate-500 font-medium">
-                                ~ {washPrice} ر.س / للغسلة
+                                ~ {washPrice} <Riyal /> / للغسلة
                               </span>
                             </div>
 
@@ -1039,10 +1040,10 @@ export const CategoryServicesScreen: React.FC<CategoryServicesScreenProps> = () 
                                 <span className="text-xl font-black text-orange-600">
                                   {pkg.price.toFixed(2)}
                                 </span>
-                                <span className="text-xs font-bold text-slate-700">ر.س</span>
+                                <span className="text-xs font-bold text-slate-700"><Riyal /></span>
                                 {pkg.originalPrice && (
                                   <span className="text-xs text-slate-400 line-through mr-1">
-                                    {pkg.originalPrice.toFixed(2)} ر.س
+                                    {pkg.originalPrice.toFixed(2)} <Riyal />
                                   </span>
                                 )}
                               </div>

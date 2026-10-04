@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import confetti from 'canvas-confetti';
 import {
@@ -194,7 +195,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
             </div>
             <div>
               <h4 className="text-xs font-bold text-slate-900">شحن مجاني</h4>
-              <p className="text-[11px] text-slate-500">للطلبات فوق 150 ر.س</p>
+              <p className="text-[11px] text-slate-500">للطلبات فوق 150 <Riyal /></p>
             </div>
           </div>
 
@@ -289,13 +290,13 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                 </p>
               ) : (
                 <p className="text-xs sm:text-sm font-bold text-slate-800">
-                  أضف منتجات بقيمة <span className="font-black text-blue-600">{remainingForFreeDelivery.toFixed(2)} ر.س</span> إضافية للتأهل للشحن المجاني!
+                  أضف منتجات بقيمة <span className="font-black text-blue-600">{remainingForFreeDelivery.toFixed(2)} <Riyal /></span> إضافية للتأهل للشحن المجاني!
                 </p>
               )}
             </div>
           </div>
           <span className="text-xs font-mono font-bold text-slate-500">
-            {cartTotal.toFixed(2)} / {freeDeliveryThreshold} ر.س
+            {cartTotal.toFixed(2)} / {freeDeliveryThreshold} <Riyal />
           </span>
         </div>
 
@@ -387,7 +388,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
 
                         <div className="flex items-baseline gap-2 pt-0.5">
                           <span className="text-xs sm:text-sm font-black text-blue-700">
-                            {item.product.price.toFixed(2)} ر.س
+                            {item.product.price.toFixed(2)} <Riyal />
                           </span>
                           <span className="text-[11px] text-slate-400">للقطعة الواحدة</span>
                         </div>
@@ -421,7 +422,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                       <div className="text-left sm:min-w-[100px]">
                         <span className="text-[11px] text-slate-400 block sm:hidden">الإجمالي:</span>
                         <span className="text-base font-black text-slate-900 font-mono">
-                          {itemTotal.toFixed(2)} ر.س
+                          {itemTotal.toFixed(2)} <Riyal />
                         </span>
                       </div>
 
@@ -537,7 +538,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
             <div className="space-y-3 text-xs">
               <div className="flex items-center justify-between text-slate-600">
                 <span>المجموع الفرعي للمنتجات:</span>
-                <span className="font-bold text-slate-900 font-mono text-sm">{cartTotal.toFixed(2)} ر.س</span>
+                <span className="font-bold text-slate-900 font-mono text-sm">{cartTotal.toFixed(2)} <Riyal /></span>
               </div>
 
               <div className="flex items-center justify-between text-slate-600">
@@ -550,7 +551,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                     مجاني
                   </span>
                 ) : (
-                  <span className="font-bold text-slate-900 font-mono">{deliveryFee.toFixed(2)} ر.س</span>
+                  <span className="font-bold text-slate-900 font-mono">{deliveryFee.toFixed(2)} <Riyal /></span>
                 )}
               </div>
 
@@ -561,7 +562,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                     <Percent className="w-3.5 h-3.5 text-emerald-600" />
                     خصم الكوبون ({appliedCoupon.code}):
                   </span>
-                  <span className="font-mono text-emerald-700">- {discountAmount.toFixed(2)} ر.س</span>
+                  <span className="font-mono text-emerald-700">- {discountAmount.toFixed(2)} <Riyal /></span>
                 </div>
               )}
 
@@ -572,13 +573,13 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                     <Wallet className="w-3.5 h-3.5 text-blue-600" />
                     رصيد المحفظة المستخدم:
                   </span>
-                  <span className="font-mono text-blue-700">- {walletDeduction.toFixed(2)} ر.س</span>
+                  <span className="font-mono text-blue-700">- {walletDeduction.toFixed(2)} <Riyal /></span>
                 </div>
               )}
 
               <div className="flex items-center justify-between text-slate-400 pt-2 border-t border-slate-100 text-[11px]">
                 <span>ضريبة القيمة المضافة (15% مشمولة):</span>
-                <span className="font-mono">{vatAmount.toFixed(2)} ر.س</span>
+                <span className="font-mono">{vatAmount.toFixed(2)} <Riyal /></span>
               </div>
 
               {/* Grand Total */}
@@ -591,7 +592,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                   <span className="text-2xl font-black text-blue-600 font-mono">
                     {(useWalletBalance ? netPayableAmount : grandTotal).toFixed(2)}
                   </span>
-                  <span className="text-xs font-bold text-slate-700 mr-1">ر.س</span>
+                  <span className="text-xs font-bold text-slate-700 mr-1"><Riyal /></span>
                 </div>
               </div>
             </div>
@@ -629,7 +630,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                     </div>
                   </div>
                   <span className="text-xs font-black text-emerald-800 font-mono">
-                    وفّرت {discountAmount.toFixed(2)} ر.س
+                    وفّرت {discountAmount.toFixed(2)} <Riyal />
                   </span>
                 </div>
               ) : (
@@ -709,7 +710,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                   <div>
                     <span className="text-xs font-black text-slate-900 block">رصيد محفظتي الإلكترونية</span>
                     <span className="text-[11px] text-slate-500">
-                      المتاح حالياً: {walletBalance.toFixed(2)} ر.س
+                      المتاح حالياً: {walletBalance.toFixed(2)} <Riyal />
                     </span>
                   </div>
                 </div>
@@ -815,7 +816,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onOpenAddressModal }) =>
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
-                    <span>إتمام الطلب والدفع الآمن ({(useWalletBalance ? netPayableAmount : grandTotal).toFixed(2)} ر.س)</span>
+                    <span>إتمام الطلب والدفع الآمن ({(useWalletBalance ? netPayableAmount : grandTotal).toFixed(2)} <Riyal />)</span>
                   </>
                 )}
               </button>

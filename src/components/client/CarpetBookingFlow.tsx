@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem, CarpetItemOption, Address } from '../../types';
 import { INITIAL_CARPET_ITEMS } from '../../data/initialData';
@@ -368,11 +369,11 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                     <h4 className="text-xl font-black text-white font-['Cairo']">{service.title}</h4>
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-black bg-blue-600/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full">
-                        {service.price.toFixed(2)} ر.س / {service.pricePerMeter ? 'السعر للمتر' : 'للقطعة'}
+                        {service.price.toFixed(2)} <Riyal /> / {service.pricePerMeter ? 'السعر للمتر' : 'للقطعة'}
                       </span>
                       {service.originalPrice && (
                         <span className="text-xs text-slate-300 line-through">
-                          {service.originalPrice.toFixed(2)} ر.س
+                          {service.originalPrice.toFixed(2)} <Riyal />
                         </span>
                       )}
                     </div>
@@ -539,7 +540,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                   {isFreeDelivery ? (
                     <span className="text-emerald-700 font-black">🎉 حصلت على توصيل مجاني!</span>
                   ) : (
-                    <span>أضف <strong className="text-blue-700 font-black">{amountNeededForFreeDelivery.toFixed(2)} ر.س</strong> لتحصل على توصيل مجاني</span>
+                    <span>أضف <strong className="text-blue-700 font-black">{amountNeededForFreeDelivery.toFixed(2)} <Riyal /></strong> لتحصل على توصيل مجاني</span>
                   )}
                 </span>
               </div>
@@ -653,11 +654,11 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                       </div>
                       <div className="flex items-center gap-2 pt-0.5">
                         <span className="text-xs font-black text-blue-700">
-                          {item.price.toFixed(2)} ر.س
+                          {item.price.toFixed(2)} <Riyal />
                         </span>
                         {item.originalPrice && (
                           <span className="text-[10px] text-slate-400 line-through">
-                            {item.originalPrice.toFixed(2)} ر.س
+                            {item.originalPrice.toFixed(2)} <Riyal />
                           </span>
                         )}
                       </div>
@@ -706,7 +707,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                     </div>
                     <div>
                       <h5 className="text-xs font-black text-slate-900">سجاد مقاس مخصص (غير موجود بالقائمة)</h5>
-                      <p className="text-[10px] text-slate-500">احسب التكلفة فوريًا بالمتر المربع ({service.pricePerMeter || 5.50} ر.س / م²)</p>
+                      <p className="text-[10px] text-slate-500">احسب التكلفة فوريًا بالمتر المربع ({service.pricePerMeter || 5.50} <Riyal /> / م²)</p>
                     </div>
                   </div>
                   <button
@@ -754,7 +755,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                             المساحة: {(parseFloat(customLength) * parseFloat(customWidth)).toFixed(2)} م²
                           </span>
                           <span className="text-xs font-black text-blue-700">
-                            التكلفة: {(parseFloat(customLength) * parseFloat(customWidth) * (service.pricePerMeter || 5.50)).toFixed(2)} ر.س
+                            التكلفة: {(parseFloat(customLength) * parseFloat(customWidth) * (service.pricePerMeter || 5.50)).toFixed(2)} <Riyal />
                           </span>
                         </div>
                         <button
@@ -778,7 +779,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                   {totalItemsCount} العناصر المحددة
                 </span>
                 <span className="text-base font-black text-blue-700 font-['Cairo']">
-                  {rawItemsTotal.toFixed(2)} ر.س
+                  {rawItemsTotal.toFixed(2)} <Riyal />
                 </span>
               </div>
 
@@ -850,11 +851,11 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                   <div className="space-y-1.5 text-xs text-slate-600">
                     <div className="flex justify-between">
                       <span>سعر القطعة:</span>
-                      <span className="font-bold text-slate-800">{activeBottomSheetItem.price.toFixed(2)} ر.س</span>
+                      <span className="font-bold text-slate-800">{activeBottomSheetItem.price.toFixed(2)} <Riyal /></span>
                     </div>
                     <div className="flex justify-between font-black text-blue-700 text-sm pt-1 border-t border-slate-100">
                       <span>الإجمالي ({bottomSheetQuantity} قطع):</span>
-                      <span>{(activeBottomSheetItem.price * bottomSheetQuantity).toFixed(2)} ر.س</span>
+                      <span>{(activeBottomSheetItem.price * bottomSheetQuantity).toFixed(2)} <Riyal /></span>
                     </div>
                   </div>
 
@@ -1024,7 +1025,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                         </div>
                       </div>
                       <span className="font-black text-slate-800">
-                        {(entry.item.price * entry.quantity).toFixed(2)} ر.س
+                        {(entry.item.price * entry.quantity).toFixed(2)} <Riyal />
                       </span>
                     </div>
                   ))}
@@ -1032,11 +1033,11 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                   <div className="pt-2 border-t border-slate-200 space-y-1 text-[11px]">
                     <div className="flex justify-between text-slate-600">
                       <span>المجموع الفرعي:</span>
-                      <span className="font-bold">{preVatAmount.toFixed(2)} ر.س</span>
+                      <span className="font-bold">{preVatAmount.toFixed(2)} <Riyal /></span>
                     </div>
                     <div className="flex justify-between text-slate-600">
                       <span>ضريبة القيمة المضافة (15%):</span>
-                      <span className="font-bold">{vatAmount.toFixed(2)} ر.س</span>
+                      <span className="font-bold">{vatAmount.toFixed(2)} <Riyal /></span>
                     </div>
                     <div className="flex justify-between text-slate-600">
                       <span>تكلفة التوصيل:</span>
@@ -1046,7 +1047,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                     </div>
                     <div className="flex justify-between font-black text-xs text-blue-700 pt-1 border-t border-slate-200">
                       <span>الإجمالي الكلي:</span>
-                      <span>{finalTotalAmount.toFixed(2)} ر.س</span>
+                      <span>{finalTotalAmount.toFixed(2)} <Riyal /></span>
                     </div>
                   </div>
                 </div>
@@ -1084,7 +1085,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
               <div>
                 <span className="text-[11px] text-slate-400 block font-bold">المجموع:</span>
                 <span className="text-base font-black text-blue-700 font-['Cairo']">
-                  {finalTotalAmount.toFixed(2)} ر.س
+                  {finalTotalAmount.toFixed(2)} <Riyal />
                 </span>
               </div>
 
@@ -1188,7 +1189,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                         </div>
                       </div>
                       <span className="font-black text-blue-700">
-                        {(entry.item.price * entry.quantity).toFixed(2)} ر.س
+                        {(entry.item.price * entry.quantity).toFixed(2)} <Riyal />
                       </span>
                     </div>
                   ))}
@@ -1252,7 +1253,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                     </div>
                     <div>
                       <span className="text-xs font-bold text-slate-900 block">المحفظة الإلكترونية</span>
-                      <span className="text-[10px] text-slate-500">رصيدك الحالي: {walletBalance.toFixed(2)} ر.س</span>
+                      <span className="text-[10px] text-slate-500">رصيدك الحالي: {walletBalance.toFixed(2)} <Riyal /></span>
                     </div>
                   </div>
                   <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${
@@ -1302,7 +1303,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                     </span>
                     <div>
                       <span className="text-xs font-bold text-slate-900 block">قسمها على 4 دفعات بدون فوائد مع تابي</span>
-                      <span className="text-[10px] text-slate-500">{(finalTotalAmount / 4).toFixed(2)} ر.س / دفعة</span>
+                      <span className="text-[10px] text-slate-500">{(finalTotalAmount / 4).toFixed(2)} <Riyal /> / دفعة</span>
                     </div>
                   </div>
                   <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${
@@ -1345,11 +1346,11 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                 </h4>
                 <div className="flex justify-between text-slate-600">
                   <span>الاجمالى قبل الضريبة:</span>
-                  <span className="font-bold">{preVatAmount.toFixed(2)} ر.س</span>
+                  <span className="font-bold">{preVatAmount.toFixed(2)} <Riyal /></span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>الضريبة (15%):</span>
-                  <span className="font-bold">{vatAmount.toFixed(2)} ر.س</span>
+                  <span className="font-bold">{vatAmount.toFixed(2)} <Riyal /></span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>تكلفة التوصيل:</span>
@@ -1360,12 +1361,12 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-emerald-600 font-bold">
                     <span>خصم الكوبون:</span>
-                    <span>- {discountAmount.toFixed(2)} ر.س</span>
+                    <span>- {discountAmount.toFixed(2)} <Riyal /></span>
                   </div>
                 )}
                 <div className="flex justify-between font-black text-sm text-blue-700 pt-2 border-t border-slate-200">
                   <span>الإجمالي:</span>
-                  <span className="text-base font-['Cairo']">{finalTotalAmount.toFixed(2)} ر.س</span>
+                  <span className="text-base font-['Cairo']">{finalTotalAmount.toFixed(2)} <Riyal /></span>
                 </div>
               </div>
             </div>
@@ -1383,7 +1384,7 @@ export const CarpetBookingFlow: React.FC<CarpetBookingFlowProps> = ({
                 ) : (
                   <>
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>تأكيد الطلب ({finalTotalAmount.toFixed(2)} ر.س)</span>
+                    <span>تأكيد الطلب ({finalTotalAmount.toFixed(2)} <Riyal />)</span>
                   </>
                 )}
               </button>

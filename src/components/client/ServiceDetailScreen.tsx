@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem } from '../../types';
 import {
@@ -454,15 +455,15 @@ export const ServiceDetailScreen: React.FC<ServiceDetailScreenProps> = ({
                     <span className="text-3xl sm:text-4xl font-black text-blue-600 font-['Cairo']">
                       {currentPrice.toFixed(2)}
                     </span>
-                    <span className="text-sm sm:text-base font-bold text-slate-700">ر.س</span>
+                    <span className="text-sm sm:text-base font-bold text-slate-700"><Riyal /></span>
                   </div>
                   {hasDiscount && (
                     <div className="flex items-center gap-2 mt-0.5">
                       <span className="text-xs text-slate-400 line-through font-['Cairo']">
-                        {service.originalPrice?.toFixed(2)} ر.س
+                        {service.originalPrice?.toFixed(2)} <Riyal />
                       </span>
                       <span className="text-[11px] text-emerald-600 font-black bg-emerald-50 px-2 py-0.5 rounded-md">
-                        وفرت {(service.originalPrice! - currentPrice).toFixed(2)} ر.س
+                        وفرت {(service.originalPrice! - currentPrice).toFixed(2)} <Riyal />
                       </span>
                     </div>
                   )}
@@ -540,7 +541,7 @@ export const ServiceDetailScreen: React.FC<ServiceDetailScreenProps> = ({
                   </p>
                   <div className="flex items-baseline justify-between pt-1 border-t border-slate-100">
                     <span className="text-xs sm:text-sm font-black text-blue-700 font-['Cairo']">
-                      {rel.price.toFixed(2)} ر.س
+                      {rel.price.toFixed(2)} <Riyal />
                     </span>
                     <span className="text-[10px] text-slate-500 font-bold">تفاصيل</span>
                   </div>

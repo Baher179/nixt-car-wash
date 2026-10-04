@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem, Coupon } from '../../types';
 import {
@@ -134,7 +135,7 @@ export const OffersScreen: React.FC<OffersScreenProps> = () => {
 
                     {coupon.minOrderValue && (
                       <p className="text-xs text-slate-500">
-                        الحد الأدنى للطلب: {coupon.minOrderValue} ر.س
+                        الحد الأدنى للطلب: {coupon.minOrderValue} <Riyal />
                       </p>
                     )}
                   </div>
@@ -247,7 +248,7 @@ export const OffersScreen: React.FC<OffersScreenProps> = () => {
                       <span className="text-base sm:text-lg font-black text-purple-700">
                         {service.price.toFixed(2)}
                       </span>
-                      <span className="text-xs font-bold text-slate-700">ر.س</span>
+                      <span className="text-xs font-bold text-slate-700"><Riyal /></span>
                       {service.originalPrice && (
                         <span className="text-[11px] text-slate-400 line-through">
                           {service.originalPrice.toFixed(2)}
@@ -283,10 +284,10 @@ export const OffersScreen: React.FC<OffersScreenProps> = () => {
               <Share2 className="w-5 h-5 text-white" />
             </div>
             <h3 className="text-lg sm:text-xl font-black">
-              اكسب 50 ر.س رصيد مع كل دعوة صديق!
+              اكسب 50 <Riyal /> رصيد مع كل دعوة صديق!
             </h3>
             <p className="text-xs text-blue-100 leading-relaxed">
-              شارك كود الإحالة الخاص بك مع عائلتك وأصدقائك؛ يحصل صديقك على خصم 25 ر.س وتصلك 50 ر.س في محفظتك.
+              شارك كود الإحالة الخاص بك مع عائلتك وأصدقائك؛ يحصل صديقك على خصم 25 <Riyal /> وتصلك 50 <Riyal /> في محفظتك.
             </p>
           </div>
 

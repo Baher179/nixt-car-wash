@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import { ServiceItem } from '../../types';
 import confetti from 'canvas-confetti';
@@ -242,11 +243,11 @@ export const PackageDetailScreen: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-[11px] text-slate-500 block">التكلفة للغسلة الواحدة</span>
-                  <span className="text-base sm:text-xl font-black text-blue-600">{washPerPrice} ر.س</span>
+                  <span className="text-base sm:text-xl font-black text-blue-600">{washPerPrice} <Riyal /></span>
                 </div>
                 <div>
                   <span className="text-[11px] text-slate-500 block">إجمالي التوفير</span>
-                  <span className="text-base sm:text-xl font-black text-emerald-600">{totalSavings} ر.س</span>
+                  <span className="text-base sm:text-xl font-black text-emerald-600">{totalSavings} <Riyal /></span>
                 </div>
               </div>
             </div>
@@ -377,7 +378,7 @@ export const PackageDetailScreen: React.FC = () => {
                 <div className="flex items-baseline gap-2 mt-1">
                   <span className="text-3xl font-black text-blue-600">{activePkg.price.toFixed(2)}</span>
                   <span className="text-sm font-bold text-slate-700">ريال سعودي</span>
-                  <span className="text-xs text-slate-400 line-through mr-2">{originalPrice} ر.س</span>
+                  <span className="text-xs text-slate-400 line-through mr-2">{originalPrice} <Riyal /></span>
                 </div>
               </div>
 
@@ -397,10 +398,10 @@ export const PackageDetailScreen: React.FC = () => {
                     />
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-emerald-800">
-                    <span>رصيدك المتاح: {walletBalance.toFixed(2)} ر.س</span>
+                    <span>رصيدك المتاح: {walletBalance.toFixed(2)} <Riyal /></span>
                     {useWallet && (
                       <span className="font-bold text-emerald-700">
-                        خصم {walletDeduction.toFixed(2)} ر.س
+                        خصم {walletDeduction.toFixed(2)} <Riyal />
                       </span>
                     )}
                   </div>
@@ -472,7 +473,7 @@ export const PackageDetailScreen: React.FC = () => {
                     </span>
                     <div>
                       <span className="text-xs font-bold text-slate-900 block">قسمها على 4 دفعات مع تابي</span>
-                      <span className="text-[10px] text-slate-500">{(netDueAmount / 4).toFixed(2)} ر.س / دفعة بدون فوائد</span>
+                      <span className="text-[10px] text-slate-500">{(netDueAmount / 4).toFixed(2)} <Riyal /> / دفعة بدون فوائد</span>
                     </div>
                   </div>
                   <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
@@ -518,7 +519,7 @@ export const PackageDetailScreen: React.FC = () => {
                   className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-black text-sm py-3.5 rounded-2xl shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>اشترك الآن ({netDueAmount.toFixed(2)} ر.س)</span>
+                  <span>اشترك الآن ({netDueAmount.toFixed(2)} <Riyal />)</span>
                 </button>
 
                 <p className="text-[11px] text-slate-400 text-center flex items-center justify-center gap-1">
@@ -588,12 +589,12 @@ export const PackageDetailScreen: React.FC = () => {
               <div className="p-4 bg-gradient-to-b from-blue-50/80 to-blue-50/30 border border-blue-200/80 rounded-2xl text-xs space-y-2 text-slate-700">
                 <div className="flex justify-between">
                   <span>سعر الباقة الأساسي:</span>
-                  <span className="font-bold">{activePkg.price.toFixed(2)} ر.س</span>
+                  <span className="font-bold">{activePkg.price.toFixed(2)} <Riyal /></span>
                 </div>
                 {useWallet && walletDeduction > 0 && (
                   <div className="flex justify-between text-emerald-700 font-bold">
                     <span>خصم رصيد المحفظة:</span>
-                    <span>-{walletDeduction.toFixed(2)} ر.س</span>
+                    <span>-{walletDeduction.toFixed(2)} <Riyal /></span>
                   </div>
                 )}
                 <div className="flex items-baseline justify-between border-t border-blue-200/80 pt-2.5 text-slate-900">
@@ -603,7 +604,7 @@ export const PackageDetailScreen: React.FC = () => {
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-2xl font-black text-blue-700">{netDueAmount.toFixed(2)}</span>
-                    <span className="text-xs font-bold text-slate-700">ر.س</span>
+                    <span className="text-xs font-bold text-slate-700"><Riyal /></span>
                   </div>
                 </div>
               </div>

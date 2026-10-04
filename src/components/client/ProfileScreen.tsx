@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import {
   User,
@@ -200,7 +201,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = () => {
                 title="عرض المحفظة"
               >
                 <span className="text-[11px] text-slate-300 block">رصيد المحفظة</span>
-                <span className="text-lg font-black text-emerald-400">{walletBalance.toFixed(2)} ر.س</span>
+                <span className="text-lg font-black text-emerald-400">{walletBalance.toFixed(2)} <Riyal /></span>
               </button>
 
               <button

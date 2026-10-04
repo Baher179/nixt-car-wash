@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp } from '../../context/AppContext';
 import {
   User,
@@ -190,7 +191,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onOpenCarModal, onOpenAd
         <div className="flex items-center gap-1.5 font-bold text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/15">
           <Wallet className="w-3.5 h-3.5 text-amber-300" />
           <span className="font-mono">{walletBalance.toFixed(2)}</span>
-          <span className="text-[11px] text-amber-300">ر.س</span>
+          <span className="text-[11px] text-amber-300"><Riyal /></span>
         </div>
         <h2 className="text-lg font-black tracking-wide">حسابي - لوحة التحكم</h2>
       </div>
@@ -330,7 +331,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onOpenCarModal, onOpenAd
               </div>
               <div>
                 <span className="text-sm font-bold text-slate-800 block">ادع واكسب</span>
-                <span className="text-[11px] text-emerald-600 font-bold">احصل على 25 ر.س رصيد لكل صديق</span>
+                <span className="text-[11px] text-emerald-600 font-bold">احصل على 25 <Riyal /> رصيد لكل صديق</span>
               </div>
             </div>
             <ChevronLeft className="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors" />
@@ -636,9 +637,9 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onOpenCarModal, onOpenAd
               <div className="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mx-auto shadow-inner text-2xl">
                 🎁
               </div>
-              <h3 className="text-lg font-black text-slate-900">ادع أصدقائك واكسب 25 ر.س</h3>
+              <h3 className="text-lg font-black text-slate-900">ادع أصدقائك واكسب 25 <Riyal /></h3>
               <p className="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto">
-                شارك كود الدعوة الخاص بك، سيحصل صديقك على خصم 25 ر.س على أول حجز، وستحصل أنت على 25 ر.س في محفظتك فور إتمام الخدمة!
+                شارك كود الدعوة الخاص بك، سيحصل صديقك على خصم 25 <Riyal /> على أول حجز، وستحصل أنت على 25 <Riyal /> في محفظتك فور إتمام الخدمة!
               </p>
             </div>
 
@@ -661,7 +662,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onOpenCarModal, onOpenAd
             <div className="grid grid-cols-2 gap-3 text-center">
               <div className="bg-emerald-50 rounded-2xl p-3 border border-emerald-100">
                 <span className="text-[11px] text-emerald-700 block font-semibold">الأرباح المكتسبة</span>
-                <span className="text-base font-black text-emerald-800">50.00 ر.س</span>
+                <span className="text-base font-black text-emerald-800">50.00 <Riyal /></span>
               </div>
               <div className="bg-blue-50 rounded-2xl p-3 border border-blue-100">
                 <span className="text-[11px] text-blue-700 block font-semibold">الأصدقاء المنضمين</span>
@@ -715,7 +716,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onOpenCarModal, onOpenAd
                     }`}
                   >
                     <span className="text-xs font-black block">غسيل شامل متنقل</span>
-                    <span className="text-[11px] text-purple-700 font-bold">59 ر.س</span>
+                    <span className="text-[11px] text-purple-700 font-bold">59 <Riyal /></span>
                   </button>
 
                   <button
@@ -727,8 +728,8 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onOpenCarModal, onOpenAd
                         : 'border-slate-200 hover:bg-slate-50 text-slate-700'
                     }`}
                   >
-                    <span className="text-xs font-black block">رصيد محفظة 100 ر.س</span>
-                    <span className="text-[11px] text-purple-700 font-bold">100 ر.س</span>
+                    <span className="text-xs font-black block">رصيد محفظة 100 <Riyal /></span>
+                    <span className="text-[11px] text-purple-700 font-bold">100 <Riyal /></span>
                   </button>
                 </div>
               </div>

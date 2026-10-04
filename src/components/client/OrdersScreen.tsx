@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Riyal } from '../common/Riyal';
 import { useApp, CARPET_ORDER_STAGES } from '../../context/AppContext';
 import { ServiceOrder, OrderStatus, AddonProduct } from '../../types';
 import { INITIAL_CARPET_ITEMS } from '../../data/initialData';
@@ -505,7 +506,7 @@ export const OrdersScreen: React.FC = () => {
                   <div className="flex items-center justify-between sm:justify-end gap-3.5 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100">
                     <div className="text-right sm:text-left">
                       <div className="text-base sm:text-lg font-black text-blue-700 leading-tight">
-                        {order.totalAmount.toFixed(2)} ر.س
+                        {order.totalAmount.toFixed(2)} <Riyal />
                       </div>
                       <div className="text-[11px] font-bold mt-0.5">
                         {order.paymentStatus === 'paid' ? (
@@ -599,7 +600,7 @@ export const OrdersScreen: React.FC = () => {
                               </p>
                               <div className="flex items-center justify-between text-purple-900 font-black pt-1 border-t border-purple-100">
                                 <span>المبلغ الإجمالي الجديد المطلوب:</span>
-                                <span className="text-sm text-blue-700">{order.totalAmount.toFixed(2)} ر.س (شامل الضريبة)</span>
+                                <span className="text-sm text-blue-700">{order.totalAmount.toFixed(2)} <Riyal /> (شامل الضريبة)</span>
                               </div>
                             </div>
                           </div>
@@ -705,7 +706,7 @@ export const OrdersScreen: React.FC = () => {
                       <div className="space-y-1">
                         <span className="text-[11px] text-slate-400 block font-medium">المبلغ الإجمالي وحالة السداد:</span>
                         <div className="text-base font-bold text-blue-700">
-                          {order.totalAmount.toFixed(2)} ر.س
+                          {order.totalAmount.toFixed(2)} <Riyal />
                         </div>
                         <div>
                           {order.paymentStatus === 'paid' ? (
@@ -766,7 +767,7 @@ export const OrdersScreen: React.FC = () => {
                               className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black text-xs px-4 py-2 rounded-xl shadow-md transition-all flex items-center gap-1.5 animate-pulse"
                             >
                               <CreditCard className="w-3.5 h-3.5" />
-                              <span>إتمام الدفع ({order.totalAmount.toFixed(2)} ر.س)</span>
+                              <span>إتمام الدفع ({order.totalAmount.toFixed(2)} <Riyal />)</span>
                             </button>
                           ) : (
                             <button
@@ -888,22 +889,22 @@ export const OrdersScreen: React.FC = () => {
                 {carpetPayModalOrder.addons.map((item, idx) => (
                   <div key={idx} className="flex justify-between items-center text-slate-700">
                     <span className="font-semibold">{item.name} × {item.quantity || 1}</span>
-                    <span className="font-black text-slate-900">{(item.price * (item.quantity || 1)).toFixed(2)} ر.س</span>
+                    <span className="font-black text-slate-900">{(item.price * (item.quantity || 1)).toFixed(2)} <Riyal /></span>
                   </div>
                 ))}
               </div>
               <div className="pt-2 border-t border-slate-200 space-y-1 text-slate-600">
                 <div className="flex justify-between">
                   <span>المجموع الفرعي:</span>
-                  <span>{carpetPayModalOrder.subtotal.toFixed(2)} ر.س</span>
+                  <span>{carpetPayModalOrder.subtotal.toFixed(2)} <Riyal /></span>
                 </div>
                 <div className="flex justify-between">
                   <span>ضريبة القيمة المضافة (15%):</span>
-                  <span>{carpetPayModalOrder.vatAmount.toFixed(2)} ر.س</span>
+                  <span>{carpetPayModalOrder.vatAmount.toFixed(2)} <Riyal /></span>
                 </div>
                 <div className="flex justify-between font-black text-base text-blue-700 pt-1 border-t border-slate-200">
                   <span>الإجمالي المطلوب سداده:</span>
-                  <span>{carpetPayModalOrder.totalAmount.toFixed(2)} ر.س</span>
+                  <span>{carpetPayModalOrder.totalAmount.toFixed(2)} <Riyal /></span>
                 </div>
               </div>
             </div>
@@ -951,7 +952,7 @@ export const OrdersScreen: React.FC = () => {
                     <div className="text-right">
                       <span className="font-black text-slate-900 block">محفظة نيكست الرقمية</span>
                       <span className="text-[10px] text-slate-500">
-                        رصيدك الحالي: {walletBalance.toFixed(2)} ر.س
+                        رصيدك الحالي: {walletBalance.toFixed(2)} <Riyal />
                       </span>
                     </div>
                   </div>
@@ -975,7 +976,7 @@ export const OrdersScreen: React.FC = () => {
                     <div className="text-right">
                       <span className="font-black text-slate-900 block">أقساط تابي (4 دفعات)</span>
                       <span className="text-[10px] text-slate-500">
-                        ادفع {(carpetPayModalOrder.totalAmount / 4).toFixed(2)} ر.س اليوم والباقي لاحقاً
+                        ادفع {(carpetPayModalOrder.totalAmount / 4).toFixed(2)} <Riyal /> اليوم والباقي لاحقاً
                       </span>
                     </div>
                   </div>
@@ -1024,7 +1025,7 @@ export const OrdersScreen: React.FC = () => {
                 ) : (
                   <>
                     <Check className="w-4 h-4" />
-                    <span>تأكيد ودفع {carpetPayModalOrder.totalAmount.toFixed(2)} ر.س</span>
+                    <span>تأكيد ودفع {carpetPayModalOrder.totalAmount.toFixed(2)} <Riyal /></span>
                   </>
                 )}
               </button>
@@ -1136,14 +1137,14 @@ export const OrdersScreen: React.FC = () => {
                 <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-xs">
                   <div className="flex items-center justify-between font-black text-slate-800 border-b border-slate-200 pb-2">
                     <span>قطع السجاد المسجلة بالطلب:</span>
-                    <span>الإجمالي الحالي: {activeCaptainOrder.totalAmount.toFixed(2)} ر.س</span>
+                    <span>الإجمالي الحالي: {activeCaptainOrder.totalAmount.toFixed(2)} <Riyal /></span>
                   </div>
                   <div className="space-y-2">
                     {activeCaptainOrder.addons.map((item, idx) => (
                       <div key={idx} className="flex justify-between items-center bg-white p-2 rounded-xl border border-slate-100">
                         <div>
                           <span className="font-bold text-slate-800">{item.name}</span>
-                          <span className="text-[10px] text-slate-400 block">{item.price.toFixed(2)} ر.س للقطعة</span>
+                          <span className="text-[10px] text-slate-400 block">{item.price.toFixed(2)} <Riyal /> للقطعة</span>
                         </div>
                         <span className="bg-blue-50 text-blue-800 font-black px-2.5 py-1 rounded-lg text-xs">
                           الكمية: {item.quantity || 1}
@@ -1311,7 +1312,7 @@ export const OrdersScreen: React.FC = () => {
                     <div key={idx} className="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs">
                       <div>
                         <p className="font-bold text-slate-800">{item.name}</p>
-                        <span className="text-[11px] text-blue-700 font-bold">{item.price.toFixed(2)} ر.س / قطعة</span>
+                        <span className="text-[11px] text-blue-700 font-bold">{item.price.toFixed(2)} <Riyal /> / قطعة</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <button
@@ -1359,7 +1360,7 @@ export const OrdersScreen: React.FC = () => {
                 <div className="bg-purple-50 border border-purple-200 p-3 rounded-xl flex items-center justify-between text-xs font-bold">
                   <span className="text-purple-950">السعر الجديد بعد إعادة الاحتساب:</span>
                   <span className="text-base text-blue-700 font-bold">
-                    {tempAdjustAddons.reduce((sum, it) => sum + it.price * (it.quantity || 1), 0).toFixed(2)} ر.س
+                    {tempAdjustAddons.reduce((sum, it) => sum + it.price * (it.quantity || 1), 0).toFixed(2)} <Riyal />
                   </span>
                 </div>
 
@@ -1534,21 +1535,21 @@ export const OrdersScreen: React.FC = () => {
               </div>
               <div className="flex justify-between font-normal">
                 <span>{selectedInvoiceOrder.service?.title || 'مشتريات المتجر'}</span>
-                <span>{selectedInvoiceOrder.subtotal.toFixed(2)} ر.س</span>
+                <span>{selectedInvoiceOrder.subtotal.toFixed(2)} <Riyal /></span>
               </div>
               {selectedInvoiceOrder.addons && selectedInvoiceOrder.addons.map((add, idx) => (
                 <div key={idx} className="flex justify-between text-slate-600 text-[11px] font-normal">
                   <span>{add.name} × {add.quantity || 1}</span>
-                  <span>{(add.price * (add.quantity || 1)).toFixed(2)} ر.س</span>
+                  <span>{(add.price * (add.quantity || 1)).toFixed(2)} <Riyal /></span>
                 </div>
               ))}
               <div className="flex justify-between text-slate-500 font-normal">
                 <span>ضريبة القيمة المضافة (15%):</span>
-                <span>{selectedInvoiceOrder.vatAmount.toFixed(2)} ر.س</span>
+                <span>{selectedInvoiceOrder.vatAmount.toFixed(2)} <Riyal /></span>
               </div>
               <div className="flex justify-between font-bold text-blue-700 text-sm pt-1 border-t border-slate-200">
                 <span>المجموع النهائي:</span>
-                <span>{selectedInvoiceOrder.totalAmount.toFixed(2)} ر.س</span>
+                <span>{selectedInvoiceOrder.totalAmount.toFixed(2)} <Riyal /></span>
               </div>
             </div>
 
@@ -1591,7 +1592,7 @@ export const OrdersScreen: React.FC = () => {
 
             <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-[11px] text-amber-900 font-bold flex items-center gap-2">
               <Wallet className="w-4 h-4 text-amber-600 shrink-0" />
-              <span>المبلغ المسترد: {cancelModalOrder.totalAmount.toFixed(2)} ر.س إلى المحفظة</span>
+              <span>المبلغ المسترد: {cancelModalOrder.totalAmount.toFixed(2)} <Riyal /> إلى المحفظة</span>
             </div>
 
             <div className="flex gap-2 pt-2">
@@ -1624,7 +1625,7 @@ export const OrdersScreen: React.FC = () => {
                 طلب استرجاع منتجات المتجر
               </h4>
               <p className="text-xs text-slate-500 leading-relaxed font-normal">
-                وفقاً لسياسة الإرجاع، يتم استرجاع قيمة المنتجات ({returnModalOrder.subtotal.toFixed(2)} ر.س) إلى محفظتك الإلكترونية مع خصم رسوم التوصيل إن وجدت.
+                وفقاً لسياسة الإرجاع، يتم استرجاع قيمة المنتجات ({returnModalOrder.subtotal.toFixed(2)} <Riyal />) إلى محفظتك الإلكترونية مع خصم رسوم التوصيل إن وجدت.
               </p>
             </div>
 
