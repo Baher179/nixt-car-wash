@@ -958,62 +958,44 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       </section>
 
       {/* ===================================================================== */}
-      {/* COUPON STRIP                                                          */}
+      {/* AD BANNER — a plain promotional slot. Artwork can be swapped without */}
+      {/* touching the layout; it only renders while a valid coupon exists.    */}
       {/* ===================================================================== */}
       {welcomeCoupon && (
-        <section className="bg-navy on-navy"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
-          <div className="bg-brand-soft rounded-[2rem] overflow-hidden grid lg:grid-cols-12 items-center">
-            {/* Visual fills the empty half the strip used to leave */}
-            <div className="lg:col-span-4 h-full flex items-center justify-center p-8 sm:p-10 lg:py-12">
-              {/* On the dark band multiply cannot drop the render's white
-                  backdrop, so it gets a deliberate tile instead of a seam. */}
-              <span className="bg-white rounded-3xl p-5 flex items-center justify-center w-40 lg:w-full lg:max-w-[13rem] aspect-square">
-                <img
-                  src={cardDiscountsCoupon}
-                  alt=""
-                  aria-hidden="true"
-                  loading="lazy"
-                  className="w-full h-full object-contain"
-                />
-              </span>
-            </div>
+        <section className="bg-canvas"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 sm:py-12">
+          <button
+            onClick={() => handleApplyBannerCode(welcomeCoupon.code)}
+            aria-label={`عرض عميل جديد: خصم ${welcomeCoupon.discountValue}% بكود ${welcomeCoupon.code}`}
+            className="card-i group relative block w-full overflow-hidden rounded-[1.75rem] bg-navy h-[15rem] sm:h-[13rem] lg:h-[15rem] text-right cursor-pointer"
+          >
+            <img
+              src={bCarCare}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.06]"
+            />
+            <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-navy/10 via-navy/75 to-navy" />
 
-            <div className="lg:col-span-8 p-8 sm:p-10 lg:pr-0 lg:py-12 space-y-5">
-              <span className="eyebrow"><span>عميل جديد</span></span>
-              <h2 className="text-3xl sm:text-[2.5rem] font-bold text-ink tracking-tight leading-tight max-w-md">
-                وفّر {welcomeCoupon.discountValue}% على أول حجز
-              </h2>
-              <p className="text-sm text-muted leading-relaxed max-w-sm">
-                استخدم الكود عند إتمام الحجز على طلب بقيمة {welcomeCoupon.minOrderValue} ر.س فأكثر.
-              </p>
-
-              <div className="flex flex-wrap items-stretch gap-3 pt-1">
-                {/* Ticket-style code chip: notches on both edges, dashed seam */}
-                <span className="relative bg-white rounded-xl px-7 py-3.5 flex flex-col items-center justify-center shrink-0">
-                  <span
-                    aria-hidden="true"
-                    className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-brand-soft"
-                  />
-                  <span
-                    aria-hidden="true"
-                    className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-brand-soft"
-                  />
-                  <span className="block text-[10px] text-muted mb-0.5">الكود</span>
-                  <span className="block text-xl font-bold text-ink tracking-[0.2em] leading-none">
-                    {welcomeCoupon.code}
-                  </span>
+            <span className="relative h-full flex flex-col sm:flex-row sm:items-center justify-center sm:justify-between gap-5 px-7 sm:px-10">
+              <span className="space-y-2">
+                <span className="block text-[11px] font-bold tracking-[0.18em] text-accent">عميل جديد</span>
+                <span className="block text-2xl sm:text-[1.75rem] lg:text-3xl font-bold text-white tracking-tight">
+                  وفّر {welcomeCoupon.discountValue}% على أول حجز
                 </span>
+                <span className="block text-[13px] text-slate-300">
+                  بكود{' '}
+                  <span className="font-bold text-accent tracking-[0.15em]">{welcomeCoupon.code}</span>
+                  {' '}على طلب بقيمة {welcomeCoupon.minOrderValue} ر.س فأكثر
+                </span>
+              </span>
 
-                <button
-                  onClick={() => handleApplyBannerCode(welcomeCoupon.code)}
-                  className="bg-ink hover:bg-brand-deep active:scale-[0.98] text-white font-medium text-[14px] px-7 rounded-xl transition-colors flex items-center gap-2 cursor-pointer"
-                >
-                  <span>استخدم الكود</span>
-                  <ArrowLeft className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
+              <span className="shrink-0 inline-flex w-fit items-center gap-2.5 bg-accent group-hover:bg-white text-navy font-bold text-[14px] px-6 py-3 rounded-full transition-colors duration-300">
+                استخدم الكود
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+              </span>
+            </span>
+          </button>
           </div>
         </section>
       )}
