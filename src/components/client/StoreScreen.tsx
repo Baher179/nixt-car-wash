@@ -90,19 +90,20 @@ export const StoreScreen: React.FC = () => {
   // Responsive cards per view for deals & reviews carousels (Image 2 & Image 3)
   const [cardsPerView, setCardsPerView] = useState<number>(3);
   // Responsive cards per view for category carousel (Compact width)
-  const [catCardsPerView, setCatCardsPerView] = useState<number>(5);
+  const [catCardsPerView, setCatCardsPerView] = useState<number>(6);
 
   useEffect(() => {
     const updateCardsPerView = () => {
       if (window.innerWidth < 640) {
         setCardsPerView(1);
-        setCatCardsPerView(2);
+        setCatCardsPerView(3);
       } else if (window.innerWidth < 1024) {
         setCardsPerView(2);
-        setCatCardsPerView(3);
+        setCatCardsPerView(4);
       } else {
         setCardsPerView(3);
-        setCatCardsPerView(5);
+        // Six across, matching the services tiles on the homepage.
+        setCatCardsPerView(6);
       }
     };
     updateCardsPerView();
@@ -642,15 +643,6 @@ export const StoreScreen: React.FC = () => {
       {/* 4. MAIN CATEGORIES SECTION - Swipeable Carousel with Centered Text & Compact Cards */}
       {!searchQuery.trim() && (
         <section className="bg-white"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
-          <header className="space-y-6 mb-12">
-            <div className="space-y-4">
-              <span className="eyebrow"><span>الأقسام</span></span>
-              <h2 className="section-title max-w-2xl">أقسام المتجر</h2>
-              <p className="text-[15px] text-muted max-w-md">تصفّح أقسام ومنتجات المتجر المعتمدة بكل سهولة.</p>
-            </div>
-            <div className="rule" />
-          </header>
-
           {/* Swipeable Categories Carousel Container */}
           <div
             className="relative select-none"
@@ -712,62 +704,38 @@ export const StoreScreen: React.FC = () => {
                             setActiveStoreCategory(cat.id);
                           }
                         }}
-                        className={`w-full group relative flex flex-col justify-between items-center p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl border transition-all duration-300 cursor-pointer h-[205px] sm:h-[225px] text-center shadow-2xs hover:shadow-md ${
-                          isSelected
-                            ? 'bg-blue-50/50 border-blue-400 ring-2 ring-blue-300/40 shadow-xs'
-                            : isComingSoon
-                            ? 'bg-gradient-to-b from-indigo-50/40 to-white border-indigo-200/90 hover:border-indigo-400'
-                            : 'bg-white border-slate-200/90 hover:border-blue-300'
-                        }`}
+                        className="group w-full text-right cursor-pointer"
                       >
-                        {/* Inner Image Frame Container with Border & Eye-Comfortable Soft Transparency */}
-                        <div className="relative w-full h-24 sm:h-28 rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-50 group-hover:border-blue-200 transition-all duration-300 shadow-2xs shrink-0">
+                        <div className={`relative rounded-2xl overflow-hidden aspect-square mb-4 bg-shell ${
+                          isSelected ? 'ring-2 ring-brand' : ''
+                        }`}>
                           {cat.image && (
                             <img
                               src={cat.image}
-                              alt={cat.title}
-                              className="w-full h-full object-cover object-center opacity-75 group-hover:opacity-95 group-hover:scale-108 transition-all duration-500 ease-out"
+                              alt=""
+                              aria-hidden="true"
+                              loading="lazy"
                               referrerPolicy="no-referrer"
+                              className="photo w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
                             />
                           )}
-
-                          {/* Subtle soft tint for gentle contrast */}
-                          <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300" />
-
-                          {/* Corner Icon Badge with Frosted Glass Effect */}
-                          <div className={`absolute top-1.5 right-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl ${
-                            isComingSoon ? 'bg-indigo-600 text-white' : 'bg-white/90 backdrop-blur-md text-blue-600'
-                          } shadow-2xs border border-white/80 flex items-center justify-center group-hover:scale-105 ${
-                            isComingSoon ? '' : 'group-hover:bg-blue-600 group-hover:text-white'
-                          } transition-all duration-300`}>
-                            <IconComp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                          </div>
-
-
+                          <span className="absolute top-2.5 right-2.5 w-8 h-8 rounded-xl bg-white/90 backdrop-blur-md text-brand flex items-center justify-center group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+                            <IconComp className="w-4 h-4" />
+                          </span>
+                          {isComingSoon && (
+                            <span className="absolute bottom-2.5 right-2.5 bg-navy text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                              قريباً
+                            </span>
+                          )}
                         </div>
 
-                        {/* Text Information on crisp comfortable white card background */}
-                        <div className="space-y-0.5 w-full my-auto px-1 text-center">
-                          <h3 className={`text-xs sm:text-sm font-black leading-tight ${
-                            isComingSoon ? 'text-indigo-950 group-hover:text-indigo-600' : 'text-slate-900 group-hover:text-blue-600'
-                          } transition-colors line-clamp-1`}>
-                            {cat.title}
-                          </h3>
-                          <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium line-clamp-1 leading-relaxed">
-                            {cat.subtitle}
-                          </p>
-                        </div>
-
-                        {/* Bottom Action Icon with Arrow */}
-                        <div className="self-start mt-0.5">
-                          <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full ${
-                            isComingSoon
-                              ? 'bg-indigo-50 group-hover:bg-indigo-600 group-hover:text-white text-indigo-600'
-                              : 'bg-slate-100 group-hover:bg-blue-600 group-hover:text-white text-slate-500'
-                          } flex items-center justify-center transition-all duration-200 shadow-2xs`}>
-                            <ArrowLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:-translate-x-0.5 transition-transform" />
-                          </div>
-                        </div>
+                        <h3 className="text-[13px] font-semibold text-ink leading-snug mb-1.5 line-clamp-1">
+                          {cat.title}
+                        </h3>
+                        <span className="flex items-center gap-1.5 text-[12px] text-faint group-hover:text-brand-deep transition-colors">
+                          {isComingSoon ? 'قريباً' : 'تسوّق'}
+                          <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform duration-300" />
+                        </span>
                       </button>
                     </div>
                   );
