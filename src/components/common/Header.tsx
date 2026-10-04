@@ -129,7 +129,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between gap-2 sm:gap-6">
 
         {/* RIGHT SECTION: Brand Logo & Booking Location Selector */}
-        <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0 shrink">
           {/* NIXT Brand Logo */}
           <button
             id="btn-logo-home"
@@ -146,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="text-lg sm:text-xl font-bold tracking-tight text-ink leading-none">
                 NIXT
               </span>
-              <span className="hidden sm:block text-[11px] text-muted leading-tight mt-0.5">
+              <span className="hidden xl:block text-[11px] text-muted leading-tight mt-0.5 whitespace-nowrap">
                 خدماتك بخبرة واحترافية
               </span>
             </div>
@@ -159,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
               setCurrentScreen('addresses');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="hidden md:flex items-center gap-2.5 hover:bg-canvas text-ink border border-hairline h-11 px-3.5 rounded-full transition-colors text-right group"
+            className="hidden xl:flex items-center gap-2.5 hover:bg-canvas text-ink border border-hairline h-11 px-3.5 rounded-full transition-colors text-right group"
             title="تغيير موقع الحجز"
           >
             <MapPin className="w-4 h-4 text-brand-deep shrink-0" />
@@ -201,7 +201,7 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Site-Wide Search Bar (Desktop & Tablet) */}
-          <HeaderSearch className="hidden sm:block flex-1 min-w-[180px] max-w-[320px] lg:max-w-[360px]" />
+          <HeaderSearch className="hidden md:block flex-1 min-w-[132px] max-w-[300px] lg:max-w-[360px]" />
         </div>
 
         {/* LEFT SECTION: User Actions (Wallet -> Notifications -> Secondary Action -> User Profile -> Mobile Menu) */}
@@ -211,7 +211,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="btn-mobile-search-toggle"
             onClick={() => setShowMobileSearch(!showMobileSearch)}
-            className={`sm:hidden w-10 h-10 rounded-full flex items-center justify-center border transition-colors ${
+            className={`md:hidden w-10 h-10 rounded-full flex items-center justify-center border transition-colors ${
               showMobileSearch ? 'bg-canvas border-hairline text-brand-deep' : 'border-hairline hover:bg-canvas text-ink'
             }`}
             title="البحث في الموقع"
@@ -224,7 +224,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="btn-header-wallet"
             onClick={() => handleNavClick('wallet')}
-            className={`hidden sm:flex items-center gap-2 h-10 px-3.5 rounded-full border transition-colors ${
+            className={`hidden lg:flex items-center gap-2 h-10 px-3.5 rounded-full border transition-colors ${
               currentScreen === 'wallet' && !isAdmin
                 ? 'bg-canvas border-hairline text-ink'
                 : 'border-hairline hover:bg-canvas text-ink'
@@ -449,7 +449,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile Search Bar Dropdown Strip (< sm) */}
       {showMobileSearch && (
-        <div className="sm:hidden bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-4 py-2.5 shadow-sm animate-in slide-in-from-top-2 duration-150">
+        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-hairline px-4 py-2.5 animate-in slide-in-from-top-2 duration-150">
           <HeaderSearch
             isMobileDrawer
             onResultClick={() => setShowMobileSearch(false)}
@@ -461,7 +461,7 @@ export const Header: React.FC<HeaderProps> = ({
       {showMobileMenu && (
         <div className="lg:hidden bg-white border-t border-slate-200/80 px-4 py-3.5 shadow-md animate-in slide-in-from-top-2 duration-150 space-y-3">
           {/* Mobile Search inside Drawer */}
-          <div className="sm:hidden">
+          <div className="md:hidden">
             <HeaderSearch
               isMobileDrawer
               onResultClick={() => setShowMobileMenu(false)}
@@ -470,7 +470,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Location and wallet live here on narrow screens, where showing them
               in the bar pushed the actions off the edge. */}
-          <div className="md:hidden grid grid-cols-2 gap-2">
+          <div className="xl:hidden grid grid-cols-2 gap-2">
             <button
               onClick={() => {
                 setShowMobileMenu(false);
@@ -490,7 +490,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => handleNavClick('wallet')}
-              className="sm:hidden flex items-center gap-2 p-3 rounded-xl border border-hairline hover:bg-canvas transition-colors text-right min-w-0"
+              className="lg:hidden flex items-center gap-2 p-3 rounded-xl border border-hairline hover:bg-canvas transition-colors text-right min-w-0"
             >
               <Wallet className="w-4 h-4 text-emerald-600 shrink-0" />
               <span className="flex flex-col leading-none min-w-0">

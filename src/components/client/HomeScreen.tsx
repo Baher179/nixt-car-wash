@@ -18,7 +18,6 @@ import {
   BadgeCheck,
   CalendarClock,
   Wallet,
-  Smartphone,
   Gift,
   Ticket,
   Sparkles,
@@ -29,7 +28,6 @@ import {
 import cardPackagesGift from '../../assets/images/card_packages_gift_1788336459498.jpg';
 import cardSubscriptionsClipboard from '../../assets/images/card_subscriptions_clipboard_1788336474969.jpg';
 import cardDiscountsCoupon from '../../assets/images/card_discounts_coupon_1788336491476.jpg';
-import heroBannerImg from '../../assets/images/hero_car_wash_banner_1788336434912.jpg';
 import tankPlasticWhite from '../../assets/images/tank_plastic_white_1789561943606.jpg';
 // NIXT brand photography — uniformed crew, branded vans, Saudi settings.
 import bCarWash from '../../assets/brand/category-car-wash-nixt-v5.webp';
@@ -1020,7 +1018,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <div className="overflow-hidden">
+          <div className="overflow-hidden -my-5 py-5">
             <div className="flex transition-transform duration-[600ms] ease-out"
               style={{ transform: `translateX(${offerSlideIndex * (100 / cardsPerView)}%)` }}>
               {offerCards.map(offer => (
@@ -1307,7 +1305,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
           onTouchStart={handleReviewsTouchStart}
           onTouchEnd={handleReviewsTouchEnd}
         >
-          <div className="overflow-hidden">
+          <div className="overflow-hidden -my-5 py-5">
             <div className="flex transition-transform duration-[600ms] ease-out"
               style={{ transform: `translateX(${reviewsSlideIndex * (100 / cardsPerView)}%)` }}>
               {customerReviewsData.map(review => (
@@ -1362,35 +1360,41 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
       </section>
 
       {/* ===================================================================== */}
-      {/* APP — store links and QR remain placeholders until listings exist     */}
+      {/* STORE AD BANNER — replaces the app-download block, which promised an */}
+      {/* app that has no listing yet. Sends the visitor to the store instead. */}
       {/* ===================================================================== */}
-      <section className="bg-navy on-navy"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
-        <div className="rounded-[2rem] bg-brand-soft overflow-hidden grid lg:grid-cols-12 items-center">
-          <div className="lg:col-span-7 p-10 sm:p-14 space-y-6">
-            <span className="eyebrow"><span>التطبيق</span></span>
-            <h2 className="section-title max-w-md">احجز من جوالك في أقل من دقيقة</h2>
-            <p className="text-[15px] text-muted max-w-sm leading-relaxed">
-              تطبيق نيكست قيد الإطلاق. سجّل اهتمامك الآن ونخبرك فور توفره.
-            </p>
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              {['App Store', 'Google Play'].map(store => (
-                <span key={store} className="inline-flex items-center gap-2.5 bg-white rounded-2xl px-6 py-3.5 text-ink">
-                  <Smartphone className="w-4 h-4 text-faint shrink-0" />
-                  <span className="leading-tight">
-                    <span className="block text-[10px] text-faint">قريباً على</span>
-                    <span className="block text-[13px] font-semibold">{store}</span>
-                  </span>
-                </span>
-              ))}
-            </div>
-          </div>
+      <section className="bg-canvas"><div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 sm:py-14">
+        <button
+          onClick={() => { setCurrentScreen('store'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          aria-label="تسوّق منتجات العناية من متجر نيكست"
+          className="card-i group relative block w-full overflow-hidden rounded-[1.75rem] bg-navy h-[17rem] sm:h-[14rem] lg:h-[16rem] text-right cursor-pointer"
+        >
+          <img
+            src={bProductsGateway}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.06]"
+          />
+          <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-navy/10 via-navy/70 to-navy" />
 
-          <div className="lg:col-span-5 h-full min-h-[18rem] p-10 sm:p-14 lg:pr-0 flex items-center justify-center">
-            <div className="rounded-[1.5rem] overflow-hidden aspect-[4/5] w-full max-w-[16rem] bg-white">
-              <img src={heroBannerImg} alt="" aria-hidden="true" loading="lazy" className="photo w-full h-full object-cover" />
-            </div>
-          </div>
-        </div>
+          <span className="relative h-full flex flex-col sm:flex-row sm:items-center justify-center sm:justify-between gap-5 px-7 sm:px-10">
+            <span className="space-y-2">
+              <span className="block text-[11px] font-bold tracking-[0.18em] text-accent">متجر نيكست</span>
+              <span className="block text-2xl sm:text-[1.75rem] lg:text-3xl font-bold text-white tracking-tight max-w-md">
+                منتجات العناية بالسيارة والمنزل
+              </span>
+              <span className="block text-[13px] text-slate-300 max-w-sm">
+                إكسسوارات ومستلزمات تنظيف مختارة، تصلك إلى بابك.
+              </span>
+            </span>
+
+            <span className="shrink-0 inline-flex w-fit items-center gap-2.5 bg-accent group-hover:bg-white text-navy font-bold text-[14px] px-6 py-3 rounded-full transition-colors duration-300">
+              تسوّق الآن
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+            </span>
+          </span>
+        </button>
         </div>
       </section>
 
