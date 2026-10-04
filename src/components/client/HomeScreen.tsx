@@ -862,6 +862,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               id: 'dest-services',
               title: 'الخدمات',
               desc: 'غسيل السيارات والسجاد والكنب والخزانات — في موقعك.',
+              badge: 'في موقعك',
               cta: 'استكشف الخدمات',
               img: bServicesGateway,
               onClick: () => navigateToCategoryServices('cars'),
@@ -871,6 +872,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               id: 'dest-store',
               title: 'المتجر',
               desc: 'منتجات وإكسسوارات عناية مختارة، تصلك إلى بابك.',
+              badge: 'توصيل للباب',
               cta: 'تسوّق الآن',
               img: bProductsGateway,
               onClick: () => { setCurrentScreen('store'); window.scrollTo({ top: 0, behavior: 'smooth' }); },
@@ -880,18 +882,38 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             <button
               key={d.id}
               onClick={d.onClick}
-              className={`group ${d.tint} rounded-[2rem] p-8 sm:p-10 text-right cursor-pointer flex flex-col gap-6 transition-colors duration-300 hover:bg-white hover:ring-1 hover:ring-hairline`}
+              className="card-i group relative overflow-hidden rounded-[2rem] text-right cursor-pointer min-h-[21rem] sm:min-h-[25rem] bg-navy"
             >
-              <div className="rounded-2xl overflow-hidden aspect-[16/10] bg-white/50">
-                <img src={d.img} alt="" aria-hidden="true" loading="lazy"
-                  className="photo w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]" />
-              </div>
-              <div className="space-y-3">
-                <h3 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">{d.title}</h3>
-                <p className="text-sm text-muted leading-relaxed max-w-[20rem]">{d.desc}</p>
-                <span className="inline-flex items-center gap-2 text-[13px] font-medium text-brand-deep pt-1">
+              {/* The photograph fills the card; nothing floats inside a panel. */}
+              <img
+                src={d.img}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.07]"
+              />
+
+              {/* Scrim lives under the copy and deepens on hover */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-navy via-navy/55 to-transparent transition-opacity duration-500"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+
+              <span className="absolute top-5 right-5 inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
+                {d.badge}
+              </span>
+
+              <div className="relative h-full flex flex-col justify-end gap-3 p-7 sm:p-9">
+                <h3 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">{d.title}</h3>
+                <p className="text-[13px] sm:text-sm text-slate-200 leading-relaxed max-w-[21rem]">{d.desc}</p>
+
+                <span className="mt-2 inline-flex w-fit items-center gap-2.5 bg-white/12 group-hover:bg-accent backdrop-blur-md text-white group-hover:text-navy font-bold text-[13px] px-5 py-2.5 rounded-full transition-colors duration-300">
                   {d.cta}
-                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
                 </span>
               </div>
             </button>
@@ -1164,33 +1186,36 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               onClick: () => { setCurrentScreen('referral'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
             }
           ].map(b => (
-            <button key={b.id} onClick={b.onClick}
-              className={`group relative overflow-hidden rounded-[2rem] ${b.tint} text-right cursor-pointer min-h-[16rem] transition-colors duration-300 hover:bg-white hover:ring-1 hover:ring-hairline`}>
-              {/* Image occupies the full height of the card on its leading edge */}
-              {/* The render is multiplied onto the panel, so its white studio
-                  background disappears instead of forming a visible seam. */}
+            <button
+              key={b.id}
+              onClick={b.onClick}
+              className={`card-i group relative overflow-hidden rounded-[2rem] ${b.tint} text-right cursor-pointer min-h-[15rem] ring-1 ring-transparent hover:ring-brand/20 hover:bg-white`}
+            >
+              {/* Soft halo that grows on hover, so the card has somewhere to go */}
               <span
                 aria-hidden="true"
-                className="absolute inset-y-0 left-0 w-[42%] sm:w-[38%] flex items-center justify-center p-5"
-              >
-                <img
-                  src={b.img}
-                  alt=""
-                  loading="lazy"
-                  className="render max-h-full w-full object-contain transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
-                />
-              </span>
+                className="absolute -top-12 -left-12 w-44 h-44 rounded-full bg-brand/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
 
-              <div className="relative flex flex-col justify-between gap-6 h-full min-h-[16rem] p-8 sm:p-10 pl-[46%] sm:pl-[40%]">
-                <div className="space-y-3">
-                  <span className="eyebrow"><span>{b.kicker}</span></span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-ink leading-snug tracking-tight">{b.title}</h3>
-                  <p className="text-[13px] text-muted leading-relaxed">{b.desc}</p>
-                </div>
-                <span className="inline-flex items-center gap-2 text-[13px] font-medium text-brand-deep">
-                  {b.cta}
-                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+              <div className="relative flex items-start gap-6 sm:gap-7 p-7 sm:p-9 h-full">
+                <span className="medallion w-24 h-24 sm:w-28 sm:h-28 mt-1" aria-hidden="true">
+                  <img src={b.img} alt="" loading="lazy" />
                 </span>
+
+                <div className="flex flex-col justify-between gap-5 min-w-0 flex-1 self-stretch">
+                  <div className="space-y-2.5">
+                    <span className="eyebrow"><span>{b.kicker}</span></span>
+                    <h3 className="text-lg sm:text-xl font-bold text-ink leading-snug tracking-tight">{b.title}</h3>
+                    <p className="text-[13px] text-muted leading-relaxed">{b.desc}</p>
+                  </div>
+
+                  <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand-deep">
+                    {b.cta}
+                    <span className="w-7 h-7 rounded-full bg-white/70 group-hover:bg-brand group-hover:text-white flex items-center justify-center transition-colors duration-300">
+                      <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform duration-300" />
+                    </span>
+                  </span>
+                </div>
               </div>
             </button>
           ))}
@@ -1266,14 +1291,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
             <button key={card.id}
               onClick={() => { setCurrentScreen(card.screen); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               className="group rounded-[1.75rem] bg-white/5 ring-1 ring-hairline hover:ring-brand-deep/25 p-8 text-right cursor-pointer flex flex-col gap-4 min-h-[14rem] transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl overflow-hidden mb-1 bg-white/5">
-                <img src={card.image} alt="" aria-hidden="true" loading="lazy" className="photo w-full h-full object-cover" />
-              </div>
+              <span className="medallion w-16 h-16 mb-1" aria-hidden="true">
+                <img src={card.image} alt="" loading="lazy" />
+              </span>
               <h3 className="text-xl font-semibold text-ink">{card.title}</h3>
               <p className="text-[13px] text-muted leading-relaxed flex-1">{card.desc}</p>
-              <span className="inline-flex items-center gap-2 text-[13px] font-medium text-accent">
+              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-brand-deep">
                 {card.cta}
-                <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1.5 transition-transform duration-300" />
+                <span className="w-7 h-7 rounded-full bg-brand-soft group-hover:bg-brand group-hover:text-white flex items-center justify-center transition-colors duration-300">
+                  <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform duration-300" />
+                </span>
               </span>
             </button>
           ))}
@@ -1303,7 +1330,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectService }) => {
               style={{ transform: `translateX(${reviewsSlideIndex * (100 / cardsPerView)}%)` }}>
               {customerReviewsData.map(review => (
                 <div key={review.id} className="shrink-0 pl-5" style={{ width: `${100 / cardsPerView}%` }}>
-                  <figure className="h-full bg-white ring-1 ring-hairline rounded-[1.75rem] p-8 flex flex-col gap-6">
+                  <figure className="card-i h-full bg-white ring-1 ring-hairline hover:ring-brand/20 rounded-[1.75rem] p-8 flex flex-col gap-6">
                     <div className="flex items-center gap-1" aria-label={`التقييم ${review.rating} من 5`}>
                       {Array.from({ length: review.rating }).map((_, i) => (
                         <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
